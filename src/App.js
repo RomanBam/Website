@@ -170,14 +170,15 @@ function ExperienceSection() {
       <div className="exp-timeline" style={{ position: 'relative', marginLeft: '1.5rem', paddingLeft: '1.5rem', borderLeft: '2.5px solid #333', maxWidth: 700 }}>
         <div className="exp-item" style={{ position: 'relative', marginBottom: 0 }}>
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem', position: 'relative', top: '-0.05rem' }}>Sales Representative <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(May 2021 - Oct. 2024)</span></div>
+          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem', position: 'relative', top: '-0.05rem' }}>Sales & Technical Support Specialist <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(May 2021 – Oct. 2024)</span></div>
           <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.2rem' }}>Super Choice Kitchen Inc, Burlington, ON</div>
           <div style={{ color: '#b0b0b0', fontSize: '1rem', marginBottom: '0.2rem' }}>
             <ul style={{ margin: '0.2rem 0 0.2rem 1.2rem', color: '#e0e0e0', fontSize: '1rem' }}>
-              <li>Designed & presented over a hundred online 3D renovation models annually.</li>
-              <li>Increased customer satisfaction scores by 25% through tailored recommendations & recurring follow-ups.</li>
-              <li>Provided IT and customer support</li>
-              <li>Streamlined project updates, improving client confidence & retention.</li>
+              <li>Created and presented 100+ interactive 3D renovation models annually using digital modelling tools, improving customer engagement and technical communication.</li>
+              <li>Increased customer satisfaction scores by 25% through data-informed recommendations and consistent post-project follow-ups.</li>
+              <li>Delivered IT support for internal systems, resolving hardware/software issues and improving uptime for daily operations.</li>
+              <li>Automated and streamlined project update workflows, improving client retention and team communication.</li>
+              <li>Collaborated cross-functionally with design and operations teams to translate customer needs into technical requirements and solutions.</li>
             </ul>
           </div>
         </div>
