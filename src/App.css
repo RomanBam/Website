@@ -420,6 +420,17 @@ body {
   color: #fff;
   border-bottom: 1px solid #fff;
 }
+.portfolio-badge {
+  background: #23242a;
+  color: #ffd600;
+  border-radius: 6px;
+  padding: 0.18rem 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-right: 0.3rem;
+  margin-bottom: 0.2rem;
+  display: inline-block;
+}
 
 @media (max-width: 1000px) {
   .container {

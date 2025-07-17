@@ -252,6 +252,17 @@ function TechStackSection() {
   );
 }
 
+const projects = [
+  {
+    title: 'Cheese Fat Prediction Model',
+    description: 'A data science and machine learning project that predicts the fat percentage in cheese samples using regression models. The workflow covers data cleaning, exploratory data analysis (EDA), feature engineering, model selection, and results interpretation. Ideal for applications in food quality control and nutritional analysis.',
+    tech: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'Matplotlib', 'Seaborn', 'Jupyter Notebook'],
+    code: 'https://github.com/RomanBam/CheeseFatPrediction',
+    live: null
+  },
+  // Add more projects here as needed
+];
+
 function MobileView({ activeTab, setActiveTab }) {
   return (
     <div className="dark-app">
@@ -313,20 +324,30 @@ function MobileView({ activeTab, setActiveTab }) {
           <section className="portfolio-section">
             <h2 className="portfolio-title custom-title">Portfolio</h2>
             <div className="portfolio-grid">
-              <div className="portfolio-card">
-                <h3>Cheese Fat Prediction Model</h3>
-                <p>
-                  A data science project that predicts the fat percentage in cheese samples using machine learning. Built with Python, pandas, scikit-learn, and Jupyter Notebook. Includes data cleaning, EDA, model training, and results interpretation.
-                </p>
-                <a
-                  href="https://github.com/RomanBam/CheeseFatPrediction"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="portfolio-link"
-                >
-                  View on GitHub
-                </a>
-              </div>
+              {projects.map((proj, idx) => (
+                <div className="portfolio-card" key={idx}>
+                  <h3 className="portfolio-title" style={{ fontSize: '1.2rem', marginBottom: '0.3rem' }}>{proj.title}</h3>
+                  <p style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '1.1rem' }}>{proj.description}</p>
+                  <div style={{ marginBottom: '1.1rem' }}>
+                    <span style={{ color: '#fff', fontWeight: 600, fontSize: '1rem' }}>Tech Stack:</span>
+                    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.4rem' }}>
+                      {proj.tech.map((t, i) => (
+                        <span key={i} className="portfolio-badge">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', marginTop: 'auto' }}>
+                    <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <FaGithub style={{ fontSize: '1.2rem' }} /> Code
+                    </a>
+                    {proj.live && (
+                      <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link" style={{ color: '#00ffae', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <span style={{ fontSize: '1.1rem' }}>Live</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         )}
@@ -422,20 +443,30 @@ function WebView({ activeTab, setActiveTab }) {
             <section className="portfolio-section">
               <h2 className="portfolio-title custom-title">Portfolio</h2>
               <div className="portfolio-grid">
-                <div className="portfolio-card">
-                  <h3>Cheese Fat Prediction Model</h3>
-                  <p>
-                    A data science project that predicts the fat percentage in cheese samples using machine learning. Built with Python, pandas, scikit-learn, and Jupyter Notebook. Includes data cleaning, EDA, model training, and results interpretation.
-                  </p>
-                  <a
-                    href="https://github.com/RomanBam/CheeseFatPrediction"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="portfolio-link"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
+                {projects.map((proj, idx) => (
+                  <div className="portfolio-card" key={idx}>
+                    <h3 className="portfolio-title" style={{ fontSize: '1.2rem', marginBottom: '0.3rem' }}>{proj.title}</h3>
+                    <p style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '1.1rem' }}>{proj.description}</p>
+                    <div style={{ marginBottom: '1.1rem' }}>
+                      <span style={{ color: '#fff', fontWeight: 600, fontSize: '1rem' }}>Tech Stack:</span>
+                      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.4rem' }}>
+                        {proj.tech.map((t, i) => (
+                          <span key={i} className="portfolio-badge">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', marginTop: 'auto' }}>
+                      <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <FaGithub style={{ fontSize: '1.2rem' }} /> Code
+                      </a>
+                      {proj.live && (
+                        <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link" style={{ color: '#00ffae', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <span style={{ fontSize: '1.1rem' }}>Live</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
             </section>
           )}
