@@ -410,15 +410,19 @@ body {
 }
 .portfolio-link {
   margin-top: 1rem;
-  color: #ffd600;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
-  border-bottom: 1px solid #ffd600;
+  border-bottom: none;
   transition: color 0.2s, border-bottom 0.2s;
 }
 .portfolio-link:hover {
-  color: #fff;
-  border-bottom: 1px solid #fff;
+  color: #ffd600;
+  border-bottom: none;
+}
+.portfolio-link:hover svg {
+  color: #ffd600;
+  fill: #ffd600;
 }
 .portfolio-badge {
   background: #23242a;
@@ -430,6 +434,10 @@ body {
   margin-right: 0.3rem;
   margin-bottom: 0.2rem;
   display: inline-block;
+}
+.portfolio-link:hover svg {
+  color: #ffd600;
+  fill: #ffd600;
 }
 
 @media (max-width: 1000px) {
