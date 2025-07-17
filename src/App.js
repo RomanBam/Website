@@ -260,6 +260,13 @@ const projects = [
     code: 'https://github.com/RomanBam/CheeseFatPrediction',
     live: null
   },
+  {
+    title: 'AI-Assistant',
+    description: 'A Python-based AI assistant that leverages the power of LangChain and OpenAI to provide conversational and computational capabilities through a command-line interface. The project demonstrates prompt engineering, API integration, and modular tool extension. Ideal for exploring natural language processing, building custom chatbots, and experimenting with AI-driven automation.',
+    tech: ['Python', 'LangChain', 'OpenAI API', 'LangGraph', 'python-dotenv', 'uv'],
+    code: 'https://github.com/RomanBam/AI-Assistant',
+    live: null
+  },
   // Add more projects here as needed
 ];
 
