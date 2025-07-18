@@ -231,6 +231,14 @@ function TechStackSection() {
             <li>SQL</li>
           </ul>
         </div>
+        {/* Deployment & Hosting */}
+        <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
+          <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
+          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Deployment & Hosting</div>
+          <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
+            <li>Vercel</li>
+          </ul>
+        </div>
         {/* UI/UX & Design Tools */}
         <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
@@ -244,7 +252,7 @@ function TechStackSection() {
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Version Control & Collaboration</div>
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>GitHub</li>
+            <li>Git, GitHub</li>
           </ul>
         </div>
       </div>
