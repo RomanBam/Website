@@ -210,6 +210,7 @@ function TechStackSection() {
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
             <li>TensorFlow</li>
             <li>ML Libraries: Scikit-learn, Pandas, NumPy, Matplotlib, Graphviz, Vega-Altair</li>
+            <li>ChatGPT API, LangChain</li>
           </ul>
         </div>
         {/* Frontend Development */}
