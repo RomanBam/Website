@@ -200,7 +200,7 @@ function TechStackSection() {
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Programming</div>
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>C#, Python, C++</li>
+            <li>C#, Python, C++, Java</li>
           </ul>
         </div>
         {/* Artificial Intelligence */}
@@ -210,6 +210,7 @@ function TechStackSection() {
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
             <li>TensorFlow</li>
             <li>ML Libraries: Scikit-learn, Pandas, NumPy, Matplotlib, Graphviz, Vega-Altair</li>
+            <li>Jupyter Notebooks</li>
             <li>ChatGPT API, LangChain</li>
           </ul>
         </div>
