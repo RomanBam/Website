@@ -200,7 +200,7 @@ function TechStackSection() {
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Programming</div>
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>C#, Python, C++, SQL</li>
+            <li>C#, Python, C++</li>
           </ul>
         </div>
         {/* Artificial Intelligence */}
@@ -220,7 +220,6 @@ function TechStackSection() {
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
             <li>JavaScript, HTML, CSS</li>
             <li>React.js, Next.js</li>
-            <li>Unity (for UI)</li>
           </ul>
         </div>
         {/* Backend & APIs */}
@@ -228,7 +227,7 @@ function TechStackSection() {
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Backend & APIs</div>
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>Python (Flask), C#, C++</li>
+            <li>Python (Flask)</li>
             <li>SQL</li>
           </ul>
         </div>
