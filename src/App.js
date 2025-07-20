@@ -228,8 +228,9 @@ function TechStackSection() {
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Backend & APIs</div>
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>Python (Flask)</li>
+            <li>Python (Flask, Streamlit)</li>
             <li>SQL</li>
+            <li>PyPDF2</li>
           </ul>
         </div>
         {/* Deployment & Hosting */}
@@ -274,6 +275,13 @@ const projects = [
     description: 'A Python-based AI assistant that leverages the power of LangChain and OpenAI to provide conversational and computational capabilities through a command-line interface. The project demonstrates prompt engineering, API integration, and modular tool extension. Ideal for exploring natural language processing, building custom chatbots, and experimenting with AI-driven automation.',
     tech: ['Python', 'LangChain', 'OpenAI API', 'LangGraph', 'python-dotenv', 'uv'],
     code: 'https://github.com/RomanBam/AI-Assistant',
+    live: null
+  },
+  {
+    title: 'AI Resume Critiquer',
+    description: 'A web-based AI application that provides intelligent resume analysis and feedback using OpenAI\'s GPT models. Users can upload their resumes in PDF or TXT format and receive detailed critiques covering content clarity, skills presentation, experience descriptions, and targeted improvements for specific job roles. The application features a clean Streamlit interface with real-time analysis and structured feedback recommendations. Ideal for job seekers looking to optimize their resumes and improve their chances of landing interviews.',
+    tech: ['Python', 'Streamlit', 'OpenAI API', 'PyPDF2', 'python-dotenv', 'uv'],
+    code: 'https://github.com/RomanBam/AI-Resume-Critiquer',
     live: null
   },
   // Add more projects here as needed
