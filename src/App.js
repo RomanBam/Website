@@ -284,6 +284,13 @@ const projects = [
     code: 'https://github.com/RomanBam/AI-Resume-Critiquer',
     live: null
   },
+  {
+    title: 'AI Image Classifier',
+    description: 'A web-based AI application that provides intelligent image classification and analysis using TensorFlow\'s MobileNetV2 model. Users can upload images in JPG or PNG format and receive instant predictions with confidence scores across 1000+ categories from the ImageNet dataset. The application features a clean Streamlit interface with real-time analysis and structured prediction results. Ideal for developers, researchers, and anyone looking to explore AI-powered image recognition capabilities.',
+    tech: ['Python', 'TensorFlow', 'Streamlit', 'OpenCV', 'MobileNetV2', 'uv'],
+    code: 'https://github.com/RomanBam/AI-Image-Classifier',
+    live: null
+  },
   // Add more projects here as needed
 ];
 
@@ -350,23 +357,23 @@ function MobileView({ activeTab, setActiveTab }) {
             <div className="portfolio-grid">
               {projects.map((proj, idx) => (
                 <div className="portfolio-card" key={idx}>
-                  <h3 className="portfolio-title" style={{ fontSize: '1.2rem', marginBottom: '0.3rem' }}>{proj.title}</h3>
-                  <p style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '1.1rem' }}>{proj.description}</p>
-                  <div style={{ marginBottom: '1.1rem' }}>
-                    <span style={{ color: '#fff', fontWeight: 600, fontSize: '1rem' }}>Tech Stack:</span>
-                    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.4rem' }}>
+                  <h3>{proj.title}</h3>
+                  <p>{proj.description}</p>
+                  <div className="portfolio-tech-section">
+                    <span className="portfolio-tech-label">Tech Stack:</span>
+                    <div className="portfolio-tech-badges">
                       {proj.tech.map((t, i) => (
                         <span key={i} className="portfolio-badge">{t}</span>
                       ))}
                     </div>
                   </div>
-                  <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', marginTop: 'auto' }}>
-                    <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <FaGithub style={{ fontSize: '1.2rem' }} /> Code
+                  <div className="portfolio-links">
+                    <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link">
+                      <FaGithub /> Code
                     </a>
                     {proj.live && (
-                      <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link" style={{ color: '#00ffae', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                        <span style={{ fontSize: '1.1rem' }}>Live</span>
+                      <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link portfolio-live-link">
+                        <span>Live</span>
                       </a>
                     )}
                   </div>
@@ -469,23 +476,23 @@ function WebView({ activeTab, setActiveTab }) {
               <div className="portfolio-grid">
                 {projects.map((proj, idx) => (
                   <div className="portfolio-card" key={idx}>
-                    <h3 className="portfolio-title" style={{ fontSize: '1.2rem', marginBottom: '0.3rem' }}>{proj.title}</h3>
-                    <p style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '1.1rem' }}>{proj.description}</p>
-                    <div style={{ marginBottom: '1.1rem' }}>
-                      <span style={{ color: '#fff', fontWeight: 600, fontSize: '1rem' }}>Tech Stack:</span>
-                      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.4rem' }}>
+                    <h3>{proj.title}</h3>
+                    <p>{proj.description}</p>
+                    <div className="portfolio-tech-section">
+                      <span className="portfolio-tech-label">Tech Stack:</span>
+                      <div className="portfolio-tech-badges">
                         {proj.tech.map((t, i) => (
                           <span key={i} className="portfolio-badge">{t}</span>
                         ))}
                       </div>
                     </div>
-                    <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', marginTop: 'auto' }}>
-                      <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                        <FaGithub style={{ fontSize: '1.2rem' }} /> Code
+                    <div className="portfolio-links">
+                      <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link">
+                        <FaGithub /> Code
                       </a>
                       {proj.live && (
-                        <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link" style={{ color: '#00ffae', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                          <span style={{ fontSize: '1.1rem' }}>Live</span>
+                        <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link portfolio-live-link">
+                          <span>Live</span>
                         </a>
                       )}
                     </div>
