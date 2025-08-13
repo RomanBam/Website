@@ -305,9 +305,9 @@ function MobileView({ activeTab, setActiveTab }) {
             <section className="about-section">
               <h1 className="about-title custom-title">About Me</h1>
               <p className="about-desc">
-                Hi! I’m Roman, a Bachelor of Computer Science student at Trent University, ON. I have a strong passion for AI and software development, with hands-on experience in machine learning and full‑stack web development. I love applying my skills to creative projects that make a meaningful and positive impact on the world.<br /><br />
+                Hi! I’m Roman, a Computer Science student at Trent University, ON. I have a strong passion for AI and software development, with hands-on experience in machine learning and full‑stack web development. I love applying my skills to creative projects that make a meaningful and positive impact on the world.<br /><br />
                 Through my academic coursework and research, I’ve worked extensively with deep learning frameworks such as TensorFlow and various machine learning libraries, including Scikit-learn, Pandas, NumPy, Matplotlib, Graphviz, and Vega-Altair. My most notable project was a cheese fat prediction model, which could be used for many notable advantages, ranging from health implications to product development.<br /><br />
-                On the front-end side, I’ve built several interactive projects using HTML, CSS, JavaScript, and React.js. My focus has been on designing responsive, user-friendly interfaces and applying modern development practices. I enjoy bridging the gap between clean design and functional code to create digital experiences that are both intuitive and impactful.
+                On the front-end side, I’ve built several interactive projects using HTML, CSS, JavaScript, and React.js including this website. My focus has been on designing responsive, user-friendly interfaces and applying modern development practices. I enjoy bridging the gap between clean design and functional code to create digital experiences that are both intuitive and impactful.
               </p>
             </section>
             <section className="doing-section">
@@ -424,9 +424,9 @@ function WebView({ activeTab, setActiveTab }) {
               <section className="about-section">
                 <h1 className="about-title custom-title">About Me</h1>
                 <p className="about-desc">
-                  Hi! I’m Roman, a Bachelor of Computer Science student at Trent University, ON. I have a strong passion for AI and software development, with hands-on experience in machine learning and full‑stack web development. I love applying my skills to creative projects that make a meaningful and positive impact on the world.<br /><br />
+                  Hi! I’m Roman, a Computer Science student at Trent University, ON. I have a strong passion for AI and software development, with hands-on experience in machine learning and full‑stack web development. I love applying my skills to creative projects that make a meaningful and positive impact on the world.<br /><br />
                   Through my academic coursework and research, I’ve worked extensively with deep learning frameworks such as TensorFlow and various machine learning libraries, including Scikit-learn, Pandas, NumPy, Matplotlib, Graphviz, and Vega-Altair. My most notable project was a cheese fat prediction model, which could be used for many notable advantages, ranging from health implications to product development.<br /><br />
-                  On the front-end side, I’ve built several interactive projects using HTML, CSS, JavaScript, and React.js. My focus has been on designing responsive, user-friendly interfaces and applying modern development practices. I enjoy bridging the gap between clean design and functional code to create digital experiences that are both intuitive and impactful.
+                  On the front-end side, I’ve built several interactive projects using HTML, CSS, JavaScript, and React.js including this website. My focus has been on designing responsive, user-friendly interfaces and applying modern development practices. I enjoy bridging the gap between clean design and functional code to create digital experiences that are both intuitive and impactful.
                 </p>
               </section>
               <section className="doing-section">
