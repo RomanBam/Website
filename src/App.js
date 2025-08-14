@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools } from 'react-icons/fa';
+import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee } from 'react-icons/fa';
 import { LuCake, LuMapPin } from 'react-icons/lu';
+import { SiJavascript, SiCplusplus, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy } from 'react-icons/si';
 
 const socialLinks = [
   { href: 'https://www.linkedin.com/in/roman-bamrah', label: 'LinkedIn', icon: <FaLinkedin /> },
@@ -188,47 +189,120 @@ function ExperienceSection() {
 }
 
 function TechStackSection() {
+  const techCategories = [
+    {
+      title: "Programming Languages",
+      icon: <FaCode />,
+      technologies: [
+        { name: "Python", icon: <FaPython />, description: "AI/ML, automation, APIs" },
+        { name: "JavaScript", icon: <SiJavascript />, description: "Full-stack, React, Node.js" },
+        { name: "SQL", icon: <FaDatabase />, description: "Database design, queries" },
+        { name: "C#", icon: <SiCplusplus />, description: "Enterprise applications" },
+        { name: "Java", icon: <FaCoffee />, description: "Spring Boot, enterprise" }
+      ]
+    },
+    {
+      title: "AI/ML",
+      icon: <FaRobot />,
+      technologies: [
+        { name: "TensorFlow", icon: <SiTensorflow />, description: "Deep learning models" },
+        { name: "Scikit-learn", icon: <FaRobot />, description: "Machine learning" },
+        { name: "Pandas", icon: <FaDatabase />, description: "Data manipulation" },
+        { name: "NumPy", icon: <SiNumpy />, description: "Numerical computing" },
+        { name: "Matplotlib", icon: <FaPencilRuler />, description: "Data visualization" },
+        { name: "ChatGPT API", icon: <SiOpenai />, description: "AI integration" },
+        { name: "LangChain", icon: <FaLink />, description: "RAG systems, AI agents" },
+        { name: "OpenCV", icon: <FaCode />, description: "Computer vision" }
+      ]
+    },
+    {
+      title: "Web",
+      icon: <FaServer />,
+      technologies: [
+        { name: "React.js", icon: <FaReact />, description: "Frontend development" },
+        { name: "Next.js", icon: <SiNextdotjs />, description: "Full-stack applications" },
+        { name: "Flask", icon: <SiFlask />, description: "Lightweight APIs" },
+        { name: "Streamlit", icon: <FaPencilRuler />, description: "Data apps" },
+        { name: "HTML5", icon: <FaHtml5 />, description: "Web structure" },
+        { name: "CSS3", icon: <FaCss3Alt />, description: "Styling & design" }
+      ]
+    },
+    {
+      title: "Tools",
+      icon: <FaTools />,
+      technologies: [
+        { name: "Git/GitHub", icon: <FaGitAlt />, description: "Version control" },
+        { name: "Vercel", icon: <SiVercel />, description: "Deployment platform" },
+        { name: "Figma", icon: <SiFigma />, description: "UI/UX design" },
+        { name: "Jupyter Notebooks", icon: <SiJupyter />, description: "Data analysis" }
+      ]
+    }
+  ];
+
   return (
     <section className="techstack-section" style={{ fontFamily: 'Segoe UI, Arial, sans-serif', marginBottom: '1.5rem', marginTop: '1.1rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.2rem' }}>
         <FaTools color="#ffd600" style={{ fontSize: '2.1rem', marginRight: '0.7rem' }} />
         <h2 className="techstack-title custom-title" style={{ color: '#fff', fontWeight: 700, fontSize: '1.4rem', margin: 0 }}>Tech Stack</h2>
       </div>
-      <div className="tech-timeline" style={{ position: 'relative', marginLeft: '1.5rem', paddingLeft: '1.5rem', borderLeft: '2.5px solid #333', maxWidth: 700 }}>
-        {/* Programming Languages */}
-        <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
-          <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Programming Languages</div>
-          <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>Python, JavaScript, SQL, C#, Java</li>
-          </ul>
-        </div>
-        {/* AI/ML */}
-        <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
-          <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>AI/ML</div>
-          <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>TensorFlow, MobileNetV2, Scikit-learn, Pandas, NumPy, Matplotlib</li>
-            <li>ChatGPT API, LangChain, OpenCV</li>
-          </ul>
-        </div>
-        {/* Web */}
-        <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
-          <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Web</div>
-          <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>React.js, Next.js, Flask, Streamlit</li>
-            <li>HTML5, CSS3</li>
-          </ul>
-        </div>
-        {/* Tools */}
-        <div className="tech-item" style={{ position: 'relative', marginBottom: 0 }}>
-          <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Tools</div>
-          <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>Git/GitHub, Vercel, Figma, Jupyter Notebooks</li>
-          </ul>
-        </div>
+      
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column',
+        gap: '0.5rem',
+        maxWidth: '100%'
+      }}>
+        {techCategories.map((category, index) => (
+          <div key={index} style={{
+            background: 'rgb(41,41,43)',
+            border: 'none',
+            borderRadius: '1rem',
+            padding: '1.2rem',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.15)',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = 'translateY(-6px) scale(1.02)';
+            e.target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.22)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = 'translateY(0) scale(1)';
+            e.target.style.boxShadow = '0 4px 24px rgba(0,0,0,0.15)';
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.6rem', pointerEvents: 'none' }}>
+              <span style={{ color: '#ffd600', fontSize: '1.5rem', marginRight: '0.5rem' }}>{category.icon}</span>
+              <h3 style={{ color: '#fff', fontWeight: 700, fontSize: '1.1rem', margin: 0 }}>{category.title}</h3>
+            </div>
+            
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
+              gap: '0.3rem', 
+              pointerEvents: 'none' 
+            }}>
+              {category.technologies.map((tech, techIndex) => (
+                <div key={techIndex} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '0.2rem 0',
+                  background: 'transparent',
+                  cursor: 'default',
+                  transition: 'none',
+                  pointerEvents: 'none'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flex: 1, pointerEvents: 'none' }}>
+                    <span style={{ color: '#ffd600', fontSize: '1.1rem' }}>{tech.icon}</span>
+                    <div>
+                      <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.85rem' }}>{tech.name}</div>
+                      <div style={{ color: '#b0b0b0', fontSize: '0.75rem' }}>{tech.description}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
