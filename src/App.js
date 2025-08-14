@@ -195,67 +195,38 @@ function TechStackSection() {
         <h2 className="techstack-title custom-title" style={{ color: '#fff', fontWeight: 700, fontSize: '1.4rem', margin: 0 }}>Tech Stack</h2>
       </div>
       <div className="tech-timeline" style={{ position: 'relative', marginLeft: '1.5rem', paddingLeft: '1.5rem', borderLeft: '2.5px solid #333', maxWidth: 700 }}>
-        {/* Programming */}
+        {/* Programming Languages */}
         <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Programming</div>
+          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Programming Languages</div>
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>C#, Python, C++, Java</li>
+            <li>Python, JavaScript, SQL, C#, Java</li>
           </ul>
         </div>
-        {/* Artificial Intelligence */}
+        {/* AI/ML */}
         <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Artificial Intelligence</div>
+          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>AI/ML</div>
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>TensorFlow, MobileNetV2</li>
-            <li>ML Libraries: Scikit-learn, Pandas, NumPy, Matplotlib, Graphviz, Vega-Altair</li>
-            <li>Jupyter Notebooks</li>
-            <li>ChatGPT API, LangChain</li>
-            <li>OpenCV</li>
+            <li>TensorFlow, MobileNetV2, Scikit-learn, Pandas, NumPy, Matplotlib</li>
+            <li>ChatGPT API, LangChain, OpenCV</li>
           </ul>
         </div>
-        {/* Frontend Development */}
+        {/* Web */}
         <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Frontend Development</div>
+          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Web</div>
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>JavaScript, HTML, CSS</li>
-            <li>React.js, Next.js</li>
+            <li>React.js, Next.js, Flask, Streamlit</li>
+            <li>HTML5, CSS3</li>
           </ul>
         </div>
-        {/* Backend & APIs */}
-        <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
-          <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Backend & APIs</div>
-          <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>Python (Flask, Streamlit)</li>
-            <li>SQL</li>
-            <li>PyPDF2</li>
-          </ul>
-        </div>
-        {/* Deployment & Hosting */}
-        <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
-          <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Deployment & Hosting</div>
-          <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>Vercel</li>
-          </ul>
-        </div>
-        {/* UI/UX & Design Tools */}
-        <div className="tech-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
-          <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>UI/UX & Design Tools</div>
-          <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>Figma</li>
-          </ul>
-        </div>
-        {/* Version Control & Collaboration */}
+        {/* Tools */}
         <div className="tech-item" style={{ position: 'relative', marginBottom: 0 }}>
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Version Control & Collaboration</div>
+          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem' }}>Tools</div>
           <ul style={{ color: '#e0e0e0', fontSize: '1rem', marginLeft: '1.2rem', marginBottom: 0 }}>
-            <li>Git, GitHub</li>
+            <li>Git/GitHub, Vercel, Figma, Jupyter Notebooks</li>
           </ul>
         </div>
       </div>
@@ -305,7 +276,7 @@ function MobileView({ activeTab, setActiveTab }) {
             <section className="about-section">
               <h1 className="about-title custom-title">About Me</h1>
               <p className="about-desc">
-                Hi! I’m Roman, a Computer Science student at Trent University, ON. I have a strong passion for AI and software development, with hands-on experience in machine learning and full‑stack web development. I love applying my skills to creative projects that make a meaningful and positive impact on the world.<br /><br />
+                Hi! I’m Roman, an aspiring Software Engineer. I have a strong passion for AI and software development, with hands-on experience in machine learning and full‑stack web development. I love applying my skills to creative projects that make a meaningful and positive impact on the world.<br /><br />
                 Through my academic coursework and research, I’ve worked extensively with deep learning frameworks such as TensorFlow and various machine learning libraries, including Scikit-learn, Pandas, NumPy, Matplotlib, Graphviz, and Vega-Altair. My most notable project was a cheese fat prediction model, which could be used for many notable advantages, ranging from health implications to product development.<br /><br />
                 On the front-end side, I’ve built several interactive projects using HTML, CSS, JavaScript, and React.js including this website. My focus has been on designing responsive, user-friendly interfaces and applying modern development practices. I enjoy bridging the gap between clean design and functional code to create digital experiences that are both intuitive and impactful.
               </p>
@@ -424,7 +395,7 @@ function WebView({ activeTab, setActiveTab }) {
               <section className="about-section">
                 <h1 className="about-title custom-title">About Me</h1>
                 <p className="about-desc">
-                  Hi! I’m Roman, a Computer Science student at Trent University, ON. I have a strong passion for AI and software development, with hands-on experience in machine learning and full‑stack web development. I love applying my skills to creative projects that make a meaningful and positive impact on the world.<br /><br />
+                  Hi! I’m Roman, an aspiring Software Engineer. I have a strong passion for AI and software development, with hands-on experience in machine learning and full‑stack web development. I love applying my skills to creative projects that make a meaningful and positive impact on the world.<br /><br />
                   Through my academic coursework and research, I’ve worked extensively with deep learning frameworks such as TensorFlow and various machine learning libraries, including Scikit-learn, Pandas, NumPy, Matplotlib, Graphviz, and Vega-Altair. My most notable project was a cheese fat prediction model, which could be used for many notable advantages, ranging from health implications to product development.<br /><br />
                   On the front-end side, I’ve built several interactive projects using HTML, CSS, JavaScript, and React.js including this website. My focus has been on designing responsive, user-friendly interfaces and applying modern development practices. I enjoy bridging the gap between clean design and functional code to create digital experiences that are both intuitive and impactful.
                 </p>
