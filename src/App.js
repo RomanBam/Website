@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee } from 'react-icons/fa';
+import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
 import { LuCake, LuMapPin } from 'react-icons/lu';
 import { SiJavascript, SiCplusplus, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy } from 'react-icons/si';
 
@@ -233,6 +233,7 @@ function TechStackSection() {
       technologies: [
         { name: "Git/GitHub", icon: <FaGitAlt />, description: "Version control" },
         { name: "Vercel", icon: <SiVercel />, description: "Deployment platform" },
+        { name: "AWS", icon: <FaCloud />, description: "Cloud services" },
         { name: "Figma", icon: <SiFigma />, description: "UI/UX design" },
         { name: "Jupyter Notebooks", icon: <SiJupyter />, description: "Data analysis" }
       ]
