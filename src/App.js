@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
 import { LuCake, LuMapPin } from 'react-icons/lu';
-import { SiJavascript, SiCplusplus, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy } from 'react-icons/si';
+import { SiJavascript, SiCplusplus, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker } from 'react-icons/si';
 
 const socialLinks = [
   { href: 'https://www.linkedin.com/in/roman-bamrah', label: 'LinkedIn', icon: <FaLinkedin /> },
@@ -231,9 +231,10 @@ function TechStackSection() {
       title: "Tools",
       icon: <FaTools />,
       technologies: [
+        { name: "AWS", icon: <FaCloud />, description: "Cloud services" },
+        { name: "Docker", icon: <SiDocker />, description: "Containerization" },
         { name: "Git/GitHub", icon: <FaGitAlt />, description: "Version control" },
         { name: "Vercel", icon: <SiVercel />, description: "Deployment platform" },
-        { name: "AWS", icon: <FaCloud />, description: "Cloud services" },
         { name: "Figma", icon: <SiFigma />, description: "UI/UX design" },
         { name: "Jupyter Notebooks", icon: <SiJupyter />, description: "Data analysis" }
       ]
