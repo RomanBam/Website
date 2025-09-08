@@ -135,7 +135,7 @@ function EducationSection() {
           <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}><b>Relevant Coursework:</b> Front-End Web Development, Back-End Web Development, Cybersecurity, Software Design & Modelling, Applied AI & Machine Learning, Database Management Systems, Data Structures & Algorithms, Modelling & Simulation</div>
           <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}><b>Projects:</b>
             <ul style={{ margin: '0.2rem 0 0.2rem 1.2rem', color: '#e0e0e0', fontSize: '1rem' }}>
-              <li>Developed a puzzle-based game prototype (digital & analog versions).</li>
+              <li style={{ marginBottom: '0.4rem' }}>Developed a puzzle-based game prototype (digital & analog versions).</li>
               <li>Designed a MySQL database system for managing library inventory at Trent Durham.</li>
             </ul>
           </div>
@@ -175,11 +175,11 @@ function ExperienceSection() {
           <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.2rem' }}>Super Choice Kitchen Inc, Burlington, ON</div>
           <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}>
             <ul style={{ margin: '0.2rem 0 0.2rem 1.2rem', color: '#e0e0e0', fontSize: '1rem' }}>
-              <li>Created and presented 100+ interactive 3D renovation models annually using digital modelling tools, improving customer engagement and technical communication.</li>
+              <li style={{ marginBottom: '0.4rem' }}>Developed and deployed internal software tools and automated workflows using Python, SQL, and database systems, increasing operational efficiency by 25%.</li>
+              <li style={{ marginBottom: '0.4rem' }}>Designed and implemented reporting systems with data visualization dashboards, reducing manual reporting time from 2 hours to under 30 minutes.</li>
+              <li style={{ marginBottom: '0.4rem' }}>Provided technical support for internal software systems and created technical documentation, improving troubleshooting time by 40%.</li>
+              <li style={{ marginBottom: '0.4rem' }}>Created and presented 100+ interactive 3D renovation models annually using digital modelling tools, improving customer engagement and technical communication.</li>
               <li>Increased customer satisfaction scores by 25% through data-informed recommendations and consistent post-project follow-ups.</li>
-              <li>Delivered IT support for internal systems, resolving hardware/software issues and improving uptime for daily operations.</li>
-              <li>Automated and streamlined project update workflows, improving client retention and team communication.</li>
-              <li>Collaborated cross-functionally with design and operations teams to translate customer needs into technical requirements and solutions.</li>
             </ul>
           </div>
         </div>
