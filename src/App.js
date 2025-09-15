@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
 import { LuCake, LuMapPin } from 'react-icons/lu';
@@ -15,6 +15,52 @@ const tabs = [
   { id: 'portfolio', label: 'Portfolio' },
   { id: 'contact', label: 'Contact' },
 ];
+
+function RevealOnScroll({ children, delay = 0 }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setTimeout(() => {
+            setIsVisible(true);
+            setHasAnimated(true);
+          }, delay);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, [delay, hasAnimated]);
+
+  return (
+    <div
+      ref={elementRef}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.3s ease-out, transform 0.3s ease-out'
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 function MobileProfileCard() {
   const [expanded, setExpanded] = React.useState(false);
@@ -349,15 +395,18 @@ function MobileView({ activeTab, setActiveTab }) {
       <main className="main-content-card">
         {activeTab === 'about' && (
           <>
-            <section className="about-section">
-              <h1 className="about-title custom-title">About Me</h1>
-              <p className="about-desc">
-                Hi! I'm Roman, an aspiring Software Engineer with a strong passion for AI and software development. I specialize in machine learning, full-stack web development, and creating intelligent applications that solve real-world problems. My diverse technical background spans from deep learning frameworks to modern web technologies, allowing me to build comprehensive solutions that make a meaningful impact.<br /><br />
-                My expertise includes working with advanced AI/ML technologies like TensorFlow, MobileNetV2, and LangChain for building intelligent systems. I've developed several notable projects including an AI Resume Critiquer that provides intelligent feedback using NLP techniques, an AI Image Classifier with 1000+ ImageNet categories, and a conversational AI Assistant with modular API integration. My Cheese Fat Prediction Model demonstrates my proficiency in complete data science workflows, from data preprocessing to model deployment.<br /><br />
-                On the development side, I'm skilled in modern web technologies including React.js, Next.js, Flask, and Streamlit for building responsive applications. I work with multiple programming languages (Python, JavaScript, SQL, C#, Java, HTML, CSS5) and leverage tools like AWS, Docker, and Git for deployment and version control. My focus is on creating clean, efficient code and intuitive user experiences that bridge the gap between complex AI capabilities and practical applications.
-              </p>
-            </section>
-            <section className="doing-section">
+            <RevealOnScroll delay={0}>
+              <section className="about-section">
+                <h1 className="about-title custom-title">About Me</h1>
+                <p className="about-desc">
+                  Hi! I'm Roman, an aspiring Software Engineer with a strong passion for AI and software development. I specialize in machine learning, full-stack web development, and creating intelligent applications that solve real-world problems. My diverse technical background spans from deep learning frameworks to modern web technologies, allowing me to build comprehensive solutions that make a meaningful impact.<br /><br />
+                  My expertise includes working with advanced AI/ML technologies like TensorFlow, MobileNetV2, and LangChain for building intelligent systems. I've developed several notable projects including an AI Resume Critiquer that provides intelligent feedback using NLP techniques, an AI Image Classifier with 1000+ ImageNet categories, and a conversational AI Assistant with modular API integration. My Cheese Fat Prediction Model demonstrates my proficiency in complete data science workflows, from data preprocessing to model deployment.<br /><br />
+                  On the development side, I'm skilled in modern web technologies including React.js, Next.js, Flask, and Streamlit for building responsive applications. I work with multiple programming languages (Python, JavaScript, SQL, C#, Java, HTML, CSS5) and leverage tools like AWS, Docker, and Git for deployment and version control. My focus is on creating clean, efficient code and intuitive user experiences that bridge the gap between complex AI capabilities and practical applications.
+                </p>
+              </section>
+            </RevealOnScroll>
+            <RevealOnScroll delay={200}>
+              <section className="doing-section">
               <h2 className="doing-title custom-title">What I'm Doing</h2>
               <div className="doing-cards">
                 <div className="doing-card">
@@ -389,49 +438,62 @@ function MobileView({ activeTab, setActiveTab }) {
                   </div>
                 </div>
               </div>
-            </section>
+              </section>
+            </RevealOnScroll>
           </>
         )}
         {activeTab === 'resume' && (
           <>
-            <EducationSection />
-            <ExperienceSection />
-            <TechStackSection />
+            <RevealOnScroll delay={0}>
+              <EducationSection />
+            </RevealOnScroll>
+            <RevealOnScroll delay={200}>
+              <ExperienceSection />
+            </RevealOnScroll>
+            <RevealOnScroll delay={400}>
+              <TechStackSection />
+            </RevealOnScroll>
           </>
         )}
         {activeTab === 'portfolio' && (
-          <section className="portfolio-section">
-            <h2 className="portfolio-title custom-title">Portfolio</h2>
-            <div className="portfolio-grid">
-              {projects.map((proj, idx) => (
-                <div className="portfolio-card" key={idx}>
-                  <h3>{proj.title}</h3>
-                  <p>{proj.description}</p>
-                  <div className="portfolio-tech-section">
-                    <span className="portfolio-tech-label">Tech Stack:</span>
-                    <div className="portfolio-tech-badges">
-                      {proj.tech.map((t, i) => (
-                        <span key={i} className="portfolio-badge">{t}</span>
-                      ))}
+          <RevealOnScroll delay={0}>
+            <section className="portfolio-section">
+              <h2 className="portfolio-title custom-title">Portfolio</h2>
+              <div className="portfolio-grid">
+                {projects.map((proj, idx) => (
+                  <RevealOnScroll key={idx} delay={idx * 100}>
+                    <div className="portfolio-card">
+                      <h3>{proj.title}</h3>
+                      <p>{proj.description}</p>
+                      <div className="portfolio-tech-section">
+                        <span className="portfolio-tech-label">Tech Stack:</span>
+                        <div className="portfolio-tech-badges">
+                          {proj.tech.map((t, i) => (
+                            <span key={i} className="portfolio-badge">{t}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="portfolio-links">
+                        <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link">
+                          <FaGithub /> Code
+                        </a>
+                        {proj.live && (
+                          <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link portfolio-live-link">
+                            <span>Live</span>
+                          </a>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="portfolio-links">
-                    <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link">
-                      <FaGithub /> Code
-                    </a>
-                    {proj.live && (
-                      <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link portfolio-live-link">
-                        <span>Live</span>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+                  </RevealOnScroll>
+                ))}
+              </div>
+            </section>
+          </RevealOnScroll>
         )}
         {activeTab === 'contact' && (
-          <ContactSectionStyled />
+          <RevealOnScroll delay={0}>
+            <ContactSectionStyled />
+          </RevealOnScroll>
         )}
       </main>
       <nav className="main-tabs main-tabs-bottom">

@@ -236,7 +236,7 @@ body {
   background: rgba(30,30,31,1);
   border-radius: 22px;
   box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
-  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  padding: 2.5rem 2.5rem 1rem 2.5rem;
   flex: 1;
   min-width: 0;
   display: flex;
@@ -380,11 +380,11 @@ body {
 
 /* Portfolio Section Styles */
 .portfolio-section {
-  padding: 2rem 0;
+  margin-bottom: 1.5rem;
 }
 .portfolio-title {
   color: #ffd600;
-  font-size: 1.5rem;
+  font-size: 2.1rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
@@ -843,7 +843,7 @@ body {
   .main-content-card {
     margin-top: 0;
     margin-bottom: 64px;
-    padding: 2.5rem 1.1rem 2rem 1.1rem;
+    padding: 2.5rem 1.1rem 1rem 1.1rem;
   }
   .mobile-profile-card {
     margin-top: 12px;
@@ -949,7 +949,7 @@ body {
     margin-right: auto;
   }
   .contact-title {
-    font-size: 1.1rem;
+    font-size: 2.1rem;
     margin-bottom: 0.7rem;
     color: #ffd600;
     text-align: left;
