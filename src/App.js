@@ -634,6 +634,32 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Generate random starfield animations on page load
+  useEffect(() => {
+    const generateRandomStarfield = () => {
+      // Generate random animation durations
+      const twinkleDuration = (Math.random() * 6 + 2).toFixed(1) + 's'; // 2-8 seconds
+      const slowTwinkleDuration = (Math.random() * 10 + 5).toFixed(1) + 's'; // 5-15 seconds
+      const starfieldDuration = (Math.random() * 30 + 15).toFixed(1) + 's'; // 15-45 seconds
+      const randomTwinkleDuration = (Math.random() * 8 + 3).toFixed(1) + 's'; // 3-11 seconds
+      
+      // Generate random easing functions
+      const easingFunctions = ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'cubic-bezier(0.4, 0, 0.2, 1)', 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'];
+      const twinkleEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
+      const randomEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
+      
+      // Set CSS custom properties for random durations and easing
+      document.documentElement.style.setProperty('--twinkle-duration', twinkleDuration);
+      document.documentElement.style.setProperty('--slow-twinkle-duration', slowTwinkleDuration);
+      document.documentElement.style.setProperty('--starfield-duration', starfieldDuration);
+      document.documentElement.style.setProperty('--random-twinkle-duration', randomTwinkleDuration);
+      document.documentElement.style.setProperty('--twinkle-easing', twinkleEasing);
+      document.documentElement.style.setProperty('--random-easing', randomEasing);
+    };
+
+    generateRandomStarfield();
+  }, []);
+
   return isMobile ? (
     <MobileView activeTab={activeTab} setActiveTab={setActiveTab} />
   ) : (
