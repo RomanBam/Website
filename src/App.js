@@ -439,7 +439,10 @@ function MobileView({ activeTab, setActiveTab }) {
           <button
             key={tab.id}
             className={`main-tab${activeTab === tab.id ? ' active' : ''}`}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => {
+              setActiveTab(tab.id);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           >
             {tab.label}
           </button>
