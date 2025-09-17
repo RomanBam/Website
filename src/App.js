@@ -4,6 +4,123 @@ import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, F
 import { LuCake, LuMapPin } from 'react-icons/lu';
 import { SiJavascript, SiCplusplus, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker } from 'react-icons/si';
 
+// ShootingStar component for random shooting star animations
+function ShootingStar() {
+  const [stars, setStars] = useState([]);
+  
+  useEffect(() => {
+    // Function to create a new shooting star with random position and direction
+    const createShootingStar = () => {
+      const id = Math.random().toString(36).substring(2, 9);
+      
+      // Random starting position (x: 0-100%, y: 0-100%)
+      const startX = Math.random() * 100;
+      const startY = Math.random() * 100;
+      
+      // Random travel distance with more variation (100-400px in a random direction)
+      const distance = 100 + Math.random() * 300;
+      const angle = Math.random() * 2 * Math.PI; // Random angle in radians
+      
+      const travelX = Math.cos(angle) * distance;
+      const travelY = Math.sin(angle) * distance;
+      
+      // Random duration (0.5-3 seconds) with more variation
+      const duration = 0.5 + Math.random() * 2.5;
+      
+      // Random size (1-4) with occasional larger stars
+      const size = Math.random() < 0.15 ? 
+                  3 + Math.random() * 1 :  // 15% chance of larger star (3-4)
+                  1 + Math.random() * 2;   // 85% chance of normal star (1-3)
+      
+      // Random brightness with more intense stars occasionally
+      const brightness = Math.random() < 0.2 ? 
+                        0.9 + Math.random() * 0.1 : // 20% chance of very bright (0.9-1.0) 
+                        0.6 + Math.random() * 0.3;  // 80% chance of normal brightness (0.6-0.9)
+      
+      return {
+        id,
+        startX,
+        startY,
+        travelX,
+        travelY,
+        duration,
+        size,
+        brightness
+      };
+    };
+    
+    // Main interval to trigger shooting star bursts every 0.8-2 seconds (much more frequent)
+    const interval = setInterval(() => {
+      setStars(prevStars => {
+        // Create 2-5 new stars in each burst (more stars per burst)
+        const newStarsCount = Math.floor(Math.random() * 4) + 2;
+        const newStars = Array.from({ length: newStarsCount }, () => createShootingStar());
+        
+        // Cap the maximum number of stars at 25 to maintain performance while showing more
+        const combinedStars = [...prevStars, ...newStars];
+        return combinedStars.length > 25 ? combinedStars.slice(combinedStars.length - 25) : combinedStars;
+      });
+    }, 800 + Math.random() * 1200);
+    
+    // Add multiple initial star bursts with staggered delays
+    const timeouts = [];
+    
+    // First burst quickly (2-4 stars)
+    timeouts.push(setTimeout(() => {
+      const starCount = Math.floor(Math.random() * 3) + 2;
+      const initialStars = Array.from({ length: starCount }, () => createShootingStar());
+      setStars(prev => [...prev, ...initialStars]);
+    }, 500));
+    
+    // Second burst with 3-6 stars
+    timeouts.push(setTimeout(() => {
+      const starCount = Math.floor(Math.random() * 4) + 3;
+      const moreStars = Array.from({ length: starCount }, () => createShootingStar());
+      setStars(prev => [...prev, ...moreStars]);
+    }, 1200));
+    
+    // Third burst after a bit longer (2-5 stars)
+    timeouts.push(setTimeout(() => {
+      const starCount = Math.floor(Math.random() * 4) + 2;
+      const finalBurst = Array.from({ length: starCount }, () => createShootingStar());
+      setStars(prev => [...prev, ...finalBurst]);
+    }, 2000));
+    
+    // Fourth burst for extra density (3-5 stars)
+    timeouts.push(setTimeout(() => {
+      const starCount = Math.floor(Math.random() * 3) + 3;
+      const extraBurst = Array.from({ length: starCount }, () => createShootingStar());
+      setStars(prev => [...prev, ...extraBurst]);
+    }, 3000));
+    
+    return () => {
+      clearInterval(interval);
+      timeouts.forEach(timeout => clearTimeout(timeout));
+    };
+  }, []);
+  
+  return (
+    <>
+      {stars.map(star => (
+        <div
+          key={star.id}
+          className="shooting-star"
+          style={{
+            left: `${star.startX}%`,
+            top: `${star.startY}%`,
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            filter: `drop-shadow(0 0 1px white) drop-shadow(0 0 ${star.size * 2}px rgba(255, 255, 255, ${star.brightness}))`,
+            '--travel-x': `${star.travelX}px`,
+            '--travel-y': `${star.travelY}px`,
+            animation: `shootingStar ${star.duration}s linear forwards`
+          }}
+        />
+      ))}
+    </>
+  );
+}
+
 const socialLinks = [
   { href: 'https://www.linkedin.com/in/roman-bamrah', label: 'LinkedIn', icon: <FaLinkedin /> },
   { href: 'https://github.com/RomanBam', label: 'GitHub', icon: <FaGithub /> },
@@ -681,6 +798,7 @@ function MobileView({ activeTab, setActiveTab }) {
   return (
     <div className="dark-app">
       <Constellation />
+      <ShootingStar />
       <MobileProfileCard />
       <main className="main-content-card">
         {activeTab === 'about' && (
@@ -808,6 +926,7 @@ function WebView({ activeTab, setActiveTab }) {
   return (
     <div className="dark-app">
       <Constellation />
+      <ShootingStar />
       <div className="container">
         <WebSidebar />
         <main className="main-content-card">

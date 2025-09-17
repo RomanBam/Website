@@ -163,6 +163,42 @@ body::after {
   }
 }
 
+/* Shooting star styles */
+.shooting-star {
+  position: fixed;
+  width: 2px; /* Default size, will be overridden by inline style */
+  height: 2px; /* Default size, will be overridden by inline style */
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 70%, transparent 100%);
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 
+              0 0 0 1px rgba(255, 255, 255, 0.1),
+              0 0 3px rgba(255, 255, 255, 0.7),
+              0 0 6px rgba(255, 255, 255, 0.5);
+  /* Base filter will be enhanced by inline styles */
+  will-change: transform, opacity; /* Performance optimization */
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+  5% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--travel-x), var(--travel-y)) scale(0.1);
+  }
+}
+
 @keyframes drawLine {
   0% {
     stroke-dashoffset: 1000;
