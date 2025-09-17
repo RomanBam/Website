@@ -16,6 +16,295 @@ const tabs = [
   { id: 'contact', label: 'Contact' },
 ];
 
+function Constellation() {
+  // Define multiple constellation patterns positioned in blank areas
+  
+  // Big Dipper (top-left area)
+  const bigDipper = {
+    stars: [
+      { id: 'bd1', x: 8, y: 12 },   // Dubhe
+      { id: 'bd2', x: 15, y: 15 },  // Merak
+      { id: 'bd3', x: 22, y: 18 },  // Phecda
+      { id: 'bd4', x: 28, y: 15 },  // Megrez
+      { id: 'bd5', x: 34, y: 8 },   // Alioth
+      { id: 'bd6', x: 40, y: 5 },   // Mizar
+      { id: 'bd7', x: 44, y: 3 }    // Alkaid
+    ],
+    connections: [
+      { from: 'bd1', to: 'bd2' },
+      { from: 'bd2', to: 'bd3' },
+      { from: 'bd3', to: 'bd4' },
+      { from: 'bd4', to: 'bd5' },
+      { from: 'bd5', to: 'bd6' },
+      { from: 'bd6', to: 'bd7' }
+    ]
+  };
+
+  // Cassiopeia (top-right area)
+  const cassiopeia = {
+    stars: [
+      { id: 'cas1', x: 75, y: 8 },
+      { id: 'cas2', x: 82, y: 12 },
+      { id: 'cas3', x: 88, y: 6 },
+      { id: 'cas4', x: 93, y: 10 },
+      { id: 'cas5', x: 96, y: 5 }
+    ],
+    connections: [
+      { from: 'cas1', to: 'cas2' },
+      { from: 'cas2', to: 'cas3' },
+      { from: 'cas3', to: 'cas4' },
+      { from: 'cas4', to: 'cas5' }
+    ]
+  };
+
+  // Orion's Belt (bottom-right area)
+  const orionsBelt = {
+    stars: [
+      { id: 'or1', x: 78, y: 85 },  // Alnitak
+      { id: 'or2', x: 82, y: 88 },  // Alnilam
+      { id: 'or3', x: 86, y: 91 },  // Mintaka
+      { id: 'or4', x: 75, y: 80 },  // Betelgeuse
+      { id: 'or5', x: 89, y: 96 }   // Rigel
+    ],
+    connections: [
+      { from: 'or1', to: 'or2' },
+      { from: 'or2', to: 'or3' },
+      { from: 'or4', to: 'or1' },
+      { from: 'or3', to: 'or5' }
+    ]
+  };
+
+  // Southern Cross (bottom-left area)
+  const southernCross = {
+    stars: [
+      { id: 'sc1', x: 12, y: 88 },
+      { id: 'sc2', x: 8, y: 92 },
+      { id: 'sc3', x: 4, y: 96 },
+      { id: 'sc4', x: 16, y: 92 },
+      { id: 'sc5', x: 10, y: 85 }
+    ],
+    connections: [
+      { from: 'sc1', to: 'sc2' },
+      { from: 'sc2', to: 'sc3' },
+      { from: 'sc4', to: 'sc2' },
+      { from: 'sc5', to: 'sc1' }
+    ]
+  };
+
+  // Corona Borealis (middle-right area)
+  const corona = {
+    stars: [
+      { id: 'cor1', x: 88, y: 45 },
+      { id: 'cor2', x: 92, y: 48 },
+      { id: 'cor3', x: 95, y: 52 },
+      { id: 'cor4', x: 92, y: 56 },
+      { id: 'cor5', x: 88, y: 58 }
+    ],
+    connections: [
+      { from: 'cor1', to: 'cor2' },
+      { from: 'cor2', to: 'cor3' },
+      { from: 'cor3', to: 'cor4' },
+      { from: 'cor4', to: 'cor5' }
+    ]
+  };
+
+  // Leo (middle-left area)
+  const leo = {
+    stars: [
+      { id: 'leo1', x: 5, y: 45 },
+      { id: 'leo2', x: 10, y: 42 },
+      { id: 'leo3', x: 15, y: 48 },
+      { id: 'leo4', x: 12, y: 55 },
+      { id: 'leo5', x: 8, y: 60 }
+    ],
+    connections: [
+      { from: 'leo1', to: 'leo2' },
+      { from: 'leo2', to: 'leo3' },
+      { from: 'leo3', to: 'leo4' },
+      { from: 'leo4', to: 'leo5' }
+    ]
+  };
+
+  // Cygnus (upper-middle area)
+  const cygnus = {
+    stars: [
+      { id: 'cyg1', x: 50, y: 8 },
+      { id: 'cyg2', x: 53, y: 12 },
+      { id: 'cyg3', x: 56, y: 16 },
+      { id: 'cyg4', x: 48, y: 14 },
+      { id: 'cyg5', x: 60, y: 14 }
+    ],
+    connections: [
+      { from: 'cyg1', to: 'cyg2' },
+      { from: 'cyg2', to: 'cyg3' },
+      { from: 'cyg4', to: 'cyg2' },
+      { from: 'cyg2', to: 'cyg5' }
+    ]
+  };
+
+  // Lyra (top-center area)
+  const lyra = {
+    stars: [
+      { id: 'lyr1', x: 58, y: 25 },
+      { id: 'lyr2', x: 62, y: 22 },
+      { id: 'lyr3', x: 65, y: 28 },
+      { id: 'lyr4', x: 60, y: 30 }
+    ],
+    connections: [
+      { from: 'lyr1', to: 'lyr2' },
+      { from: 'lyr2', to: 'lyr3' },
+      { from: 'lyr3', to: 'lyr4' },
+      { from: 'lyr4', to: 'lyr1' }
+    ]
+  };
+
+  // Draco (wrapping around top)
+  const draco = {
+    stars: [
+      { id: 'dra1', x: 25, y: 5 },
+      { id: 'dra2', x: 30, y: 3 },
+      { id: 'dra3', x: 35, y: 6 },
+      { id: 'dra4', x: 42, y: 8 },
+      { id: 'dra5', x: 48, y: 5 },
+      { id: 'dra6', x: 55, y: 7 }
+    ],
+    connections: [
+      { from: 'dra1', to: 'dra2' },
+      { from: 'dra2', to: 'dra3' },
+      { from: 'dra3', to: 'dra4' },
+      { from: 'dra4', to: 'dra5' },
+      { from: 'dra5', to: 'dra6' }
+    ]
+  };
+
+  // Centaurus (bottom-center area)
+  const centaurus = {
+    stars: [
+      { id: 'cen1', x: 45, y: 90 },
+      { id: 'cen2', x: 50, y: 87 },
+      { id: 'cen3', x: 55, y: 92 },
+      { id: 'cen4', x: 48, y: 95 },
+      { id: 'cen5', x: 52, y: 97 }
+    ],
+    connections: [
+      { from: 'cen1', to: 'cen2' },
+      { from: 'cen2', to: 'cen3' },
+      { from: 'cen3', to: 'cen4' },
+      { from: 'cen4', to: 'cen5' }
+    ]
+  };
+
+  // Pegasus (middle-right upper)
+  const pegasus = {
+    stars: [
+      { id: 'peg1', x: 82, y: 30 },
+      { id: 'peg2', x: 88, y: 32 },
+      { id: 'peg3', x: 90, y: 38 },
+      { id: 'peg4', x: 85, y: 40 }
+    ],
+    connections: [
+      { from: 'peg1', to: 'peg2' },
+      { from: 'peg2', to: 'peg3' },
+      { from: 'peg3', to: 'peg4' },
+      { from: 'peg4', to: 'peg1' }
+    ]
+  };
+
+  // Boötes (left-center)
+  const bootes = {
+    stars: [
+      { id: 'boo1', x: 18, y: 35 },
+      { id: 'boo2', x: 22, y: 38 },
+      { id: 'boo3', x: 25, y: 42 },
+      { id: 'boo4', x: 20, y: 45 }
+    ],
+    connections: [
+      { from: 'boo1', to: 'boo2' },
+      { from: 'boo2', to: 'boo3' },
+      { from: 'boo3', to: 'boo4' }
+    ]
+  };
+
+  // Cancer (under sidebar content card)
+  const cancer = {
+    stars: [
+      { id: 'cnc1', x: 27, y: 72 },  // Top star
+      { id: 'cnc2', x: 26.75, y: 78 },  // Middle star (pronounced offset left)
+      { id: 'cnc3', x: 26, y: 82 },  // Triangle apex star
+      { id: 'cnc4', x: 24, y: 86 },  // Bottom left star (closer to center)
+      { id: 'cnc5', x: 29, y: 88 }   // Bottom right star (closer to center)
+    ],
+    connections: [
+      { from: 'cnc1', to: 'cnc2' },  // Top to middle (pronounced angle left)
+      { from: 'cnc2', to: 'cnc3' },  // Middle to triangle apex
+      { from: 'cnc3', to: 'cnc4' },  // Triangle apex to left (shorter)
+      { from: 'cnc3', to: 'cnc5' }   // Triangle apex to right (longer)
+    ]
+  };
+
+  const allConstellations = [bigDipper, cassiopeia, orionsBelt, southernCross, corona, leo, cygnus, lyra, draco, centaurus, pegasus, bootes, cancer];
+
+  return (
+    <div className="constellation">
+      <svg width="100%" height="100%" style={{ position: 'absolute', top: 0, left: 0 }}>
+        {/* Draw lines for all constellations */}
+        {allConstellations.map((constellation, constIndex) =>
+          constellation.connections.map((connection, lineIndex) => {
+            const fromStar = constellation.stars.find(s => s.id === connection.from);
+            const toStar = constellation.stars.find(s => s.id === connection.to);
+            return (
+              <line
+                key={`${constIndex}-${lineIndex}`}
+                className="constellation-line"
+                x1={`${fromStar.x}%`}
+                y1={`${fromStar.y}%`}
+                x2={`${toStar.x}%`}
+                y2={`${toStar.y}%`}
+                style={{ animationDelay: `${3 + lineIndex * 0.2}s` }}
+              />
+            );
+          })
+        )}
+      </svg>
+      
+      {/* Render all constellation stars */}
+      {allConstellations.map((constellation, constIndex) =>
+        constellation.stars.map((star, starIndex) => (
+          <div
+            key={star.id}
+            className="constellation-star"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              animationDelay: `${constIndex * 0.8 + starIndex * 0.15}s`
+            }}
+          />
+        ))
+      )}
+      
+      {/* Cancer constellation label */}
+      <div 
+        className="constellation-label"
+        style={{
+          position: 'absolute',
+          left: '13%',
+          top: '82%',
+          color: '#ffd600',
+          fontSize: '0.9rem',
+          fontWeight: 600,
+          textShadow: '0 0 10px rgba(255, 214, 0, 0.5)',
+          opacity: 0,
+          animation: 'fadeInLabel 1s ease-out 4s forwards',
+          pointerEvents: 'none',
+          userSelect: 'none'
+        }}
+      >
+        Cancer
+      </div>
+    </div>
+  );
+}
+
 function RevealOnScroll({ children, delay = 0 }) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -392,6 +681,7 @@ const projects = [
 function MobileView({ activeTab, setActiveTab }) {
   return (
     <div className="dark-app">
+      <Constellation />
       <MobileProfileCard />
       <main className="main-content-card">
         {activeTab === 'about' && (
@@ -518,6 +808,7 @@ function MobileView({ activeTab, setActiveTab }) {
 function WebView({ activeTab, setActiveTab }) {
   return (
     <div className="dark-app">
+      <Constellation />
       <div className="container">
         <WebSidebar />
         <main className="main-content-card">
@@ -634,13 +925,37 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Generate random starfield animations on page load
+  // Generate random starfield on page load
   useEffect(() => {
     const generateRandomStarfield = () => {
+      // Function to generate random star positions
+      const generateStarLayer = (starCount, minSize, maxSize, tileWidth, tileHeight) => {
+        const stars = [];
+        for (let i = 0; i < starCount; i++) {
+          const size = Math.random() * (maxSize - minSize) + minSize;
+          const x = Math.random() * tileWidth;
+          const y = Math.random() * tileHeight;
+          const opacity = Math.random() * 0.5 + 0.5; // 0.5 to 1.0
+          stars.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255,255,255,${opacity}), transparent)`);
+        }
+        return stars.join(', ');
+      };
+
+      // Generate 4 different star layers with random positions
+      const starfield1 = generateStarLayer(80, 1, 3, 800, 600); // Large stars
+      const starfield2 = generateStarLayer(120, 0.5, 2, 600, 450); // Medium stars  
+      const starfield3 = generateStarLayer(100, 1, 2.5, 700, 500); // Mixed stars
+      const starfield4 = generateStarLayer(150, 0.5, 1.5, 900, 650); // Small stars
+
+      // Set the generated starfields as CSS custom properties
+      document.documentElement.style.setProperty('--dynamic-starfield-1', starfield1);
+      document.documentElement.style.setProperty('--dynamic-starfield-2', starfield2);
+      document.documentElement.style.setProperty('--dynamic-starfield-3', starfield3);
+      document.documentElement.style.setProperty('--dynamic-starfield-4', starfield4);
+
       // Generate random animation durations
       const twinkleDuration = (Math.random() * 6 + 2).toFixed(1) + 's'; // 2-8 seconds
       const slowTwinkleDuration = (Math.random() * 10 + 5).toFixed(1) + 's'; // 5-15 seconds
-      const starfieldDuration = (Math.random() * 30 + 15).toFixed(1) + 's'; // 15-45 seconds
       const randomTwinkleDuration = (Math.random() * 8 + 3).toFixed(1) + 's'; // 3-11 seconds
       
       // Generate random easing functions
@@ -651,7 +966,6 @@ function App() {
       // Set CSS custom properties for random durations and easing
       document.documentElement.style.setProperty('--twinkle-duration', twinkleDuration);
       document.documentElement.style.setProperty('--slow-twinkle-duration', slowTwinkleDuration);
-      document.documentElement.style.setProperty('--starfield-duration', starfieldDuration);
       document.documentElement.style.setProperty('--random-twinkle-duration', randomTwinkleDuration);
       document.documentElement.style.setProperty('--twinkle-easing', twinkleEasing);
       document.documentElement.style.setProperty('--random-easing', randomEasing);

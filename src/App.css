@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Starfield Background */
+/* Dynamic Random Starfield Background */
 body::before {
   content: '';
   position: fixed;
@@ -22,22 +22,15 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
+  background: var(--dynamic-starfield-1, transparent);
+  background-repeat: repeat;
+  background-size: 800px 600px;
   pointer-events: none;
   z-index: -1;
-  animation: starfield var(--starfield-duration, 20s) linear infinite;
+  animation: twinkle var(--twinkle-duration, 4s) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-@keyframes starfield {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 1000px 1000px;
-  }
-}
-
-/* Create multiple layers of stars */
+/* Secondary random star layer */
 body::after {
   content: '';
   position: fixed;
@@ -45,34 +38,15 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
-    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
-    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
-    radial-gradient(2px 2px at 160px 30px, #fff, transparent),
-    radial-gradient(1px 1px at 50px 120px, #fff, transparent),
-    radial-gradient(1px 1px at 180px 50px, #fff, transparent),
-    radial-gradient(2px 2px at 10px 150px, #fff, transparent),
-    radial-gradient(1px 1px at 200px 100px, #fff, transparent),
-    radial-gradient(1px 1px at 30px 200px, #fff, transparent);
+  background: var(--dynamic-starfield-2, transparent);
   background-repeat: repeat;
-  background-size: 250px 150px;
+  background-size: 600px 450px;
   pointer-events: none;
   z-index: -1;
-  animation: twinkle var(--twinkle-duration, 4s) var(--twinkle-easing, ease-in-out) infinite alternate;
+  animation: slowTwinkle var(--slow-twinkle-duration, 8s) cubic-bezier(0.23, 1, 0.320, 1) forwards;
 }
 
-@keyframes twinkle {
-  0% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Additional star layer for depth */
+/* Third random star layer */
 .dark-app::before {
   content: '';
   position: fixed;
@@ -80,30 +54,15 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(1px 1px at 15px 25px, #fff, transparent),
-    radial-gradient(1px 1px at 75px 85px, #fff, transparent),
-    radial-gradient(1px 1px at 125px 35px, #fff, transparent),
-    radial-gradient(1px 1px at 175px 95px, #fff, transparent),
-    radial-gradient(1px 1px at 25px 135px, #fff, transparent),
-    radial-gradient(1px 1px at 95px 175px, #fff, transparent);
+  background: var(--dynamic-starfield-3, transparent);
   background-repeat: repeat;
-  background-size: 200px 200px;
+  background-size: 700px 500px;
   pointer-events: none;
   z-index: -1;
-  animation: slowTwinkle var(--slow-twinkle-duration, 8s) var(--twinkle-easing, ease-in-out) infinite alternate;
+  animation: mediumTwinkle var(--random-twinkle-duration, 6s) cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
-@keyframes slowTwinkle {
-  0% {
-    opacity: 0.4;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Additional random star layer */
+/* Fourth random star layer */
 .dark-app::after {
   content: '';
   position: fixed;
@@ -111,30 +70,104 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(1px 1px at 35px 45px, #fff, transparent),
-    radial-gradient(2px 2px at 85px 15px, #fff, transparent),
-    radial-gradient(1px 1px at 145px 65px, #fff, transparent),
-    radial-gradient(1px 1px at 195px 25px, #fff, transparent),
-    radial-gradient(2px 2px at 45px 95px, #fff, transparent),
-    radial-gradient(1px 1px at 105px 155px, #fff, transparent),
-    radial-gradient(1px 1px at 165px 85px, #fff, transparent),
-    radial-gradient(2px 2px at 5px 125px, #fff, transparent);
+  background: var(--dynamic-starfield-4, transparent);
   background-repeat: repeat;
-  background-size: 220px 180px;
+  background-size: 900px 650px;
   pointer-events: none;
   z-index: -1;
-  animation: randomTwinkle var(--random-twinkle-duration, 6s) var(--random-easing, ease-in-out) infinite alternate;
+  animation: gentleTwinkle 12s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-@keyframes randomTwinkle {
+@keyframes twinkle {
   0% {
-    opacity: 0.2;
+    opacity: 0;
     transform: scale(0.8);
   }
   100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slowTwinkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
     opacity: 0.9;
-    transform: scale(1.1);
+    transform: scale(1);
+  }
+}
+
+@keyframes mediumTwinkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gentleTwinkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+}
+
+/* Constellation */
+.constellation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.constellation-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
+  border-radius: 50%;
+  animation: starAppear 2s ease-out forwards;
+}
+
+.constellation-line {
+  stroke: rgba(255,255,255,0.6);
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 3s ease-in-out 2s forwards;
+}
+
+@keyframes starAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes drawLine {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
   }
 }
 
