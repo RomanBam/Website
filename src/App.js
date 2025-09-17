@@ -294,7 +294,7 @@ function Constellation() {
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
-              animationDelay: `${constIndex * 0.8 + starIndex * 0.15}s`
+              animationDelay: `3s` /* All stars appear at the same time, 3s delay to match line animations */
             }}
           />
         ))

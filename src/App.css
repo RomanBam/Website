@@ -139,6 +139,7 @@ body::after {
   height: 4px;
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
   border-radius: 50%;
+  opacity: 0; /* Start hidden */
   animation: starAppear 2s ease-out forwards;
 }
 
