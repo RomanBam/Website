@@ -91,20 +91,38 @@ function Constellation() {
     ]
   };
 
-  // Corona Borealis (middle-right area)
-  const corona = {
+  // Gemini (middle-right area)
+  const gemini = {
     stars: [
-      { id: 'cor1', x: 88, y: 45 },
-      { id: 'cor2', x: 92, y: 48 },
-      { id: 'cor3', x: 95, y: 52 },
-      { id: 'cor4', x: 92, y: 56 },
-      { id: 'cor5', x: 88, y: 58 }
+      // Left part of Gemini
+      { id: 'gem1', x: 85, y: 52 },  // Top star left branch
+      { id: 'gem2', x: 87, y: 54 },  // Middle-top of left branch
+      { id: 'gem3', x: 89, y: 56 },  // Junction point
+      { id: 'gem4', x: 86, y: 57 },  // Left branch lower point
+      { id: 'gem5', x: 83, y: 58 },  // Bottom-left end point
+      // Right part of Gemini
+      { id: 'gem6', x: 93, y: 52 },  // Top-right end point
+      { id: 'gem7', x: 91, y: 54 },  // Upper right connection
+      { id: 'gem8', x: 93, y: 58 },  // Lower right connection 
+      { id: 'gem9', x: 95, y: 60 },  // Right bottom
+      { id: 'gem10', x: 97, y: 61 }, // Right-most point
+      { id: 'gem11', x: 92, y: 62 }, // Lower end point
+      { id: 'gem12', x: 89, y: 64 }  // Bottom-most point
     ],
     connections: [
-      { from: 'cor1', to: 'cor2' },
-      { from: 'cor2', to: 'cor3' },
-      { from: 'cor3', to: 'cor4' },
-      { from: 'cor4', to: 'cor5' }
+      // Left part connections
+      { from: 'gem1', to: 'gem2' },
+      { from: 'gem2', to: 'gem3' },
+      { from: 'gem3', to: 'gem4' },
+      { from: 'gem4', to: 'gem5' },
+      // Right part connections
+      { from: 'gem6', to: 'gem7' },
+      { from: 'gem7', to: 'gem3' }, // Connection to junction
+      { from: 'gem3', to: 'gem8' },
+      { from: 'gem8', to: 'gem9' },
+      { from: 'gem9', to: 'gem10' },
+      { from: 'gem8', to: 'gem11' },
+      { from: 'gem11', to: 'gem12' }
     ]
   };
 
@@ -242,7 +260,7 @@ function Constellation() {
     ]
   };
 
-  const allConstellations = [bigDipper, cassiopeia, orionsBelt, southernCross, corona, leo, cygnus, lyra, draco, centaurus, pegasus, bootes, cancer];
+  const allConstellations = [bigDipper, cassiopeia, orionsBelt, southernCross, gemini, leo, cygnus, lyra, draco, centaurus, pegasus, bootes, cancer];
 
   return (
     <div className="constellation">
@@ -282,25 +300,6 @@ function Constellation() {
         ))
       )}
       
-      {/* Cancer constellation label */}
-      <div 
-        className="constellation-label"
-        style={{
-          position: 'absolute',
-          left: '13%',
-          top: '82%',
-          color: '#ffd600',
-          fontSize: '0.9rem',
-          fontWeight: 600,
-          textShadow: '0 0 10px rgba(255, 214, 0, 0.5)',
-          opacity: 0,
-          animation: 'fadeInLabel 1s ease-out 4s forwards',
-          pointerEvents: 'none',
-          userSelect: 'none'
-        }}
-      >
-        Cancer
-      </div>
     </div>
   );
 }
