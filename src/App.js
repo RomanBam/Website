@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
 import { LuCake, LuMapPin } from 'react-icons/lu';
-import { SiJavascript, SiCplusplus, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker } from 'react-icons/si';
+import { SiJavascript, SiCplusplus, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker, SiPhp } from 'react-icons/si';
 
 // ShootingStar component for random shooting star animations
 function ShootingStar() {
@@ -648,6 +648,7 @@ function TechStackSection() {
       technologies: [
         { name: "Python", icon: <FaPython />, description: "AI/ML, automation, APIs" },
         { name: "JavaScript", icon: <SiJavascript />, description: "Full-stack, React, Node.js" },
+        { name: "PHP", icon: <SiPhp />, description: "Web development, server-side" },
         { name: "SQL", icon: <FaDatabase />, description: "Database design, queries" },
         { name: "C#", icon: <SiCplusplus />, description: "Enterprise applications" },
         { name: "Java", icon: <FaCoffee />, description: "Spring Boot, enterprise" }
