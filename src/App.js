@@ -404,17 +404,39 @@ function Constellation() {
       
       {/* Render all constellation stars */}
       {allConstellations.map((constellation, constIndex) =>
-        constellation.stars.map((star, starIndex) => (
-          <div
-            key={star.id}
-            className="constellation-star"
-            style={{
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-              animationDelay: `3s` /* All stars appear at the same time, 3s delay to match line animations */
-            }}
-          />
-        ))
+        constellation.stars.map((star, starIndex) => {
+          // Generate random values for each star's glimmering effect
+          const glimmerDuration = 2 + Math.random() * 5; // Between 2-7 seconds
+          const glimmerDelay = Math.random() * 3; // Between 0-3 seconds delay
+          const minOpacity = 0.5 + Math.random() * 0.3; // Between 0.5-0.8
+          const maxOpacity = 0.9 + Math.random() * 0.1; // Between 0.9-1.0
+          const minBrightness = 0.7 + Math.random() * 0.2; // Between 0.7-0.9
+          const maxBrightness = 1.0 + Math.random() * 0.6; // Between 1.0-1.6
+          // Random star size - mostly small but occasionally larger
+          const starSize = Math.random() < 0.15 ? 
+                          3 + Math.random() * 2 : // 15% chance of larger star (3-5px)
+                          2 + Math.random() * 2;  // 85% chance of normal star (2-4px)
+          
+          return (
+            <div
+              key={star.id}
+              className="constellation-star"
+              style={{
+                left: `${star.x}%`,
+                top: `${star.y}%`,
+                width: `${starSize}px`,
+                height: `${starSize}px`,
+                animationDelay: `3s`, /* All stars appear at the same time, 3s delay to match line animations */
+                '--glimmer-duration': `${glimmerDuration}s`,
+                '--glimmer-delay': `${3 + glimmerDelay}s`, // Add 3s to match the appearance delay
+                '--star-min-opacity': minOpacity,
+                '--star-max-opacity': maxOpacity,
+                '--star-min-brightness': minBrightness,
+                '--star-max-brightness': maxBrightness
+              }}
+            />
+          );
+        })
       )}
       
     </div>

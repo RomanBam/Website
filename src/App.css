@@ -140,7 +140,8 @@ body::after {
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
   border-radius: 50%;
   opacity: 0; /* Start hidden */
-  animation: starAppear 2s ease-out forwards;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.7);
+  animation: starAppear 2s ease-out forwards, starGlimmer var(--glimmer-duration, 3s) var(--glimmer-delay, 0s) infinite ease-in-out;
 }
 
 .constellation-line {
@@ -160,6 +161,27 @@ body::after {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes starGlimmer {
+  0% {
+    opacity: var(--star-min-opacity, 0.6);
+    filter: brightness(var(--star-min-brightness, 0.7));
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.7);
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: var(--star-max-opacity, 1);
+    filter: brightness(var(--star-max-brightness, 1.3));
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: var(--star-min-opacity, 0.6);
+    filter: brightness(var(--star-min-brightness, 0.7));
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.7);
+    transform: scale(0.95);
   }
 }
 
