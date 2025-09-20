@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
 import { LuCake, LuMapPin } from 'react-icons/lu';
-import { SiJavascript, SiCplusplus, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker, SiPhp } from 'react-icons/si';
+import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker, SiPhp } from 'react-icons/si';
 
 // ShootingStar component for random shooting star animations
 function ShootingStar() {
@@ -491,7 +491,7 @@ function RevealOnScroll({ children, delay = 0 }) {
 }
 
 function MobileProfileCard() {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
   return (
     <div className={`mobile-profile-card${expanded ? ' expanded' : ' collapsed'}`}> 
       <div className="mobile-profile-header">
@@ -556,26 +556,7 @@ function WebSidebar() {
   );
 }
 
-function ContactSectionStyled() {
-  return (
-    <section className="contact-section" style={{ fontFamily: 'Segoe UI, Arial, sans-serif' }}>
-      <h2 className="contact-title custom-title" style={{ marginBottom: '1.1rem', color: '#fff', fontWeight: 700, fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: '2.1rem' }}>Contact Me</h2>
-      <div style={{ marginBottom: '0.3rem', color: '#fff', fontWeight: 600, fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}>Socials</div>
-      <div className="contact-socials" style={{ display: 'flex', gap: '1.1rem', marginBottom: '1.1rem' }}>
-        <a href="https://www.linkedin.com/in/roman-bamrah" aria-label="LinkedIn" className="contact-social-icon" target="_blank" rel="noopener noreferrer" style={{ color: '#b0b0b0', fontSize: '2rem' }}><FaLinkedin /></a>
-        <a href="https://github.com/RomanBam" aria-label="GitHub" className="contact-social-icon" target="_blank" rel="noopener noreferrer" style={{ color: '#b0b0b0', fontSize: '2rem' }}><FaGithub /></a>
-      </div>
-      <form className="contact-form" action="https://formspree.io/f/meozqonz" method="POST" autoComplete="off" style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}>
-        <input type="text" name="name" placeholder="Name" required style={{ background: 'rgb(40,40,43)', color: '#fff', border: '1px solid #333', borderRadius: '8px', padding: '0.6rem 0.9rem', fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif' }} />
-        <input type="email" name="email" placeholder="Email" required style={{ background: 'rgb(40,40,43)', color: '#fff', border: '1px solid #333', borderRadius: '8px', padding: '0.6rem 0.9rem', fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif' }} />
-        <textarea name="message" placeholder="Message" required rows={4} style={{ background: 'rgb(40,40,43)', color: '#fff', border: '1px solid #333', borderRadius: '8px', padding: '0.6rem 0.9rem', fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif', resize: 'none' }} />
-        <button type="submit" style={{ background: '#ffd600', color: '#18191e', border: 'none', borderRadius: '8px', padding: '0.7rem 0', fontSize: '1rem', fontWeight: 600, cursor: 'pointer', marginTop: '0.3rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}>Send</button>
-      </form>
-    </section>
-  );
-}
-
-function ContactSectionWeb() {
+function ContactSection() {
   return (
     <section className="contact-section" style={{ fontFamily: 'Segoe UI, Arial, sans-serif' }}>
       <h2 className="contact-title custom-title" style={{ marginBottom: '1.1rem', color: '#fff', fontWeight: 700, fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: '2.1rem' }}>Contact Me</h2>
@@ -672,7 +653,7 @@ function TechStackSection() {
         { name: "Python", icon: <FaPython />, description: "Primary, AI & backend" },
         { name: "JavaScript", icon: <SiJavascript />, description: "Frontend & tooling" },
         { name: "SQL", icon: <FaDatabase />, description: "Relational queries" },
-        { name: "C#", icon: <SiCplusplus />, description: "OOP & enterprise" },
+        { name: "C#", icon: <FaCode />, description: "OOP & enterprise" },
         { name: "Java", icon: <FaCoffee />, description: "General purpose" }
       ]
     },
@@ -930,7 +911,7 @@ function MobileView({ activeTab, setActiveTab }) {
         )}
         {activeTab === 'contact' && (
           <RevealOnScroll delay={0}>
-            <ContactSectionStyled />
+            <ContactSection />
           </RevealOnScroll>
         )}
       </main>
@@ -1053,7 +1034,7 @@ function WebView({ activeTab, setActiveTab }) {
             </section>
           )}
           {activeTab === 'contact' && (
-            <ContactSectionWeb />
+            <ContactSection />
           )}
         </main>
       </div>
