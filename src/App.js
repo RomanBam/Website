@@ -4,38 +4,31 @@ import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, F
 import { LuCake, LuMapPin } from 'react-icons/lu';
 import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker, SiPhp } from 'react-icons/si';
 
-// ShootingStar component for random shooting star animations
 function ShootingStar() {
   const [stars, setStars] = useState([]);
   
   useEffect(() => {
-    // Function to create a new shooting star with random position and direction
     const createShootingStar = () => {
       const id = Math.random().toString(36).substring(2, 9);
       
-      // Random starting position (x: 0-100%, y: 0-100%)
       const startX = Math.random() * 100;
       const startY = Math.random() * 100;
       
-      // Random travel distance with more variation (100-400px in a random direction)
       const distance = 100 + Math.random() * 300;
-      const angle = Math.random() * 2 * Math.PI; // Random angle in radians
+      const angle = Math.random() * 2 * Math.PI;
       
       const travelX = Math.cos(angle) * distance;
       const travelY = Math.sin(angle) * distance;
       
-      // Random duration (0.5-3 seconds) with more variation
       const duration = 0.5 + Math.random() * 2.5;
       
-      // Random size (1-4) with occasional larger stars
       const size = Math.random() < 0.15 ? 
-                  3 + Math.random() * 1 :  // 15% chance of larger star (3-4)
-                  1 + Math.random() * 2;   // 85% chance of normal star (1-3)
+                  3 + Math.random() * 1 :
+                  1 + Math.random() * 2;
       
-      // Random brightness with more intense stars occasionally
       const brightness = Math.random() < 0.2 ? 
-                        0.9 + Math.random() * 0.1 : // 20% chance of very bright (0.9-1.0) 
-                        0.6 + Math.random() * 0.3;  // 80% chance of normal brightness (0.6-0.9)
+                        0.9 + Math.random() * 0.1 :
+                        0.6 + Math.random() * 0.3;
       
       return {
         id,
@@ -49,44 +42,36 @@ function ShootingStar() {
       };
     };
     
-    // Main interval to trigger shooting star bursts every 0.8-2 seconds (much more frequent)
     const interval = setInterval(() => {
       setStars(prevStars => {
-        // Create 2-5 new stars in each burst (more stars per burst)
         const newStarsCount = Math.floor(Math.random() * 4) + 2;
         const newStars = Array.from({ length: newStarsCount }, () => createShootingStar());
         
-        // Cap the maximum number of stars at 25 to maintain performance while showing more
         const combinedStars = [...prevStars, ...newStars];
         return combinedStars.length > 25 ? combinedStars.slice(combinedStars.length - 25) : combinedStars;
       });
     }, 800 + Math.random() * 1200);
     
-    // Add multiple initial star bursts with staggered delays
     const timeouts = [];
     
-    // First burst quickly (2-4 stars)
     timeouts.push(setTimeout(() => {
       const starCount = Math.floor(Math.random() * 3) + 2;
       const initialStars = Array.from({ length: starCount }, () => createShootingStar());
       setStars(prev => [...prev, ...initialStars]);
     }, 500));
     
-    // Second burst with 3-6 stars
     timeouts.push(setTimeout(() => {
       const starCount = Math.floor(Math.random() * 4) + 3;
       const moreStars = Array.from({ length: starCount }, () => createShootingStar());
       setStars(prev => [...prev, ...moreStars]);
     }, 1200));
     
-    // Third burst after a bit longer (2-5 stars)
     timeouts.push(setTimeout(() => {
       const starCount = Math.floor(Math.random() * 4) + 2;
       const finalBurst = Array.from({ length: starCount }, () => createShootingStar());
       setStars(prev => [...prev, ...finalBurst]);
     }, 2000));
     
-    // Fourth burst for extra density (3-5 stars)
     timeouts.push(setTimeout(() => {
       const starCount = Math.floor(Math.random() * 3) + 3;
       const extraBurst = Array.from({ length: starCount }, () => createShootingStar());
@@ -134,18 +119,16 @@ const tabs = [
 ];
 
 function Constellation() {
-  // Define multiple constellation patterns positioned in blank areas
   
-  // Big Dipper (top-left area)
   const bigDipper = {
     stars: [
-      { id: 'bd1', x: 8, y: 12 },   // Dubhe
-      { id: 'bd2', x: 15, y: 15 },  // Merak
-      { id: 'bd3', x: 22, y: 18 },  // Phecda
-      { id: 'bd4', x: 28, y: 15 },  // Megrez
-      { id: 'bd5', x: 34, y: 8 },   // Alioth
-      { id: 'bd6', x: 40, y: 5 },   // Mizar
-      { id: 'bd7', x: 44, y: 3 }    // Alkaid
+      { id: 'bd1', x: 8, y: 12 },
+      { id: 'bd2', x: 15, y: 15 },
+      { id: 'bd3', x: 22, y: 18 },
+      { id: 'bd4', x: 28, y: 15 },
+      { id: 'bd5', x: 34, y: 8 },
+      { id: 'bd6', x: 40, y: 5 },
+      { id: 'bd7', x: 44, y: 3 }
     ],
     connections: [
       { from: 'bd1', to: 'bd2' },
@@ -157,7 +140,6 @@ function Constellation() {
     ]
   };
 
-  // Cassiopeia (top-right area)
   const cassiopeia = {
     stars: [
       { id: 'cas1', x: 75, y: 8 },
@@ -174,14 +156,13 @@ function Constellation() {
     ]
   };
 
-  // Orion's Belt (bottom-right area)
   const orionsBelt = {
     stars: [
-      { id: 'or1', x: 78, y: 85 },  // Alnitak
-      { id: 'or2', x: 82, y: 88 },  // Alnilam
-      { id: 'or3', x: 86, y: 91 },  // Mintaka
-      { id: 'or4', x: 75, y: 80 },  // Betelgeuse
-      { id: 'or5', x: 89, y: 96 }   // Rigel
+      { id: 'or1', x: 78, y: 85 },
+      { id: 'or2', x: 82, y: 88 },
+      { id: 'or3', x: 86, y: 91 },
+      { id: 'or4', x: 75, y: 80 },
+      { id: 'or5', x: 89, y: 96 }
     ],
     connections: [
       { from: 'or1', to: 'or2' },
@@ -191,7 +172,6 @@ function Constellation() {
     ]
   };
 
-  // Southern Cross (bottom-left area)
   const southernCross = {
     stars: [
       { id: 'sc1', x: 12, y: 88 },
@@ -208,33 +188,28 @@ function Constellation() {
     ]
   };
 
-  // Gemini (middle-right area)
   const gemini = {
     stars: [
-      // Left part of Gemini
-      { id: 'gem1', x: 85, y: 52 },  // Top star left branch
-      { id: 'gem2', x: 87, y: 54 },  // Middle-top of left branch
-      { id: 'gem3', x: 89, y: 56 },  // Junction point
-      { id: 'gem4', x: 86, y: 57 },  // Left branch lower point
-      { id: 'gem5', x: 83, y: 58 },  // Bottom-left end point
-      // Right part of Gemini
-      { id: 'gem6', x: 93, y: 52 },  // Top-right end point
-      { id: 'gem7', x: 91, y: 54 },  // Upper right connection
-      { id: 'gem8', x: 93, y: 58 },  // Lower right connection 
-      { id: 'gem9', x: 95, y: 60 },  // Right bottom
-      { id: 'gem10', x: 97, y: 61 }, // Right-most point
-      { id: 'gem11', x: 92, y: 62 }, // Lower end point
-      { id: 'gem12', x: 89, y: 64 }  // Bottom-most point
+      { id: 'gem1', x: 85, y: 52 },
+      { id: 'gem2', x: 87, y: 54 },
+      { id: 'gem3', x: 89, y: 56 },
+      { id: 'gem4', x: 86, y: 57 },
+      { id: 'gem5', x: 83, y: 58 },
+      { id: 'gem6', x: 93, y: 52 },
+      { id: 'gem7', x: 91, y: 54 },
+      { id: 'gem8', x: 93, y: 58 },
+      { id: 'gem9', x: 95, y: 60 },
+      { id: 'gem10', x: 97, y: 61 },
+      { id: 'gem11', x: 92, y: 62 },
+      { id: 'gem12', x: 89, y: 64 }
     ],
     connections: [
-      // Left part connections
       { from: 'gem1', to: 'gem2' },
       { from: 'gem2', to: 'gem3' },
       { from: 'gem3', to: 'gem4' },
       { from: 'gem4', to: 'gem5' },
-      // Right part connections
       { from: 'gem6', to: 'gem7' },
-      { from: 'gem7', to: 'gem3' }, // Connection to junction
+      { from: 'gem7', to: 'gem3' },
       { from: 'gem3', to: 'gem8' },
       { from: 'gem8', to: 'gem9' },
       { from: 'gem9', to: 'gem10' },
@@ -243,7 +218,6 @@ function Constellation() {
     ]
   };
 
-  // Leo (middle-left area)
   const leo = {
     stars: [
       { id: 'leo1', x: 5, y: 45 },
@@ -260,7 +234,6 @@ function Constellation() {
     ]
   };
 
-  // Cygnus (upper-middle area)
   const cygnus = {
     stars: [
       { id: 'cyg1', x: 50, y: 8 },
@@ -277,7 +250,6 @@ function Constellation() {
     ]
   };
 
-  // Lyra (top-center area)
   const lyra = {
     stars: [
       { id: 'lyr1', x: 58, y: 25 },
@@ -293,7 +265,6 @@ function Constellation() {
     ]
   };
 
-  // Draco (wrapping around top)
   const draco = {
     stars: [
       { id: 'dra1', x: 25, y: 5 },
@@ -312,7 +283,6 @@ function Constellation() {
     ]
   };
 
-  // Centaurus (bottom-center area)
   const centaurus = {
     stars: [
       { id: 'cen1', x: 45, y: 90 },
@@ -329,7 +299,6 @@ function Constellation() {
     ]
   };
 
-  // Pegasus (middle-right upper)
   const pegasus = {
     stars: [
       { id: 'peg1', x: 82, y: 30 },
@@ -345,7 +314,6 @@ function Constellation() {
     ]
   };
 
-  // Boötes (left-center)
   const bootes = {
     stars: [
       { id: 'boo1', x: 18, y: 35 },
@@ -360,20 +328,19 @@ function Constellation() {
     ]
   };
 
-  // Cancer (under sidebar content card)
   const cancer = {
     stars: [
-      { id: 'cnc1', x: 27, y: 72 },  // Top star
-      { id: 'cnc2', x: 26.75, y: 78 },  // Middle star (pronounced offset left)
-      { id: 'cnc3', x: 26, y: 82 },  // Triangle apex star
-      { id: 'cnc4', x: 24, y: 86 },  // Bottom left star (closer to center)
-      { id: 'cnc5', x: 29, y: 88 }   // Bottom right star (closer to center)
+      { id: 'cnc1', x: 27, y: 72 },
+      { id: 'cnc2', x: 26.75, y: 78 },
+      { id: 'cnc3', x: 26, y: 82 },
+      { id: 'cnc4', x: 24, y: 86 },
+      { id: 'cnc5', x: 29, y: 88 }
     ],
     connections: [
-      { from: 'cnc1', to: 'cnc2' },  // Top to middle (pronounced angle left)
-      { from: 'cnc2', to: 'cnc3' },  // Middle to triangle apex
-      { from: 'cnc3', to: 'cnc4' },  // Triangle apex to left (shorter)
-      { from: 'cnc3', to: 'cnc5' }   // Triangle apex to right (longer)
+      { from: 'cnc1', to: 'cnc2' },
+      { from: 'cnc2', to: 'cnc3' },
+      { from: 'cnc3', to: 'cnc4' },
+      { from: 'cnc3', to: 'cnc5' }
     ]
   };
 
@@ -382,7 +349,6 @@ function Constellation() {
   return (
     <div className="constellation">
       <svg width="100%" height="100%" style={{ position: 'absolute', top: 0, left: 0 }}>
-        {/* Draw lines for all constellations */}
         {allConstellations.map((constellation, constIndex) =>
           constellation.connections.map((connection, lineIndex) => {
             const fromStar = constellation.stars.find(s => s.id === connection.from);
@@ -402,20 +368,17 @@ function Constellation() {
         )}
       </svg>
       
-      {/* Render all constellation stars */}
       {allConstellations.map((constellation, constIndex) =>
         constellation.stars.map((star, starIndex) => {
-          // Generate random values for each star's glimmering effect
-          const glimmerDuration = 2 + Math.random() * 5; // Between 2-7 seconds
-          const glimmerDelay = Math.random() * 3; // Between 0-3 seconds delay
-          const minOpacity = 0.5 + Math.random() * 0.3; // Between 0.5-0.8
-          const maxOpacity = 0.9 + Math.random() * 0.1; // Between 0.9-1.0
-          const minBrightness = 0.7 + Math.random() * 0.2; // Between 0.7-0.9
-          const maxBrightness = 1.0 + Math.random() * 0.6; // Between 1.0-1.6
-          // Random star size - mostly small but occasionally larger
+          const glimmerDuration = 2 + Math.random() * 5;
+          const glimmerDelay = Math.random() * 3;
+          const minOpacity = 0.5 + Math.random() * 0.3;
+          const maxOpacity = 0.9 + Math.random() * 0.1;
+          const minBrightness = 0.7 + Math.random() * 0.2;
+          const maxBrightness = 1.0 + Math.random() * 0.6;
           const starSize = Math.random() < 0.15 ? 
-                          3 + Math.random() * 2 : // 15% chance of larger star (3-5px)
-                          2 + Math.random() * 2;  // 85% chance of normal star (2-4px)
+                          3 + Math.random() * 2 :
+                          2 + Math.random() * 2;
           
           return (
             <div
@@ -426,9 +389,9 @@ function Constellation() {
                 top: `${star.y}%`,
                 width: `${starSize}px`,
                 height: `${starSize}px`,
-                animationDelay: `3s`, /* All stars appear at the same time, 3s delay to match line animations */
+                animationDelay: `3s`,
                 '--glimmer-duration': `${glimmerDuration}s`,
-                '--glimmer-delay': `${3 + glimmerDelay}s`, // Add 3s to match the appearance delay
+                '--glimmer-delay': `${3 + glimmerDelay}s`,
                 '--star-min-opacity': minOpacity,
                 '--star-max-opacity': maxOpacity,
                 '--star-min-brightness': minBrightness,
@@ -644,7 +607,6 @@ function ExperienceSection() {
 }
 
 function TechStackSection() {
-  // Updated recruiter-friendly 4-category tech stack
   const techCategories = [
     {
       title: "Programming Languages",
@@ -803,8 +765,7 @@ const projects = [
     tech: ['Python', 'PHP', 'CSS', 'HTML', 'JavaScript', 'Math Libraries', 'Random Algorithms'],
     code: 'https://github.com/RomanBam/MiniProjects-Practice',
     live: null
-  },
-  // Add more projects here as needed
+  }
 ];
 
 function MobileView({ activeTab, setActiveTab }) {
@@ -1052,45 +1013,38 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Generate random starfield on page load
   useEffect(() => {
     const generateRandomStarfield = () => {
-      // Function to generate random star positions
       const generateStarLayer = (starCount, minSize, maxSize, tileWidth, tileHeight) => {
         const stars = [];
         for (let i = 0; i < starCount; i++) {
           const size = Math.random() * (maxSize - minSize) + minSize;
           const x = Math.random() * tileWidth;
           const y = Math.random() * tileHeight;
-          const opacity = Math.random() * 0.5 + 0.5; // 0.5 to 1.0
+          const opacity = Math.random() * 0.5 + 0.5;
           stars.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255,255,255,${opacity}), transparent)`);
         }
         return stars.join(', ');
       };
 
-      // Generate 4 different star layers with random positions
-      const starfield1 = generateStarLayer(80, 1, 3, 800, 600); // Large stars
-      const starfield2 = generateStarLayer(120, 0.5, 2, 600, 450); // Medium stars  
-      const starfield3 = generateStarLayer(100, 1, 2.5, 700, 500); // Mixed stars
-      const starfield4 = generateStarLayer(150, 0.5, 1.5, 900, 650); // Small stars
+      const starfield1 = generateStarLayer(80, 1, 3, 800, 600);
+      const starfield2 = generateStarLayer(120, 0.5, 2, 600, 450);
+      const starfield3 = generateStarLayer(100, 1, 2.5, 700, 500);
+      const starfield4 = generateStarLayer(150, 0.5, 1.5, 900, 650);
 
-      // Set the generated starfields as CSS custom properties
       document.documentElement.style.setProperty('--dynamic-starfield-1', starfield1);
       document.documentElement.style.setProperty('--dynamic-starfield-2', starfield2);
       document.documentElement.style.setProperty('--dynamic-starfield-3', starfield3);
       document.documentElement.style.setProperty('--dynamic-starfield-4', starfield4);
 
-      // Generate random animation durations
-      const twinkleDuration = (Math.random() * 6 + 2).toFixed(1) + 's'; // 2-8 seconds
-      const slowTwinkleDuration = (Math.random() * 10 + 5).toFixed(1) + 's'; // 5-15 seconds
-      const randomTwinkleDuration = (Math.random() * 8 + 3).toFixed(1) + 's'; // 3-11 seconds
+      const twinkleDuration = (Math.random() * 6 + 2).toFixed(1) + 's';
+      const slowTwinkleDuration = (Math.random() * 10 + 5).toFixed(1) + 's';
+      const randomTwinkleDuration = (Math.random() * 8 + 3).toFixed(1) + 's';
       
-      // Generate random easing functions
       const easingFunctions = ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'cubic-bezier(0.4, 0, 0.2, 1)', 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'];
       const twinkleEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
       const randomEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
       
-      // Set CSS custom properties for random durations and easing
       document.documentElement.style.setProperty('--twinkle-duration', twinkleDuration);
       document.documentElement.style.setProperty('--slow-twinkle-duration', slowTwinkleDuration);
       document.documentElement.style.setProperty('--random-twinkle-duration', randomTwinkleDuration);
