@@ -255,8 +255,6 @@ body::after {
   position: sticky;
   top: 3rem;
   height: fit-content;
-  max-height: calc(100vh - 6rem);
-  overflow-y: auto;
   z-index: 10;
 }
 
