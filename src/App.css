@@ -373,6 +373,11 @@ body::after {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+  /* Prevent layout shift on image load */
+  min-width: 140px;
+  min-height: 140px;
+  max-width: 140px;
+  max-height: 140px;
 }
 .profile-name {
   font-size: 1.35rem;
@@ -927,6 +932,11 @@ body::after {
     color: #888;
     margin: 0 auto;
     overflow: hidden;
+    /* Prevent layout shift on image load */
+    min-width: 80px;
+    min-height: 80px;
+    max-width: 80px;
+    max-height: 80px;
   }
   .mobile-profile-info {
     flex: 1;
