@@ -318,6 +318,7 @@ body::after {
   padding: 3rem 1rem;
   max-width: 1200px;
   width: 100%;
+  align-items: flex-start; /* Align sidebar and content card tops */
 }
 
 .sidebar-card {
@@ -332,11 +333,9 @@ body::after {
   min-width: 260px;
   border: 1px solid rgba(255,255,255,0.07);
   position: sticky;
-  top: 32px;
-  bottom: 16px;
+  top: 3rem; /* Match container padding-top for aligned tops */
   height: fit-content;
-  max-height: calc(100vh - 48px);
-  margin-bottom: 16px;
+  max-height: calc(100vh - 6rem); /* Account for top/bottom padding */
   overflow-y: auto;
   z-index: 10;
 }
