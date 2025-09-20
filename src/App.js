@@ -606,7 +606,7 @@ function EducationSection() {
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem', position: 'relative', top: '-0.05rem' }}>Bachelor of Science, Computer Science <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(2021 - 2026)</span></div>
           <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.2rem' }}>Trent University, Peterborough, ON</div>
-          <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}><b>Relevant Coursework:</b> Front-End Web Development, Back-End Web Development, Cybersecurity, Software Design & Modelling, Applied AI & Machine Learning, Database Management Systems, Data Structures & Algorithms, Modelling & Simulation</div>
+          <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}><b>Relevant Coursework:</b> Front-End Web Development, Back-End Web Development, Cybersecurity, Software Design & Modelling, Applied AI & Machine Learning, Database Management Systems, Data Structures & Algorithms, Modelling & Simulation, Systems Analysis and Design</div>
           <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}><b>Projects:</b>
             <ul style={{ margin: '0.2rem 0 0.2rem 1.2rem', color: '#e0e0e0', fontSize: '1rem' }}>
               <li style={{ marginBottom: '0.4rem' }}>Developed a puzzle-based game prototype (digital & analog versions).</li>
@@ -873,8 +873,8 @@ function MobileView({ activeTab, setActiveTab }) {
                 <div className="doing-card">
                   <div className="doing-icon"><FaRobot color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
                   <div>
-                    <h3>Machine Learning</h3>
-                    <p>Obsessed in developing high-quality machine learning applications.</p>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Building intelligent AI/ML applications with a focus on practical impact and model quality.</p>
                   </div>
                 </div>
               </div>
@@ -1010,8 +1010,8 @@ function WebView({ activeTab, setActiveTab }) {
                   <div className="doing-card">
                     <div className="doing-icon"><FaRobot color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
                     <div>
-                      <h3>Machine Learning</h3>
-                      <p>Obsessed in developing high-quality machine learning applications.</p>
+                      <h3>AI & Machine Learning</h3>
+                      <p>Building intelligent AI/ML applications with a focus on practical impact and model quality.</p>
                     </div>
                   </div>
                 </div>
