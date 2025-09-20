@@ -1,56 +1,68 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
 import { LuCake, LuMapPin } from 'react-icons/lu';
 import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker, SiPhp } from 'react-icons/si';
 
+// Performance constants
+const TWO_PI = 2 * Math.PI;
+const STAR_INTERVALS = {
+  MIN: 800,
+  MAX: 2000,
+  RANGE: 1200
+};
+const STAR_COUNTS = {
+  BURST_MIN: 2,
+  BURST_MAX: 4
+};
+
 function ShootingStar() {
   const [stars, setStars] = useState([]);
   
-  useEffect(() => {
-    const createShootingStar = () => {
-      const id = Math.random().toString(36).substring(2, 9);
-      
-      const startX = Math.random() * 100;
-      const startY = Math.random() * 100;
-      
-      const distance = 100 + Math.random() * 300;
-      const angle = Math.random() * 2 * Math.PI;
-      
-      const travelX = Math.cos(angle) * distance;
-      const travelY = Math.sin(angle) * distance;
-      
-      const duration = 0.5 + Math.random() * 2.5;
-      
-      const size = Math.random() < 0.15 ? 
-                  3 + Math.random() * 1 :
-                  1 + Math.random() * 2;
-      
-      const brightness = Math.random() < 0.2 ? 
-                        0.9 + Math.random() * 0.1 :
-                        0.6 + Math.random() * 0.3;
-      
-      return {
-        id,
-        startX,
-        startY,
-        travelX,
-        travelY,
-        duration,
-        size,
-        brightness
-      };
-    };
+  const createShootingStar = useCallback(() => {
+    const id = Math.random().toString(36).substring(2, 9);
     
+    const startX = Math.random() * 100;
+    const startY = Math.random() * 100;
+    
+    const distance = 100 + Math.random() * 300;
+    const angle = Math.random() * TWO_PI;
+    
+    const travelX = Math.cos(angle) * distance;
+    const travelY = Math.sin(angle) * distance;
+    
+    const duration = 0.5 + Math.random() * 2.5;
+    
+    const size = Math.random() < 0.15 ? 
+                3 + Math.random() * 1 :
+                1 + Math.random() * 2;
+    
+    const brightness = Math.random() < 0.2 ? 
+                      0.9 + Math.random() * 0.1 :
+                      0.6 + Math.random() * 0.3;
+    
+    return {
+      id,
+      startX,
+      startY,
+      travelX,
+      travelY,
+      duration,
+      size,
+      brightness
+    };
+  }, []);
+  
+  useEffect(() => {
     const interval = setInterval(() => {
       setStars(prevStars => {
-        const newStarsCount = Math.floor(Math.random() * 4) + 2;
+        const newStarsCount = Math.floor(Math.random() * STAR_COUNTS.BURST_MAX) + STAR_COUNTS.BURST_MIN;
         const newStars = Array.from({ length: newStarsCount }, () => createShootingStar());
         
         const combinedStars = [...prevStars, ...newStars];
         return combinedStars.length > 25 ? combinedStars.slice(combinedStars.length - 25) : combinedStars;
       });
-    }, 800 + Math.random() * 1200);
+    }, STAR_INTERVALS.MIN + Math.random() * STAR_INTERVALS.RANGE);
     
     const timeouts = [];
     
@@ -82,7 +94,7 @@ function ShootingStar() {
       clearInterval(interval);
       timeouts.forEach(timeout => clearTimeout(timeout));
     };
-  }, []);
+  }, [createShootingStar]);
   
   return (
     <>
@@ -1003,6 +1015,8 @@ function WebView({ activeTab, setActiveTab }) {
   );
 }
 
+const easingFunctions = ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'cubic-bezier(0.4, 0, 0.2, 1)', 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'];
+
 function App() {
   const [activeTab, setActiveTab] = useState('about');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
@@ -1013,20 +1027,20 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const generateStarLayer = useCallback((starCount, minSize, maxSize, tileWidth, tileHeight) => {
+    const stars = [];
+    for (let i = 0; i < starCount; i++) {
+      const size = Math.random() * (maxSize - minSize) + minSize;
+      const x = Math.random() * tileWidth;
+      const y = Math.random() * tileHeight;
+      const opacity = Math.random() * 0.5 + 0.5;
+      stars.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255,255,255,${opacity}), transparent)`);
+    }
+    return stars.join(', ');
+  }, []);
+
   useEffect(() => {
     const generateRandomStarfield = () => {
-      const generateStarLayer = (starCount, minSize, maxSize, tileWidth, tileHeight) => {
-        const stars = [];
-        for (let i = 0; i < starCount; i++) {
-          const size = Math.random() * (maxSize - minSize) + minSize;
-          const x = Math.random() * tileWidth;
-          const y = Math.random() * tileHeight;
-          const opacity = Math.random() * 0.5 + 0.5;
-          stars.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255,255,255,${opacity}), transparent)`);
-        }
-        return stars.join(', ');
-      };
-
       const starfield1 = generateStarLayer(80, 1, 3, 800, 600);
       const starfield2 = generateStarLayer(120, 0.5, 2, 600, 450);
       const starfield3 = generateStarLayer(100, 1, 2.5, 700, 500);
@@ -1041,7 +1055,6 @@ function App() {
       const slowTwinkleDuration = (Math.random() * 10 + 5).toFixed(1) + 's';
       const randomTwinkleDuration = (Math.random() * 8 + 3).toFixed(1) + 's';
       
-      const easingFunctions = ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'cubic-bezier(0.4, 0, 0.2, 1)', 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'];
       const twinkleEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
       const randomEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
       
@@ -1053,7 +1066,7 @@ function App() {
     };
 
     generateRandomStarfield();
-  }, []);
+  }, [generateStarLayer]);
 
   return isMobile ? (
     <MobileView activeTab={activeTab} setActiveTab={setActiveTab} />
