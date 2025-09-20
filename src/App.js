@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
 import { LuCake, LuMapPin } from 'react-icons/lu';
@@ -418,53 +418,6 @@ function Constellation() {
   );
 }
 
-function RevealOnScroll({ children, delay = 0 }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const elementRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setTimeout(() => {
-            setIsVisible(true);
-            setHasAnimated(true);
-          }, delay);
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
-    );
-
-    const currentElement = elementRef.current;
-    if (currentElement) {
-      observer.observe(currentElement);
-    }
-
-    return () => {
-      if (currentElement) {
-        observer.unobserve(currentElement);
-      }
-    };
-  }, [delay, hasAnimated]);
-
-  return (
-    <div
-      ref={elementRef}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: 'opacity 0.3s ease-out, transform 0.3s ease-out'
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
 function MobileProfileCard() {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -867,108 +820,92 @@ const PortfolioTab = memo(() => (
 
 const ContactTab = memo(() => <ContactSection />);
 
-// Mobile versions with scroll animations
+// Mobile versions without scroll animations
 const MobileAboutTab = memo(() => (
   <>
-    <RevealOnScroll delay={0}>
-      <section className="about-section">
-        <h1 className="about-title custom-title">About Me</h1>
-        <p className="about-desc">
-          I'm Roman, a software engineer focused on building practical AI and full‑stack solutions. I enjoy combining machine learning (TensorFlow, LangChain, OpenCV) with modern web tools like React, Next.js, Flask, and Streamlit to create useful, clean experiences. Core languages & technologies I work with: Python, JavaScript/TypeScript, Java, C#, PHP, SQL, and HTML/CSS. I've built projects ranging from an AI resume critiquer and image classifier to data science workflows and automation tools. My goal: ship thoughtful, reliable software that turns complex ideas into something people actually use.
-        </p>
-      </section>
-    </RevealOnScroll>
-    <RevealOnScroll delay={200}>
-      <section className="doing-section">
-        <h2 className="doing-title custom-title">What I'm Doing</h2>
-        <div className="doing-cards">
-          <div className="doing-card">
-            <div className="doing-icon"><FaPencilRuler color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
-            <div>
-              <h3>UI/UX Design</h3>
-              <p>Striving for modern, high-quality design built with attention to detail and a focus on user experience.</p>
-            </div>
-          </div>
-          <div className="doing-card">
-            <div className="doing-icon"><FaCode color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
-            <div>
-              <h3>Frontend Development</h3>
-              <p>High-quality frontend development of sites at a skillful level.</p>
-            </div>
-          </div>
-          <div className="doing-card">
-            <div className="doing-icon"><FaServer color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
-            <div>
-              <h3>Backend Development</h3>
-              <p>Learning backend development of applications in JavaScript.</p>
-            </div>
-          </div>
-          <div className="doing-card">
-            <div className="doing-icon"><FaRobot color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
-            <div>
-              <h3>AI & Machine Learning</h3>
-              <p>Building intelligent AI/ML applications with a focus on practical impact and model quality.</p>
-            </div>
+    <section className="about-section">
+      <h1 className="about-title custom-title">About Me</h1>
+      <p className="about-desc">
+        I'm Roman, a software engineer focused on building practical AI and full‑stack solutions. I enjoy combining machine learning (TensorFlow, LangChain, OpenCV) with modern web tools like React, Next.js, Flask, and Streamlit to create useful, clean experiences. Core languages & technologies I work with: Python, JavaScript/TypeScript, Java, C#, PHP, SQL, and HTML/CSS. I've built projects ranging from an AI resume critiquer and image classifier to data science workflows and automation tools. My goal: ship thoughtful, reliable software that turns complex ideas into something people actually use.
+      </p>
+    </section>
+    <section className="doing-section">
+      <h2 className="doing-title custom-title">What I'm Doing</h2>
+      <div className="doing-cards">
+        <div className="doing-card">
+          <div className="doing-icon"><FaPencilRuler color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
+          <div>
+            <h3>UI/UX Design</h3>
+            <p>Striving for modern, high-quality design built with attention to detail and a focus on user experience.</p>
           </div>
         </div>
-      </section>
-    </RevealOnScroll>
+        <div className="doing-card">
+          <div className="doing-icon"><FaCode color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
+          <div>
+            <h3>Frontend Development</h3>
+            <p>High-quality frontend development of sites at a skillful level.</p>
+          </div>
+        </div>
+        <div className="doing-card">
+          <div className="doing-icon"><FaServer color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
+          <div>
+            <h3>Backend Development</h3>
+            <p>Learning backend development of applications in JavaScript.</p>
+          </div>
+        </div>
+        <div className="doing-card">
+          <div className="doing-icon"><FaRobot color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
+          <div>
+            <h3>AI & Machine Learning</h3>
+            <p>Building intelligent AI/ML applications with a focus on practical impact and model quality.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </>
 ));
 
 const MobileResumeTab = memo(() => (
   <>
-    <RevealOnScroll delay={0}>
-      <EducationSection />
-    </RevealOnScroll>
-    <RevealOnScroll delay={200}>
-      <ExperienceSection />
-    </RevealOnScroll>
-    <RevealOnScroll delay={400}>
-      <TechStackSection />
-    </RevealOnScroll>
+    <EducationSection />
+    <ExperienceSection />
+    <TechStackSection />
   </>
 ));
 
 const MobilePortfolioTab = memo(() => (
-  <RevealOnScroll delay={0}>
-    <section className="portfolio-section">
-      <h2 className="portfolio-title custom-title">Portfolio</h2>
-      <div className="portfolio-grid">
-        {projects.map((proj, idx) => (
-          <div className="portfolio-card" key={idx}>
-            <h3>{proj.title}</h3>
-            <p>{proj.description}</p>
-            <div className="portfolio-tech-section">
-              <span className="portfolio-tech-label">Tech Stack:</span>
-              <div className="portfolio-tech-badges">
-                {proj.tech.map((t, i) => (
-                  <span key={i} className="portfolio-badge">{t}</span>
-                ))}
-              </div>
-            </div>
-            <div className="portfolio-links">
-              <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link">
-                <FaGithub /> Code
-              </a>
-              {proj.live && (
-                <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link portfolio-live-link">
-                  <span>Live</span>
-                </a>
-              )}
+  <section className="portfolio-section">
+    <h2 className="portfolio-title custom-title">Portfolio</h2>
+    <div className="portfolio-grid">
+      {projects.map((proj, idx) => (
+        <div className="portfolio-card" key={idx}>
+          <h3>{proj.title}</h3>
+          <p>{proj.description}</p>
+          <div className="portfolio-tech-section">
+            <span className="portfolio-tech-label">Tech Stack:</span>
+            <div className="portfolio-tech-badges">
+              {proj.tech.map((t, i) => (
+                <span key={i} className="portfolio-badge">{t}</span>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
-    </section>
-  </RevealOnScroll>
+          <div className="portfolio-links">
+            <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link">
+              <FaGithub /> Code
+            </a>
+            {proj.live && (
+              <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link portfolio-live-link">
+                <span>Live</span>
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
 ));
 
-const MobileContactTab = memo(() => (
-  <RevealOnScroll delay={0}>
-    <ContactSection />
-  </RevealOnScroll>
-));
+const MobileContactTab = memo(() => <ContactSection />);
 
 const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
   return (
