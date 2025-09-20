@@ -683,8 +683,8 @@ function TechStackSection() {
         { name: "React.js", icon: <FaReact />, description: "UI development" },
         { name: "Next.js", icon: <SiNextdotjs />, description: "Full-stack SSR" },
         { name: "Flask", icon: <SiFlask />, description: "APIs & microservices" },
-        { name: "HTML5", icon: <FaHtml5 />, description: "Semantic markup" },
-        { name: "CSS3", icon: <FaCss3Alt />, description: "Responsive styling" },
+  { name: "HTML", icon: <FaHtml5 />, description: "Semantic markup" },
+  { name: "CSS", icon: <FaCss3Alt />, description: "Responsive styling" },
         { name: "PHP", icon: <SiPhp />, description: "Server-side scripting" }
       ]
     },
@@ -841,7 +841,7 @@ function MobileView({ activeTab, setActiveTab }) {
                 <p className="about-desc">
                   Hi! I'm Roman, an aspiring Software Engineer with a strong passion for AI and software development. I specialize in machine learning, full-stack web development, and creating intelligent applications that solve real-world problems. My diverse technical background spans from deep learning frameworks to modern web technologies, allowing me to build comprehensive solutions that make a meaningful impact.<br /><br />
                   My expertise includes working with advanced AI/ML technologies like TensorFlow, MobileNetV2, and LangChain for building intelligent systems. I've developed several notable projects including an AI Resume Critiquer that provides intelligent feedback using NLP techniques, an AI Image Classifier with 1000+ ImageNet categories, and a conversational AI Assistant with modular API integration. My Cheese Fat Prediction Model demonstrates my proficiency in complete data science workflows, from data preprocessing to model deployment.<br /><br />
-                  On the development side, I'm skilled in modern web technologies including React.js, Next.js, Flask, and Streamlit for building responsive applications. I work with multiple programming languages (Python, JavaScript, PHP, SQL, C#, Java, HTML, CSS5) and leverage tools like AWS, Docker, and Git for deployment and version control. My focus is on creating clean, efficient code and intuitive user experiences that bridge the gap between complex AI capabilities and practical applications.
+                  On the development side, I'm skilled in modern web technologies including React.js, Next.js, Flask, and Streamlit for building responsive applications. I work with multiple programming languages (Python, JavaScript, PHP, SQL, C#, Java, HTML, CSS) and leverage tools like AWS, Docker, and Git for deployment and version control. My focus is on creating clean, efficient code and intuitive user experiences that bridge the gap between complex AI capabilities and practical applications.
                 </p>
               </section>
             </RevealOnScroll>
@@ -980,7 +980,7 @@ function WebView({ activeTab, setActiveTab }) {
                 <p className="about-desc">
                   Hi! I'm Roman, an aspiring Software Engineer with a strong passion for AI and software development. I specialize in machine learning, full-stack web development, and creating intelligent applications that solve real-world problems. My diverse technical background spans from deep learning frameworks to modern web technologies, allowing me to build comprehensive solutions that make a meaningful impact.<br /><br />
                   My expertise includes working with advanced AI/ML technologies like TensorFlow, MobileNetV2, and LangChain for building intelligent systems. I've developed several notable projects including an AI Resume Critiquer that provides intelligent feedback using NLP techniques, an AI Image Classifier with 1000+ ImageNet categories, and a conversational AI Assistant with modular API integration. My Cheese Fat Prediction Model demonstrates my proficiency in complete data science workflows, from data preprocessing to model deployment.<br /><br />
-                  On the development side, I'm skilled in modern web technologies including React.js, Next.js, Flask, and Streamlit for building responsive applications. I work with multiple programming languages (Python, JavaScript, PHP, SQL, C#, Java, HTML, CSS5) and leverage tools like AWS, Docker, and Git for deployment and version control. My focus is on creating clean, efficient code and intuitive user experiences that bridge the gap between complex AI capabilities and practical applications.
+                  On the development side, I'm skilled in modern web technologies including React.js, Next.js, Flask, and Streamlit for building responsive applications. I work with multiple programming languages (Python, JavaScript, PHP, SQL, C#, Java, HTML, CSS) and leverage tools like AWS, Docker, and Git for deployment and version control. My focus is on creating clean, efficient code and intuitive user experiences that bridge the gap between complex AI capabilities and practical applications.
                 </p>
               </section>
               <section className="doing-section">
