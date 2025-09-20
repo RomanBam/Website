@@ -663,55 +663,57 @@ function ExperienceSection() {
 }
 
 function TechStackSection() {
+  // Updated recruiter-friendly 4-category tech stack
   const techCategories = [
     {
       title: "Programming Languages",
       icon: <FaCode />,
       technologies: [
-        { name: "Python", icon: <FaPython />, description: "AI/ML, automation, APIs" },
-        { name: "JavaScript", icon: <SiJavascript />, description: "Full-stack, React, Node.js" },
-        { name: "PHP", icon: <SiPhp />, description: "Web development, server-side" },
-        { name: "SQL", icon: <FaDatabase />, description: "Database design, queries" },
-        { name: "C#", icon: <SiCplusplus />, description: "Enterprise applications" },
-        { name: "Java", icon: <FaCoffee />, description: "Spring Boot, enterprise" }
+        { name: "Python", icon: <FaPython />, description: "Primary, AI & backend" },
+        { name: "JavaScript", icon: <SiJavascript />, description: "Frontend & tooling" },
+        { name: "SQL", icon: <FaDatabase />, description: "Relational queries" },
+        { name: "C#", icon: <SiCplusplus />, description: "OOP & enterprise" },
+        { name: "Java", icon: <FaCoffee />, description: "General purpose" }
       ]
     },
     {
-      title: "AI/ML",
-      icon: <FaRobot />,
-      technologies: [
-        { name: "TensorFlow", icon: <SiTensorflow />, description: "Deep learning models" },
-        { name: "Scikit-learn", icon: <FaRobot />, description: "Machine learning" },
-        { name: "Pandas", icon: <FaDatabase />, description: "Data manipulation" },
-        { name: "NumPy", icon: <SiNumpy />, description: "Numerical computing" },
-        { name: "Matplotlib", icon: <FaPencilRuler />, description: "Data visualization" },
-        { name: "ChatGPT API", icon: <SiOpenai />, description: "AI integration" },
-        { name: "LangChain", icon: <FaLink />, description: "RAG systems, AI agents" },
-        { name: "OpenCV", icon: <FaCode />, description: "Computer vision" }
-      ]
-    },
-    {
-      title: "Web",
+      title: "Web & Application Development",
       icon: <FaServer />,
       technologies: [
-        { name: "React.js", icon: <FaReact />, description: "Frontend development" },
-        { name: "Next.js", icon: <SiNextdotjs />, description: "Full-stack applications" },
-        { name: "Flask", icon: <SiFlask />, description: "Lightweight APIs" },
-        { name: "Streamlit", icon: <FaPencilRuler />, description: "Data apps" },
-        { name: "HTML5", icon: <FaHtml5 />, description: "Web structure" },
-        { name: "CSS3", icon: <FaCss3Alt />, description: "Styling & design" }
+        { name: "React.js", icon: <FaReact />, description: "UI development" },
+        { name: "Next.js", icon: <SiNextdotjs />, description: "Full-stack SSR" },
+        { name: "Flask", icon: <SiFlask />, description: "APIs & microservices" },
+        { name: "HTML5", icon: <FaHtml5 />, description: "Semantic markup" },
+        { name: "CSS3", icon: <FaCss3Alt />, description: "Responsive styling" },
+        { name: "PHP", icon: <SiPhp />, description: "Server-side scripting" }
       ]
     },
     {
-      title: "Tools",
+      title: "AI, ML & Data Science",
+      icon: <FaRobot />,
+      technologies: [
+        { name: "TensorFlow", icon: <SiTensorflow />, description: "Deep learning" },
+        { name: "Scikit-learn", icon: <FaRobot />, description: "ML models" },
+        { name: "Pandas", icon: <FaDatabase />, description: "Data wrangling" },
+        { name: "NumPy", icon: <SiNumpy />, description: "Numerics" },
+        { name: "Matplotlib", icon: <FaPencilRuler />, description: "Visualization" },
+        { name: "OpenCV", icon: <FaCode />, description: "Computer vision" },
+        { name: "Streamlit", icon: <FaPencilRuler />, description: "Data apps" },
+        { name: "ChatGPT API", icon: <SiOpenai />, description: "LLM integration" },
+        { name: "LangChain", icon: <FaLink />, description: "LLM pipelines" },
+        { name: "Jupyter Notebooks", icon: <SiJupyter />, description: "Interactive analysis" }
+      ]
+    },
+    {
+      title: "Cloud, DevOps & Tools",
       icon: <FaTools />,
       technologies: [
         { name: "AWS", icon: <FaCloud />, description: "Cloud services" },
-        { name: "Docker", icon: <SiDocker />, description: "Containerization" },
-        { name: "Git/GitHub", icon: <FaGitAlt />, description: "Version control" },
-        { name: "Vercel", icon: <SiVercel />, description: "Deployment platform" },
-        { name: "Figma", icon: <SiFigma />, description: "UI/UX design" },
-        { name: "Jupyter Notebooks", icon: <SiJupyter />, description: "Data analysis" }
+        { name: "Docker", icon: <SiDocker />, description: "Containers" },
+        { name: "Git", icon: <FaGitAlt />, description: "Version control" },
+        { name: "GitHub", icon: <FaGitAlt />, description: "Collaboration" },
+        { name: "Vercel", icon: <SiVercel />, description: "Deployments" },
+        { name: "Figma", icon: <SiFigma />, description: "Design prototyping" }
       ]
     }
   ];
