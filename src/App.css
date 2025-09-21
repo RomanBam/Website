@@ -800,7 +800,7 @@ body::after {
   .main-content-card {
     margin-top: var(--mobile-topbar-height);
     padding-top: 1.2rem;
-    height: calc(100vh - var(--mobile-topbar-height) - 80px);
+    height: calc(100vh - var(--mobile-topbar-height) - 70px); /* Reduced from 80px to 70px to give more scroll space */
     overflow-y: auto;
     /* Hide scrollbar on mobile */
     scrollbar-width: none; /* Firefox */
@@ -814,7 +814,7 @@ body::after {
   
   .continuous-content {
     gap: 2rem;
-    padding-bottom: 1rem;
+    padding-bottom: 8rem; /* Extra generous padding for mobile form accessibility */
   }
   
   .content-section {
@@ -840,7 +840,8 @@ body::after {
     height: 54px;
     margin: 0;
   }
-  body, html, #root, .dark-app, .container {
+  /* Only remove bottom padding/margins from container elements, not content */
+  body, html, #root, .dark-app {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
   }
