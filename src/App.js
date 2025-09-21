@@ -915,10 +915,20 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
       <ShootingStar />
       <MobileProfileCard />
       <main className="main-content-card">
-        {activeTab === 'about' && <MobileAboutTab />}
-        {activeTab === 'resume' && <MobileResumeTab />}
-        {activeTab === 'portfolio' && <MobilePortfolioTab />}
-        {activeTab === 'contact' && <MobileContactTab />}
+        <div className="tab-content-container">
+          <div className={`tab-content ${activeTab === 'about' ? 'active' : ''}`}>
+            <MobileAboutTab />
+          </div>
+          <div className={`tab-content ${activeTab === 'resume' ? 'active' : ''}`}>
+            <MobileResumeTab />
+          </div>
+          <div className={`tab-content ${activeTab === 'portfolio' ? 'active' : ''}`}>
+            <MobilePortfolioTab />
+          </div>
+          <div className={`tab-content ${activeTab === 'contact' ? 'active' : ''}`}>
+            <MobileContactTab />
+          </div>
+        </div>
       </main>
       <nav className="main-tabs main-tabs-bottom">
         {tabs.map(tab => (
@@ -959,10 +969,20 @@ const WebView = memo(function WebView({ activeTab, setActiveTab }) {
               </Link>
             ))}
           </nav>
-          {activeTab === 'about' && <AboutTab />}
-          {activeTab === 'resume' && <ResumeTab />}
-          {activeTab === 'portfolio' && <PortfolioTab />}
-          {activeTab === 'contact' && <ContactTab />}
+          <div className="tab-content-container">
+            <div className={`tab-content ${activeTab === 'about' ? 'active' : ''}`}>
+              <AboutTab />
+            </div>
+            <div className={`tab-content ${activeTab === 'resume' ? 'active' : ''}`}>
+              <ResumeTab />
+            </div>
+            <div className={`tab-content ${activeTab === 'portfolio' ? 'active' : ''}`}>
+              <PortfolioTab />
+            </div>
+            <div className={`tab-content ${activeTab === 'contact' ? 'active' : ''}`}>
+              <ContactTab />
+            </div>
+          </div>
         </main>
       </div>
     </div>
