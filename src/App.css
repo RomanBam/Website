@@ -721,6 +721,19 @@ body::after {
   :root {
     --mobile-topbar-height: 64px;
   }
+  
+  /* Disable body scroll on mobile to prevent double scroll */
+  html, body {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Ensure dark-app container also respects mobile height constraints */
+  .dark-app {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+  }
   .sidebar-card {
     flex-direction: row;
     align-items: center;
@@ -772,7 +785,7 @@ body::after {
   .main-content-card {
     margin-top: var(--mobile-topbar-height);
     padding-top: 1.2rem;
-    max-height: calc(100vh - var(--mobile-topbar-height) - 80px);
+    height: calc(100vh - var(--mobile-topbar-height) - 80px);
     overflow-y: auto;
     /* Hide scrollbar on mobile */
     scrollbar-width: none; /* Firefox */
