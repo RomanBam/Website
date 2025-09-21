@@ -915,19 +915,19 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
       <ShootingStar />
       <MobileProfileCard />
       <main className="main-content-card">
-        <div className="tab-content-container">
-          <div className={`tab-content ${activeTab === 'about' ? 'active' : ''}`}>
+        <div className="continuous-content">
+          <section id="section-about" className="content-section">
             <MobileAboutTab />
-          </div>
-          <div className={`tab-content ${activeTab === 'resume' ? 'active' : ''}`}>
+          </section>
+          <section id="section-resume" className="content-section">
             <MobileResumeTab />
-          </div>
-          <div className={`tab-content ${activeTab === 'portfolio' ? 'active' : ''}`}>
+          </section>
+          <section id="section-portfolio" className="content-section">
             <MobilePortfolioTab />
-          </div>
-          <div className={`tab-content ${activeTab === 'contact' ? 'active' : ''}`}>
+          </section>
+          <section id="section-contact" className="content-section">
             <MobileContactTab />
-          </div>
+          </section>
         </div>
       </main>
       <nav className="main-tabs main-tabs-bottom">
@@ -938,7 +938,19 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
             className={`main-tab${activeTab === tab.id ? ' active' : ''}`}
             onClick={() => {
               setActiveTab(tab.id);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              if (tab.id === 'about') {
+                // Scroll to top for About tab
+                document.querySelector('.main-content-card')?.scrollTo({ 
+                  top: 0,
+                  behavior: 'smooth'
+                });
+              } else {
+                // Scroll to specific section for other tabs
+                document.getElementById(`section-${tab.id}`)?.scrollIntoView({ 
+                  behavior: 'smooth', 
+                  block: 'start' 
+                });
+              }
             }}
           >
             {tab.label}
@@ -963,25 +975,40 @@ const WebView = memo(function WebView({ activeTab, setActiveTab }) {
                 key={tab.id}
                 to={tab.path}
                 className={`main-tab${activeTab === tab.id ? ' active' : ''}`}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  setActiveTab(tab.id);
+                  if (tab.id === 'about') {
+                    // Scroll to top for About tab
+                    document.querySelector('.main-content-card')?.scrollTo({ 
+                      top: 0,
+                      behavior: 'smooth'
+                    });
+                  } else {
+                    // Scroll to specific section for other tabs
+                    document.getElementById(`section-${tab.id}`)?.scrollIntoView({ 
+                      behavior: 'smooth', 
+                      block: 'start' 
+                    });
+                  }
+                }}
               >
                 {tab.label}
               </Link>
             ))}
           </nav>
-          <div className="tab-content-container">
-            <div className={`tab-content ${activeTab === 'about' ? 'active' : ''}`}>
+          <div className="continuous-content">
+            <section id="section-about" className="content-section">
               <AboutTab />
-            </div>
-            <div className={`tab-content ${activeTab === 'resume' ? 'active' : ''}`}>
+            </section>
+            <section id="section-resume" className="content-section">
               <ResumeTab />
-            </div>
-            <div className={`tab-content ${activeTab === 'portfolio' ? 'active' : ''}`}>
+            </section>
+            <section id="section-portfolio" className="content-section">
               <PortfolioTab />
-            </div>
-            <div className={`tab-content ${activeTab === 'contact' ? 'active' : ''}`}>
+            </section>
+            <section id="section-contact" className="content-section">
               <ContactTab />
-            </div>
+            </section>
           </div>
         </main>
       </div>
@@ -1009,13 +1036,55 @@ function PortfolioContent() {
   useEffect(() => {
     const newActiveTab = getActiveTabFromPath(location.pathname);
     setActiveTab(newActiveTab);
+    // Scroll to section when URL changes (for direct navigation)
+    setTimeout(() => {
+      if (newActiveTab === 'about') {
+        // Scroll to top for About tab
+        document.querySelector('.main-content-card')?.scrollTo({ 
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        // Scroll to specific section for other tabs
+        document.getElementById(`section-${newActiveTab}`)?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    }, 100);
   }, [location.pathname, getActiveTabFromPath]);
 
-  // Memoized tab change handler that updates URL
+  // Scroll listener to update active tab based on visible section
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['about', 'resume', 'portfolio', 'contact'];
+      const scrollPosition = window.scrollY + 200; // Offset for header
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(`section-${sections[i]}`);
+        if (section && section.offsetTop <= scrollPosition) {
+          if (activeTab !== sections[i]) {
+            setActiveTab(sections[i]);
+            const tab = tabs.find(t => t.id === sections[i]);
+            if (tab) {
+              window.history.replaceState(null, '', tab.path);
+            }
+          }
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeTab]);
+
+  // Memoized tab change handler that updates URL and scrolls
   const handleTabChange = useCallback((tabId) => {
     const tab = tabs.find(tab => tab.id === tabId);
     if (tab) {
       navigate(tab.path);
+      setActiveTab(tabId);
     }
   }, [navigate]);
 
