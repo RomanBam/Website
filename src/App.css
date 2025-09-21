@@ -271,7 +271,7 @@ body::after {
     padding: 4rem 3rem;
   }
   .sidebar-card {
-    top: 11rem; /* Lowered further for perfect alignment on larger screens */
+    top: 9.9rem; /* Perfect alignment position for all screen sizes */
   }
 }
 
@@ -282,7 +282,7 @@ body::after {
     padding: 4rem 4rem;
   }
   .sidebar-card {
-    top: 11rem; /* Same as 1400px since container top padding is same */
+    top: 9.9rem; /* Perfect alignment position for all screen sizes */
   }
 }
 
@@ -297,8 +297,9 @@ body::after {
   align-items: center;
   min-width: 260px;
   border: 1px solid rgba(255,255,255,0.07);
-  position: sticky;
-  top: 9.5rem; /* Lowered further for perfect alignment with main content card */
+  position: -webkit-sticky !important; /* Safari fallback */
+  position: sticky !important; /* Override inline relative positioning */
+  top: 9.9rem; /* Split the difference between 9rem (too high) and 11rem (too low) */
   height: fit-content;
   z-index: 10;
 }
