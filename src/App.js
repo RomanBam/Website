@@ -480,7 +480,7 @@ function WebSidebar() {
 function ContactSection() {
   return (
     <section className="contact-section" style={{ fontFamily: 'Segoe UI, Arial, sans-serif' }}>
-      <h2 className="contact-title custom-title" style={{ marginBottom: '1.1rem', color: '#fff', fontWeight: 700, fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: '2.1rem' }}>Contact Me</h2>
+      <h2 className="contact-title custom-title" style={{ marginBottom: '1.2rem', color: '#fff', fontWeight: 700, fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: '2.1rem' }}>Contact Me</h2>
       <div style={{ marginBottom: '0.3rem', color: '#fff', fontWeight: 600, fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}>Socials</div>
       <div className="contact-socials" style={{ display: 'flex', gap: '1.1rem', marginBottom: '1.1rem' }}>
         <a href="https://www.linkedin.com/in/roman-bamrah" aria-label="LinkedIn" className="contact-social-icon" target="_blank" rel="noopener noreferrer" style={{ color: '#b0b0b0', fontSize: '2rem' }}><FaLinkedin /></a>
@@ -773,6 +773,9 @@ const AboutTab = memo(() => (
 
 const ResumeTab = memo(() => (
   <>
+    <section id="section-resume" className="resume-section">
+      <h1 className="resume-title custom-title">Resume</h1>
+    </section>
     <EducationSection />
     <ExperienceSection />
     <TechStackSection />
@@ -860,6 +863,9 @@ const MobileAboutTab = memo(() => (
 
 const MobileResumeTab = memo(() => (
   <>
+    <section className="resume-section">
+      <h1 className="resume-title custom-title">Resume</h1>
+    </section>
     <EducationSection />
     <ExperienceSection />
     <TechStackSection />
