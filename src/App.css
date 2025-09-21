@@ -722,17 +722,32 @@ body::after {
     --mobile-topbar-height: 64px;
   }
   
-  /* Disable body scroll on mobile to prevent double scroll */
+  /* Completely disable any scrolling on body/html for mobile */
   html, body {
-    height: 100vh;
-    overflow: hidden;
+    height: 100vh !important;
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  #root {
+    height: 100vh !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    position: relative;
   }
   
   /* Ensure dark-app container also respects mobile height constraints */
   .dark-app {
-    height: 100vh;
-    min-height: 100vh;
-    overflow: hidden;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
   }
   .sidebar-card {
     flex-direction: row;

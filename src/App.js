@@ -936,17 +936,21 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
             className={`main-tab${activeTab === tab.id ? ' active' : ''}`}
             onClick={() => {
               setActiveTab(tab.id);
-              if (tab.id === 'about') {
-                // For About tab, scroll to the about section (not top of page)
-                document.getElementById('section-about')?.scrollIntoView({ 
-                  behavior: 'smooth', 
-                  block: 'start' 
-                });
-              } else {
-                // For other tabs, scroll to specific section
-                document.getElementById(`section-${tab.id}`)?.scrollIntoView({ 
-                  behavior: 'smooth', 
-                  block: 'start' 
+              
+              // Get the scroll container and target section
+              const scrollContainer = document.querySelector('.main-content-card');
+              const targetSection = document.getElementById(`section-${tab.id}`);
+              
+              if (scrollContainer && targetSection) {
+                // Calculate the position of the target section relative to the scroll container
+                const containerRect = scrollContainer.getBoundingClientRect();
+                const targetRect = targetSection.getBoundingClientRect();
+                const scrollOffset = targetRect.top - containerRect.top + scrollContainer.scrollTop;
+                
+                // Smooth scroll within the container
+                scrollContainer.scrollTo({
+                  top: scrollOffset,
+                  behavior: 'smooth'
                 });
               }
             }}
@@ -1039,21 +1043,46 @@ function PortfolioContent() {
     setActiveTab(newActiveTab);
     // Scroll to section when URL changes (for direct navigation)
     setTimeout(() => {
-      if (newActiveTab === 'about') {
-        // Scroll to top for About tab
-        window.scrollTo({ 
-          top: 0,
-          behavior: 'smooth'
-        });
+      if (isMobile) {
+        // Mobile: Scroll within the content container
+        const scrollContainer = document.querySelector('.main-content-card');
+        const targetSection = document.getElementById(`section-${newActiveTab}`);
+        
+        if (scrollContainer && targetSection) {
+          if (newActiveTab === 'about') {
+            // For About tab, scroll to top of container
+            scrollContainer.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          } else {
+            // Calculate position within container and scroll
+            const containerRect = scrollContainer.getBoundingClientRect();
+            const targetRect = targetSection.getBoundingClientRect();
+            const scrollOffset = targetRect.top - containerRect.top + scrollContainer.scrollTop;
+            
+            scrollContainer.scrollTo({
+              top: scrollOffset,
+              behavior: 'smooth'
+            });
+          }
+        }
       } else {
-        // Scroll to specific section for other tabs
-        document.getElementById(`section-${newActiveTab}`)?.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
-        });
+        // Desktop: Use normal window scroll
+        if (newActiveTab === 'about') {
+          window.scrollTo({ 
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          document.getElementById(`section-${newActiveTab}`)?.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
       }
     }, 100);
-  }, [location.pathname, getActiveTabFromPath]);
+  }, [location.pathname, getActiveTabFromPath, isMobile]);
 
   // Scroll listener to update active tab based on visible section
   useEffect(() => {
