@@ -526,7 +526,7 @@ function EducationSection() {
           <div style={{ color: '#e0e0e0', fontSize: '1rem' }}><b>Leadership:</b> Orientation Leader (2021-2023), led student engagement events.</div>
         </div>
       </div>
-      <div style={{ background: '#29292b', borderRadius: '14px', padding: '1.1rem 1.5rem', marginTop: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)', maxWidth: 600 }}>
+      <div style={{ background: 'rgba(41,41,43,0.7)', borderRadius: '14px', padding: '1.1rem 1.5rem', marginTop: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)', maxWidth: 600 }}>
         <div>
           <div style={{ color: '#fff', fontWeight: 600, fontSize: '1.18rem' }}>Paper Resume</div>
           <div style={{ color: '#b0b0b0', fontSize: '1rem', marginTop: '0.2rem' }}>Download In A Pdf Format</div>
@@ -642,7 +642,7 @@ function TechStackSection() {
       }}>
         {techCategories.map((category, index) => (
           <div key={index} style={{
-            background: 'rgb(41,41,43)',
+            background: 'rgba(40,40,41,0.7)',
             border: 'none',
             borderRadius: '1rem',
             padding: '1.2rem',
@@ -940,7 +940,7 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
               setActiveTab(tab.id);
               if (tab.id === 'about') {
                 // Scroll to top for About tab
-                document.querySelector('.main-content-card')?.scrollTo({ 
+                window.scrollTo({ 
                   top: 0,
                   behavior: 'smooth'
                 });
@@ -968,8 +968,8 @@ const WebView = memo(function WebView({ activeTab, setActiveTab }) {
       <ShootingStar />
       <div className="container">
         <WebSidebar />
-        <main className="main-content-card">
-          <nav className="main-tabs main-tabs-right">
+        <div className="main-content-wrapper">
+          <nav className="main-tabs main-tabs-sticky">
             {tabs.map(tab => (
               <Link
                 key={tab.id}
@@ -979,7 +979,7 @@ const WebView = memo(function WebView({ activeTab, setActiveTab }) {
                   setActiveTab(tab.id);
                   if (tab.id === 'about') {
                     // Scroll to top for About tab
-                    document.querySelector('.main-content-card')?.scrollTo({ 
+                    window.scrollTo({ 
                       top: 0,
                       behavior: 'smooth'
                     });
@@ -996,21 +996,23 @@ const WebView = memo(function WebView({ activeTab, setActiveTab }) {
               </Link>
             ))}
           </nav>
-          <div className="continuous-content">
-            <section id="section-about" className="content-section">
-              <AboutTab />
-            </section>
-            <section id="section-resume" className="content-section">
-              <ResumeTab />
-            </section>
-            <section id="section-portfolio" className="content-section">
-              <PortfolioTab />
-            </section>
-            <section id="section-contact" className="content-section">
-              <ContactTab />
-            </section>
-          </div>
-        </main>
+          <main className="main-content-card">
+            <div className="continuous-content">
+              <section id="section-about" className="content-section">
+                <AboutTab />
+              </section>
+              <section id="section-resume" className="content-section">
+                <ResumeTab />
+              </section>
+              <section id="section-portfolio" className="content-section">
+                <PortfolioTab />
+              </section>
+              <section id="section-contact" className="content-section">
+                <ContactTab />
+              </section>
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );
@@ -1040,7 +1042,7 @@ function PortfolioContent() {
     setTimeout(() => {
       if (newActiveTab === 'about') {
         // Scroll to top for About tab
-        document.querySelector('.main-content-card')?.scrollTo({ 
+        window.scrollTo({ 
           top: 0,
           behavior: 'smooth'
         });
@@ -1058,7 +1060,22 @@ function PortfolioContent() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['about', 'resume', 'portfolio', 'contact'];
-      const scrollPosition = window.scrollY + 200; // Offset for header
+      const scrollPosition = window.scrollY + 200; // Offset for sticky tabs
+      
+      // Check if we're at the bottom of the page
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
+      
+      // If at bottom, highlight contact tab
+      if (isAtBottom) {
+        if (activeTab !== 'contact') {
+          setActiveTab('contact');
+          const tab = tabs.find(t => t.id === 'contact');
+          if (tab) {
+            window.history.replaceState(null, '', tab.path);
+          }
+        }
+        return;
+      }
       
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(`section-${sections[i]}`);
