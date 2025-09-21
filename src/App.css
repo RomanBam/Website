@@ -708,12 +708,12 @@ body::after {
     width: 100%;
   }
   .main-tabs-sticky {
-    border-radius: 16px 16px 0 0;
+    border-radius: 16px;
   }
   .main-content-card {
     width: 100%;
     padding: 2rem 1rem 1.5rem 1rem;
-    border-radius: 0 0 16px 16px;
+    border-radius: 16px;
   }
 }
 
@@ -726,7 +726,7 @@ body::after {
     align-items: center;
     justify-content: space-between;
     background: #18191e;
-    border-radius: 0 0 18px 18px;
+    border-radius: 18px;
     box-shadow: 0 4px 16px 0 rgba(0,0,0,0.18);
     padding: 0.7rem 1rem 0.7rem 0.7rem;
     height: 64px;
@@ -797,7 +797,7 @@ body::after {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 -4px 24px 0 rgba(0,0,0,0.22);
-    border-radius: 18px 18px 0 0;
+    border-radius: 18px;
     position: fixed;
     left: 0;
     right: 0;
