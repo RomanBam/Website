@@ -412,6 +412,9 @@ body::after {
   user-select: none;
   transform: translateZ(0);
   will-change: background-color, color;
+  /* Link-specific styling */
+  text-decoration: none;
+  display: inline-block;
 }
 .main-tab.active, .main-tab:hover {
   background: rgba(40,40,41,1);

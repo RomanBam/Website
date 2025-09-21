@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
 import { LuCake, LuMapPin } from 'react-icons/lu';
@@ -124,10 +125,10 @@ const socialLinks = [
 ];
 
 const tabs = [
-  { id: 'about', label: 'About' },
-  { id: 'resume', label: 'Resume' },
-  { id: 'portfolio', label: 'Portfolio' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'about', label: 'About', path: '/' },
+  { id: 'resume', label: 'Resume', path: '/resume' },
+  { id: 'portfolio', label: 'Portfolio', path: '/portfolio' },
+  { id: 'contact', label: 'Contact', path: '/contact' },
 ];
 
 function Constellation() {
@@ -921,8 +922,9 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
       </main>
       <nav className="main-tabs main-tabs-bottom">
         {tabs.map(tab => (
-          <button
+          <Link
             key={tab.id}
+            to={tab.path}
             className={`main-tab${activeTab === tab.id ? ' active' : ''}`}
             onClick={() => {
               setActiveTab(tab.id);
@@ -930,7 +932,7 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
             }}
           >
             {tab.label}
-          </button>
+          </Link>
         ))}
       </nav>
     </div>
@@ -947,13 +949,14 @@ const WebView = memo(function WebView({ activeTab, setActiveTab }) {
         <main className="main-content-card">
           <nav className="main-tabs main-tabs-right">
             {tabs.map(tab => (
-              <button
+              <Link
                 key={tab.id}
+                to={tab.path}
                 className={`main-tab${activeTab === tab.id ? ' active' : ''}`}
                 onClick={() => setActiveTab(tab.id)}
               >
                 {tab.label}
-              </button>
+              </Link>
             ))}
           </nav>
           {activeTab === 'about' && <AboutTab />}
@@ -968,14 +971,33 @@ const WebView = memo(function WebView({ activeTab, setActiveTab }) {
 
 const easingFunctions = ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'cubic-bezier(0.4, 0, 0.2, 1)', 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'];
 
-function App() {
-  const [activeTab, setActiveTab] = useState('about');
+// Component that handles routing and URL-based tab switching
+function PortfolioContent() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
-  // Memoized tab change handler to prevent re-renders
-  const handleTabChange = useCallback((tabId) => {
-    setActiveTab(tabId);
+  // Determine active tab based on current path
+  const getActiveTabFromPath = useCallback((pathname) => {
+    const tab = tabs.find(tab => tab.path === pathname);
+    return tab ? tab.id : 'about';
   }, []);
+
+  const [activeTab, setActiveTab] = useState(() => getActiveTabFromPath(location.pathname));
+
+  // Update active tab when URL changes
+  useEffect(() => {
+    const newActiveTab = getActiveTabFromPath(location.pathname);
+    setActiveTab(newActiveTab);
+  }, [location.pathname, getActiveTabFromPath]);
+
+  // Memoized tab change handler that updates URL
+  const handleTabChange = useCallback((tabId) => {
+    const tab = tabs.find(tab => tab.id === tabId);
+    if (tab) {
+      navigate(tab.path);
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 600);
@@ -1028,6 +1050,19 @@ function App() {
     <MobileView activeTab={activeTab} setActiveTab={handleTabChange} />
   ) : (
     <WebView activeTab={activeTab} setActiveTab={handleTabChange} />
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<PortfolioContent />} />
+        <Route path="/resume" element={<PortfolioContent />} />
+        <Route path="/portfolio" element={<PortfolioContent />} />
+        <Route path="/contact" element={<PortfolioContent />} />
+      </Routes>
+    </Router>
   );
 }
 
