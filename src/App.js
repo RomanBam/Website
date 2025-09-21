@@ -937,13 +937,13 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
             onClick={() => {
               setActiveTab(tab.id);
               if (tab.id === 'about') {
-                // Scroll to top for About tab
-                window.scrollTo({ 
-                  top: 0,
-                  behavior: 'smooth'
+                // For About tab, scroll to the about section (not top of page)
+                document.getElementById('section-about')?.scrollIntoView({ 
+                  behavior: 'smooth', 
+                  block: 'start' 
                 });
               } else {
-                // Scroll to specific section for other tabs
+                // For other tabs, scroll to specific section
                 document.getElementById(`section-${tab.id}`)?.scrollIntoView({ 
                   behavior: 'smooth', 
                   block: 'start' 
