@@ -844,10 +844,12 @@ body::after {
   }
   .main-tabs-bottom .main-tab.active::after {
     content: '';
-    display: block;
-    margin-top: 4px;
-    width: 80%;
-    height: 3px;
+    position: absolute;
+    bottom: -0.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 4px;
     background: #ffd600;
     border-radius: 2px;
   }

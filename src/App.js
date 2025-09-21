@@ -1058,10 +1058,25 @@ function PortfolioContent() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['about', 'resume', 'portfolio', 'contact'];
-      const scrollPosition = window.scrollY + 200; // Offset for sticky tabs
+      let scrollPosition;
+      let scrollContainer;
       
-      // Check if we're at the bottom of the page
-      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
+      // Determine scroll container and position based on mobile/desktop
+      if (isMobile) {
+        scrollContainer = document.querySelector('.main-content-card');
+        scrollPosition = scrollContainer ? scrollContainer.scrollTop + 100 : 0;
+      } else {
+        scrollContainer = window;
+        scrollPosition = window.scrollY + 200; // Offset for sticky tabs
+      }
+      
+      // Check if we're at the bottom of the page/container
+      let isAtBottom;
+      if (isMobile && scrollContainer && scrollContainer !== window) {
+        isAtBottom = scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight - 10;
+      } else {
+        isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
+      }
       
       // If at bottom, highlight contact tab
       if (isAtBottom) {
@@ -1090,9 +1105,22 @@ function PortfolioContent() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeTab]);
+    // Add scroll listener to appropriate container
+    if (isMobile) {
+      const mobileContainer = document.querySelector('.main-content-card');
+      if (mobileContainer) {
+        mobileContainer.addEventListener('scroll', handleScroll);
+        // Initial call to set correct tab on load
+        setTimeout(handleScroll, 100);
+        return () => mobileContainer.removeEventListener('scroll', handleScroll);
+      }
+    } else {
+      window.addEventListener('scroll', handleScroll);
+      // Initial call to set correct tab on load
+      setTimeout(handleScroll, 100);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [activeTab, isMobile]);
 
   // Memoized tab change handler that updates URL and scrolls
   const handleTabChange = useCallback((tabId) => {
