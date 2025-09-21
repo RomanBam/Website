@@ -249,11 +249,11 @@ function Constellation() {
 
   const cygnus = {
     stars: [
-      { id: 'cyg1', x: 50, y: 8 },
-      { id: 'cyg2', x: 53, y: 12 },
-      { id: 'cyg3', x: 56, y: 16 },
-      { id: 'cyg4', x: 48, y: 14 },
-      { id: 'cyg5', x: 60, y: 14 }
+      { id: 'cyg1', x: 57, y: 50 },
+      { id: 'cyg2', x: 60, y: 54 },
+      { id: 'cyg3', x: 63, y: 58 },
+      { id: 'cyg4', x: 55, y: 56 },
+      { id: 'cyg5', x: 67, y: 56 }
     ],
     connections: [
       { from: 'cyg1', to: 'cyg2' },
@@ -329,10 +329,10 @@ function Constellation() {
 
   const bootes = {
     stars: [
-      { id: 'boo1', x: 18, y: 35 },
-      { id: 'boo2', x: 22, y: 38 },
-      { id: 'boo3', x: 25, y: 42 },
-      { id: 'boo4', x: 20, y: 45 }
+      { id: 'boo1', x: 40, y: 35 },
+      { id: 'boo2', x: 36, y: 38 },
+      { id: 'boo3', x: 33, y: 42 },
+      { id: 'boo4', x: 38, y: 45 }
     ],
     connections: [
       { from: 'boo1', to: 'boo2' },
