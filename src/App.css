@@ -270,6 +270,9 @@ body::after {
     gap: 4rem;
     padding: 4rem 3rem;
   }
+  .sidebar-card {
+    top: 11rem; /* Lowered further for perfect alignment on larger screens */
+  }
 }
 
 @media (min-width: 1800px) {
@@ -277,6 +280,9 @@ body::after {
     max-width: 2000px;
     gap: 5rem;
     padding: 4rem 4rem;
+  }
+  .sidebar-card {
+    top: 11rem; /* Same as 1400px since container top padding is same */
   }
 }
 
@@ -292,7 +298,7 @@ body::after {
   min-width: 260px;
   border: 1px solid rgba(255,255,255,0.07);
   position: sticky;
-  top: 10rem;
+  top: 9.5rem; /* Lowered further for perfect alignment with main content card */
   height: fit-content;
   z-index: 10;
 }
