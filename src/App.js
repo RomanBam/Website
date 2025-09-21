@@ -187,11 +187,11 @@ function Constellation() {
 
   const southernCross = {
     stars: [
-      { id: 'sc1', x: 12, y: 88 },
-      { id: 'sc2', x: 8, y: 92 },
-      { id: 'sc3', x: 4, y: 96 },
-      { id: 'sc4', x: 16, y: 92 },
-      { id: 'sc5', x: 10, y: 85 }
+      { id: 'sc1', x: 27, y: 88 },
+      { id: 'sc2', x: 23, y: 92 },
+      { id: 'sc3', x: 19, y: 96 },
+      { id: 'sc4', x: 31, y: 92 },
+      { id: 'sc5', x: 25, y: 85 }
     ],
     connections: [
       { from: 'sc1', to: 'sc2' },
@@ -343,11 +343,11 @@ function Constellation() {
 
   const cancer = {
     stars: [
-      { id: 'cnc1', x: 27, y: 72 },
-      { id: 'cnc2', x: 26.75, y: 78 },
-      { id: 'cnc3', x: 26, y: 82 },
-      { id: 'cnc4', x: 24, y: 86 },
-      { id: 'cnc5', x: 29, y: 88 }
+      { id: 'cnc1', x: 12, y: 72 },
+      { id: 'cnc2', x: 11.75, y: 78 },
+      { id: 'cnc3', x: 11, y: 82 },
+      { id: 'cnc4', x: 9, y: 86 },
+      { id: 'cnc5', x: 14, y: 88 }
     ],
     connections: [
       { from: 'cnc1', to: 'cnc2' },
