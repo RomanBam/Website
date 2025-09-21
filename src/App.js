@@ -1031,6 +1031,7 @@ function PortfolioContent() {
   }, []);
 
   const [activeTab, setActiveTab] = useState(() => getActiveTabFromPath(location.pathname));
+  const [isManualTabClick, setIsManualTabClick] = useState(false);
 
   // Update active tab when URL changes
   useEffect(() => {
@@ -1057,6 +1058,9 @@ function PortfolioContent() {
   // Scroll listener to update active tab based on visible section
   useEffect(() => {
     const handleScroll = () => {
+      // Don't update tab if user just manually clicked a tab
+      if (isManualTabClick) return;
+      
       const sections = ['about', 'resume', 'portfolio', 'contact'];
       let scrollPosition;
       let scrollContainer;
@@ -1120,14 +1124,19 @@ function PortfolioContent() {
       setTimeout(handleScroll, 100);
       return () => window.removeEventListener('scroll', handleScroll);
     }
-  }, [activeTab, isMobile]);
+  }, [activeTab, isMobile, isManualTabClick]);
 
   // Memoized tab change handler that updates URL and scrolls
   const handleTabChange = useCallback((tabId) => {
     const tab = tabs.find(tab => tab.id === tabId);
     if (tab) {
+      // Set manual click flag to prevent scroll handler interference
+      setIsManualTabClick(true);
       navigate(tab.path);
       setActiveTab(tabId);
+      
+      // Clear the flag after scroll animation completes
+      setTimeout(() => setIsManualTabClick(false), 1000);
     }
   }, [navigate]);
 
