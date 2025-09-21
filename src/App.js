@@ -424,9 +424,6 @@ function MobileProfileCard() {
   return (
     <div className={`mobile-profile-card${expanded ? ' expanded' : ' collapsed'}`}> 
       <div className="mobile-profile-header">
-        <div className="mobile-profile-avatar-bg">
-          <img src="/selfie.jpg" alt="Profile" className="mobile-profile-avatar" />
-        </div>
         <div className="mobile-profile-info">
           <div className="mobile-profile-name">Roman Bamrah</div>
           <div className="mobile-profile-role">Software Engineer</div>
@@ -463,11 +460,6 @@ function MobileProfileCard() {
 function WebSidebar() {
   return (
     <aside className="sidebar-card">
-      <div className="profile-pic">
-        <div className="avatar-bg">
-          <div className="avatar"><img src="/selfie.jpg" alt="Profile" /></div>
-        </div>
-      </div>
       <h2 className="profile-name">Roman Bamrah</h2>
       <div className="profile-role">Software Engineer</div>
       <hr className="divider" />
