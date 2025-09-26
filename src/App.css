@@ -17,7 +17,7 @@ html {
   --color-card-bg: rgba(30,30,31,1);
   --color-input-bg: rgba(40,40,41,1);
   --color-accent: #ffd600;
-  --font-main: 'Segoe UI', Arial, sans-serif;
+  --font-main: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
 }
 
 body {
@@ -28,7 +28,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-
 /* Base starfield properties - shared by all pseudo-elements */
 body::before,
 body::after,
@@ -297,20 +296,22 @@ body::after {
   align-items: center;
   min-width: 260px;
   border: 1px solid rgba(255,255,255,0.07);
-  position: -webkit-sticky !important; /* Safari fallback */
-  position: sticky !important; /* Override inline relative positioning */
-  top: 9.9rem; /* Split the difference between 9rem (too high) and 11rem (too low) */
+  position: -webkit-sticky !important; 
+  position: sticky !important; 
+  top: 9.9rem; 
   height: fit-content;
   z-index: 10;
 }
 
 .profile-name {
-  font-size: 1.35rem;
-  font-weight: 600;
+  font-size: 2.4rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+  font-weight: 300;
   margin-bottom: 0.3rem;
   margin-top: 1.2rem;
   text-align: center;
 }
+
 .profile-role {
   background: rgba(40,40,41,1);
   color: #fff;
