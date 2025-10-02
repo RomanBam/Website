@@ -1167,8 +1167,8 @@ function PortfolioContent() {
       navigate(tab.path);
       setActiveTab(tabId);
       
-      // Clear the flag after scroll animation completes
-      setTimeout(() => setIsManualTabClick(false), 1000);
+      // Clear the flag immediately after navigation
+      setTimeout(() => setIsManualTabClick(false), 100);
     }
   }, [navigate]);
 
