@@ -508,7 +508,7 @@ function EducationSection() {
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem', position: 'relative', top: '-0.05rem' }}>Bachelor of Science, Computer Science <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(2021 - 2026)</span></div>
           <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.2rem' }}>Trent University, Peterborough, ON</div>
-          <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}><b>Relevant Coursework:</b> Front-End Web Development, Back-End Web Development, Cybersecurity, Software Design & Modelling, Applied AI & Machine Learning, Database Management Systems, Data Structures & Algorithms, Modelling & Simulation, Systems Analysis and Design</div>
+          <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}><b>Relevant Coursework:</b> Front-End Web Development, Back-End Web Development, Cybersecurity, Software Design & Modelling, Applied AI & Machine Learning, Database Management Systems, Data Structures & Algorithms I & II, Modelling & Simulation, Systems Analysis and Design</div>
           <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}><b>Projects:</b>
             <ul style={{ margin: '0.2rem 0 0.2rem 1.2rem', color: '#e0e0e0', fontSize: '1rem' }}>
               <li style={{ marginBottom: '0.4rem' }}>Developed a puzzle-based game prototype (digital & analog versions).</li>
@@ -759,7 +759,7 @@ const AboutTab = memo(() => (
     <section className="about-section">
       <h1 className="about-title custom-title">About Me</h1>
       <p className="about-desc">
-        I'm Roman, a software engineer focused on building practical AI and full‑stack solutions. I enjoy combining machine learning (TensorFlow, LangChain, OpenCV) with modern web tools like React, Next.js, Flask, and Streamlit to create useful, clean experiences. Core languages & technologies I work with: Python, JavaScript/TypeScript, Java, C#, PHP, SQL, and HTML/CSS. I've built projects ranging from an AI resume critiquer and image classifier to data science workflows and automation tools. My goal: ship thoughtful, reliable software that turns complex ideas into something people actually use.
+        Software Engineer with a strong foundation in Full-Stack Development, AI/ML, and Data Analytics. Proficient in building scalable applications using Python, Java, React, HTML, CSS, PHP and more with experience in database integration, API development, and model deployment. Proficient with modern development tools and practices, including software security, automated testing, and CI/CD pipelines. Familiar with the Software Development Life Cycle in Agile environments and the Scrum framework. Passionate about designing robust systems, optimizing algorithms, and contributing to innovative, production-ready software projects.
       </p>
     </section>
     <section className="doing-section">
