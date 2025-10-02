@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, memo } from 'react';
+import React, { useState, useEffect, useCallback, memo, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
@@ -65,20 +65,20 @@ function ShootingStar() {
       });
     }, STAR_INTERVALS.MIN + Math.random() * STAR_INTERVALS.RANGE);
     
-    // Reduced initial bursts for faster load
+    // Create initial stars immediately for instant visual feedback
     const timeouts = [];
     
-    timeouts.push(setTimeout(() => {
-      const starCount = Math.floor(Math.random() * 2) + 1;
-      const initialStars = Array.from({ length: starCount }, () => createShootingStar());
-      setStars(prev => [...prev, ...initialStars]);
-    }, 1000));
+    // First burst - immediate
+    const starCount1 = Math.floor(Math.random() * 2) + 1;
+    const initialStars = Array.from({ length: starCount1 }, () => createShootingStar());
+    setStars(initialStars);
     
+    // Second burst - quick follow-up
     timeouts.push(setTimeout(() => {
       const starCount = Math.floor(Math.random() * 2) + 1;
       const moreStars = Array.from({ length: starCount }, () => createShootingStar());
       setStars(prev => [...prev, ...moreStars]);
-    }, 2000));
+    }, 500));
     
     return () => {
       clearInterval(interval);
@@ -337,7 +337,37 @@ const constellationData = {
 
 const allConstellations = Object.values(constellationData);
 
-function Constellation() {
+// Memoize constellation component to prevent re-renders
+const Constellation = memo(function Constellation() {
+  // Pre-calculate all star properties once
+  const starProperties = useMemo(() => {
+    const props = new Map();
+    allConstellations.forEach((constellation) => {
+      constellation.stars.forEach((star) => {
+        const glimmerDuration = 2 + Math.random() * 5;
+        const glimmerDelay = Math.random() * 3;
+        const minOpacity = 0.5 + Math.random() * 0.3;
+        const maxOpacity = 0.9 + Math.random() * 0.1;
+        const minBrightness = 0.7 + Math.random() * 0.2;
+        const maxBrightness = 1.0 + Math.random() * 0.6;
+        const starSize = Math.random() < 0.15 ? 
+                        3 + Math.random() * 2 :
+                        2 + Math.random() * 2;
+        
+        props.set(star.id, {
+          glimmerDuration,
+          glimmerDelay,
+          minOpacity,
+          maxOpacity,
+          minBrightness,
+          maxBrightness,
+          starSize
+        });
+      });
+    });
+    return props;
+  }, []); // Empty deps - calculate once on mount
+
   return (
     <div className="constellation">
       <svg width="100%" height="100%" style={{ position: 'absolute', top: 0, left: 0 }}>
@@ -360,18 +390,9 @@ function Constellation() {
         )}
       </svg>
       
-      {allConstellations.map((constellation, constIndex) =>
-        constellation.stars.map((star, starIndex) => {
-          const glimmerDuration = 2 + Math.random() * 5;
-          const glimmerDelay = Math.random() * 3;
-          const minOpacity = 0.5 + Math.random() * 0.3;
-          const maxOpacity = 0.9 + Math.random() * 0.1;
-          const minBrightness = 0.7 + Math.random() * 0.2;
-          const maxBrightness = 1.0 + Math.random() * 0.6;
-          const starSize = Math.random() < 0.15 ? 
-                          3 + Math.random() * 2 :
-                          2 + Math.random() * 2;
-          
+      {allConstellations.map((constellation) =>
+        constellation.stars.map((star) => {
+          const props = starProperties.get(star.id);
           return (
             <div
               key={star.id}
@@ -379,15 +400,15 @@ function Constellation() {
               style={{
                 left: `${star.x}%`,
                 top: `${star.y}%`,
-                width: `${starSize}px`,
-                height: `${starSize}px`,
+                width: `${props.starSize}px`,
+                height: `${props.starSize}px`,
                 animationDelay: `3s`,
-                '--glimmer-duration': `${glimmerDuration}s`,
-                '--glimmer-delay': `${3 + glimmerDelay}s`,
-                '--star-min-opacity': minOpacity,
-                '--star-max-opacity': maxOpacity,
-                '--star-min-brightness': minBrightness,
-                '--star-max-brightness': maxBrightness
+                '--glimmer-duration': `${props.glimmerDuration}s`,
+                '--glimmer-delay': `${3 + props.glimmerDelay}s`,
+                '--star-min-opacity': props.minOpacity,
+                '--star-max-opacity': props.maxOpacity,
+                '--star-min-brightness': props.minBrightness,
+                '--star-max-brightness': props.maxBrightness
               }}
             />
           );
@@ -396,7 +417,7 @@ function Constellation() {
       
     </div>
   );
-}
+});
 
 function MobileProfileCard() {
   const [expanded, setExpanded] = useState(false);
@@ -1076,10 +1097,21 @@ function PortfolioContent() {
   // Scroll listener to update active tab based on visible section
   useEffect(() => {
     let ticking = false;
+    let lastScrollTime = 0;
+    const throttleDelay = 100; // Throttle to max once per 100ms
     
     const handleScroll = () => {
+      const now = Date.now();
+      
+      // Throttle scroll events
+      if (now - lastScrollTime < throttleDelay) {
+        return;
+      }
+      
       if (!ticking) {
         window.requestAnimationFrame(() => {
+          lastScrollTime = now;
+          
           // Don't update tab if user just manually clicked a tab
           if (isManualTabClick) {
             ticking = false;
@@ -1141,17 +1173,17 @@ function PortfolioContent() {
       }
     };
 
-    // Add scroll listener to appropriate container
+    // Add scroll listener to appropriate container with passive flag for better performance
     if (isMobile) {
       const mobileContainer = document.querySelector('.main-content-card');
       if (mobileContainer) {
-        mobileContainer.addEventListener('scroll', handleScroll);
+        mobileContainer.addEventListener('scroll', handleScroll, { passive: true });
         // Initial call to set correct tab on load
         setTimeout(handleScroll, 100);
         return () => mobileContainer.removeEventListener('scroll', handleScroll);
       }
     } else {
-      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('scroll', handleScroll, { passive: true });
       // Initial call to set correct tab on load
       setTimeout(handleScroll, 100);
       return () => window.removeEventListener('scroll', handleScroll);
@@ -1179,14 +1211,14 @@ function PortfolioContent() {
   }, []);
 
   useEffect(() => {
-    // Only generate starfield once on initial mount
+    // Optimize starfield generation - only generate once on mount
     const generateStarLayer = (starCount, minSize, maxSize, tileWidth, tileHeight) => {
       const stars = [];
       for (let i = 0; i < starCount; i++) {
-        const size = Math.random() * (maxSize - minSize) + minSize;
-        const x = Math.random() * tileWidth;
-        const y = Math.random() * tileHeight;
-        const opacity = Math.random() * 0.5 + 0.5;
+        const size = (Math.random() * (maxSize - minSize) + minSize).toFixed(1);
+        const x = Math.floor(Math.random() * tileWidth);
+        const y = Math.floor(Math.random() * tileHeight);
+        const opacity = (Math.random() * 0.5 + 0.5).toFixed(2);
         stars.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255,255,255,${opacity}), transparent)`);
       }
       return stars.join(', ');
@@ -1203,6 +1235,7 @@ function PortfolioContent() {
     document.documentElement.style.setProperty('--dynamic-starfield-3', starfield3);
     document.documentElement.style.setProperty('--dynamic-starfield-4', starfield4);
 
+    // Pre-calculate animation values
     const twinkleDuration = (Math.random() * 6 + 2).toFixed(1) + 's';
     const slowTwinkleDuration = (Math.random() * 10 + 5).toFixed(1) + 's';
     const randomTwinkleDuration = (Math.random() * 8 + 3).toFixed(1) + 's';
@@ -1215,8 +1248,7 @@ function PortfolioContent() {
     document.documentElement.style.setProperty('--random-twinkle-duration', randomTwinkleDuration);
     document.documentElement.style.setProperty('--twinkle-easing', twinkleEasing);
     document.documentElement.style.setProperty('--random-easing', randomEasing);
-    // Empty dependency array - only run once on mount
-  }, []);
+  }, []); // Empty dependency array - only run once on mount
 
   return isMobile ? (
     <MobileView activeTab={activeTab} setActiveTab={handleTabChange} />
