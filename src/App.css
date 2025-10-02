@@ -264,13 +264,31 @@ body::after {
 }
 
 /* Optimize for larger screens */
-@media (min-width: 1000px) and (max-width: 1399px) {
+
+/* Standard laptop - 1024x768, 1280x720, 1280x800 */
+@media (min-width: 1000px) and (max-width: 1279px) {
+  .container {
+    gap: 3rem;
+    padding: 3rem 2rem;
+  }
   .sidebar-card {
     top: calc(3rem + 45px + 1.5rem + 2.5rem);
   }
 }
 
-@media (min-width: 1400px) {
+/* HD laptop - 1280x720, 1366x768 (most common laptop size) */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .container {
+    gap: 3.5rem;
+    padding: 3.5rem 2.5rem;
+  }
+  .sidebar-card {
+    top: calc(3.5rem + 45px + 1.5rem + 2.5rem);
+  }
+}
+
+/* Full HD laptop - 1440x900, 1536x864, 1600x900 */
+@media (min-width: 1440px) and (max-width: 1679px) {
   .container {
     max-width: 1800px;
     gap: 4rem;
@@ -281,7 +299,20 @@ body::after {
   }
 }
 
-@media (min-width: 1800px) {
+/* Large laptop/desktop - 1680x1050, 1920x1080 (Full HD) */
+@media (min-width: 1680px) and (max-width: 1919px) {
+  .container {
+    max-width: 1800px;
+    gap: 4.5rem;
+    padding: 4rem 3.5rem;
+  }
+  .sidebar-card {
+    top: calc(4rem + 45px + 1.5rem + 2.5rem);
+  }
+}
+
+/* Full HD and above - 1920x1080, 1920x1200 */
+@media (min-width: 1920px) and (max-width: 2559px) {
   .container {
     max-width: 2000px;
     gap: 5rem;
@@ -289,6 +320,30 @@ body::after {
   }
   .sidebar-card {
     top: calc(4rem + 45px + 1.5rem + 2.5rem);
+  }
+}
+
+/* 2K displays - 2560x1440 */
+@media (min-width: 2560px) and (max-width: 3839px) {
+  .container {
+    max-width: 2400px;
+    gap: 6rem;
+    padding: 5rem 5rem;
+  }
+  .sidebar-card {
+    top: calc(5rem + 45px + 1.5rem + 2.5rem);
+  }
+}
+
+/* 4K displays - 3840x2160 and above */
+@media (min-width: 3840px) {
+  .container {
+    max-width: 3000px;
+    gap: 7rem;
+    padding: 6rem 6rem;
+  }
+  .sidebar-card {
+    top: calc(6rem + 45px + 1.5rem + 2.5rem);
   }
 }
 
@@ -454,12 +509,12 @@ body::after {
   transition: color 0.15s ease-out;
   outline: none;
   position: relative;
-  /* Optimize for fast clicking and smooth transitions */
+
   touch-action: manipulation;
   user-select: none;
   transform: translateZ(0);
   will-change: color;
-  /* Link-specific styling */
+ 
   text-decoration: none;
   display: inline-block;
 }
@@ -703,7 +758,7 @@ body::after {
   font-size: 1.1rem;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1000px) and (min-width: 601px) {
   .container {
     flex-direction: column;
     align-items: center;
