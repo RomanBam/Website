@@ -243,6 +243,7 @@ body::after {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  position: relative;
 }
 
 .main-tabs-sticky {
@@ -257,7 +258,7 @@ body::after {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.6rem 1.2rem;
-  margin: 0 auto 0.5rem auto;
+  margin: 0 auto 1.5rem auto;
   width: fit-content;
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15);
 }
@@ -270,7 +271,7 @@ body::after {
     padding: 4rem 3rem;
   }
   .sidebar-card {
-    top: 9.9rem; /* Perfect alignment position for all screen sizes */
+    top: calc(4rem + 45px + 1.5rem + 2.5rem);
   }
 }
 
@@ -281,7 +282,7 @@ body::after {
     padding: 4rem 4rem;
   }
   .sidebar-card {
-    top: 9.9rem; /* Perfect alignment position for all screen sizes */
+    top: calc(4rem + 45px + 1.5rem + 2.5rem);
   }
 }
 
@@ -298,9 +299,10 @@ body::after {
   border: 1px solid rgba(255,255,255,0.07);
   position: -webkit-sticky !important; 
   position: sticky !important; 
-  top: 9.9rem; 
+  top: calc(3rem + 45px + 1.5rem + 2.5rem); 
   height: fit-content;
   z-index: 10;
+  align-self: flex-start;
 }
 
 .profile-name {
@@ -400,6 +402,7 @@ body::after {
   will-change: scroll-position;
   contain: layout style paint;
   min-height: calc(100vh - 6rem - 45px);
+  position: relative;
 }
 
 .continuous-content {
