@@ -494,6 +494,7 @@ function ContactSection() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   
   // Security: Input validation and sanitization
   const sanitizeInput = (input, maxLength) => {
@@ -564,8 +565,39 @@ function ContactSection() {
     setIsSubmitting(true);
     setLastSubmitTime(now);
     
-    // Submit form
-    e.target.submit();
+    // Submit form using fetch API instead of direct submit
+    // This allows us to handle the response and reset the form
+    fetch('https://formspree.io/f/meozqonz', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        // Success - reset form and show success message
+        setSubmitSuccess(true);
+        e.target.reset();
+        setIsSubmitting(false);
+        
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
+      } else {
+        // Error response from Formspree
+        return response.json().then(data => {
+          throw new Error(data.error || 'Submission failed');
+        });
+      }
+    })
+    .catch(error => {
+      // Network error or Formspree error
+      setFormErrors({ general: 'Failed to send message. Please try again.' });
+      setIsSubmitting(false);
+      console.error('Form submission error:', error);
+    });
   };
   
   return (
@@ -581,6 +613,12 @@ function ContactSection() {
       {formErrors.general && (
         <div style={{ color: '#ff6b6b', background: 'rgba(255,107,107,0.1)', padding: '0.8rem', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.9rem' }}>
           {formErrors.general}
+        </div>
+      )}
+      
+      {submitSuccess && (
+        <div style={{ color: '#4caf50', background: 'rgba(76,175,80,0.1)', padding: '0.8rem', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.9rem', border: '1px solid rgba(76,175,80,0.3)' }}>
+          ✓ Message sent successfully! I'll get back to you soon.
         </div>
       )}
       
