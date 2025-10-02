@@ -108,9 +108,23 @@ function ShootingStar() {
   );
 }
 
+// Security: Sanitize and validate external URLs
+const sanitizeUrl = (url) => {
+  try {
+    const urlObj = new URL(url);
+    // Only allow https protocol for security
+    if (urlObj.protocol !== 'https:') {
+      return '#';
+    }
+    return url;
+  } catch {
+    return '#';
+  }
+};
+
 const socialLinks = [
-  { href: 'https://www.linkedin.com/in/roman-bamrah', label: 'LinkedIn', icon: <FaLinkedin /> },
-  { href: 'https://github.com/RomanBam', label: 'GitHub', icon: <FaGithub /> },
+  { href: sanitizeUrl('https://www.linkedin.com/in/roman-bamrah'), label: 'LinkedIn', icon: <FaLinkedin /> },
+  { href: sanitizeUrl('https://github.com/RomanBam'), label: 'GitHub', icon: <FaGithub /> },
 ];
 
 const tabs = [
@@ -477,6 +491,83 @@ function WebSidebar() {
 }
 
 function ContactSection() {
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastSubmitTime, setLastSubmitTime] = useState(0);
+  
+  // Security: Input validation and sanitization
+  const sanitizeInput = (input, maxLength) => {
+    if (!input) return '';
+    // Remove any HTML tags and script content
+    let sanitized = input.replace(/<[^>]*>/g, '');
+    // Remove any potentially dangerous characters
+    sanitized = sanitized.replace(/[<>'"\\]/g, '');
+    // Trim and limit length
+    return sanitized.trim().slice(0, maxLength);
+  };
+  
+  const validateEmail = (email) => {
+    // RFC 5322 compliant email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email) && email.length <= 254;
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Rate limiting: Prevent spam submissions (max 1 per 10 seconds)
+    const now = Date.now();
+    if (now - lastSubmitTime < 10000) {
+      setFormErrors({ general: 'Please wait before submitting again.' });
+      return;
+    }
+    
+    const formData = new FormData(e.target);
+    const name = sanitizeInput(formData.get('name'), 100);
+    const email = formData.get('email')?.trim().toLowerCase();
+    const message = sanitizeInput(formData.get('message'), 5000);
+    const honeypot = formData.get('_gotcha'); // Honeypot field
+    
+    // Security: Check honeypot (bot detection)
+    if (honeypot) {
+      // Silent fail - likely a bot
+      setFormErrors({ general: 'Submission failed. Please try again.' });
+      return;
+    }
+    
+    // Validation
+    const errors = {};
+    
+    if (!name || name.length < 2) {
+      errors.name = 'Name must be at least 2 characters';
+    }
+    
+    if (!email || !validateEmail(email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    
+    if (!message || message.length < 10) {
+      errors.message = 'Message must be at least 10 characters';
+    }
+    
+    if (message.length > 5000) {
+      errors.message = 'Message is too long (max 5000 characters)';
+    }
+    
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+    
+    // Clear errors and submit
+    setFormErrors({});
+    setIsSubmitting(true);
+    setLastSubmitTime(now);
+    
+    // Submit form
+    e.target.submit();
+  };
+  
   return (
     <section className="contact-section" style={{ fontFamily: 'Segoe UI, Arial, sans-serif' }}>
       <h2 className="contact-title custom-title" style={{ marginBottom: '1.2rem', color: '#fff', fontWeight: 700, fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: '2.1rem' }}>Contact Me</h2>
@@ -486,11 +577,124 @@ function ContactSection() {
           <a key={i} href={s.href} aria-label={s.label} className="contact-social-icon" target="_blank" rel="noopener noreferrer" style={{ color: '#b0b0b0', fontSize: '2rem' }}>{s.icon}</a>
         ))}
       </div>
-      <form className="contact-form" action="https://formspree.io/f/meozqonz" method="POST" autoComplete="off" style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}>
-        <input type="text" name="name" placeholder="Name" required style={{ background: 'rgb(40,40,43)', color: '#fff', border: '1px solid #333', borderRadius: '8px', padding: '0.6rem 0.9rem', fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif' }} />
-        <input type="email" name="email" placeholder="Email" required style={{ background: 'rgb(40,40,43)', color: '#fff', border: '1px solid #333', borderRadius: '8px', padding: '0.6rem 0.9rem', fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif' }} />
-        <textarea name="message" placeholder="Message" required rows={4} style={{ background: 'rgb(40,40,43)', color: '#fff', border: '1px solid #333', borderRadius: '8px', padding: '0.6rem 0.9rem', fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif', resize: 'none' }} />
-        <button type="submit" style={{ background: '#ffd600', color: '#18191e', border: 'none', borderRadius: '8px', padding: '0.7rem 0', fontSize: '1rem', fontWeight: 600, cursor: 'pointer', marginTop: '0.3rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}>Send</button>
+      
+      {formErrors.general && (
+        <div style={{ color: '#ff6b6b', background: 'rgba(255,107,107,0.1)', padding: '0.8rem', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.9rem' }}>
+          {formErrors.general}
+        </div>
+      )}
+      
+      <form 
+        className="contact-form" 
+        action="https://formspree.io/f/meozqonz" 
+        method="POST" 
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}
+      >
+        {/* Honeypot field - hidden from users, catches bots */}
+        <input type="text" name="_gotcha" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+        
+        <div>
+          <input 
+            type="text" 
+            name="name" 
+            placeholder="Name" 
+            required 
+            maxLength="100"
+            minLength="2"
+            pattern="[A-Za-z\s\-']+"
+            title="Name should only contain letters, spaces, hyphens, and apostrophes"
+            disabled={isSubmitting}
+            style={{ 
+              background: 'rgb(40,40,43)', 
+              color: '#fff', 
+              border: formErrors.name ? '1px solid #ff6b6b' : '1px solid #333', 
+              borderRadius: '8px', 
+              padding: '0.6rem 0.9rem', 
+              fontSize: '1rem', 
+              fontFamily: 'Segoe UI, Arial, sans-serif',
+              width: '100%',
+              boxSizing: 'border-box'
+            }} 
+          />
+          {formErrors.name && (
+            <div style={{ color: '#ff6b6b', fontSize: '0.85rem', marginTop: '0.3rem' }}>{formErrors.name}</div>
+          )}
+        </div>
+        
+        <div>
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            required 
+            maxLength="254"
+            disabled={isSubmitting}
+            style={{ 
+              background: 'rgb(40,40,43)', 
+              color: '#fff', 
+              border: formErrors.email ? '1px solid #ff6b6b' : '1px solid #333', 
+              borderRadius: '8px', 
+              padding: '0.6rem 0.9rem', 
+              fontSize: '1rem', 
+              fontFamily: 'Segoe UI, Arial, sans-serif',
+              width: '100%',
+              boxSizing: 'border-box'
+            }} 
+          />
+          {formErrors.email && (
+            <div style={{ color: '#ff6b6b', fontSize: '0.85rem', marginTop: '0.3rem' }}>{formErrors.email}</div>
+          )}
+        </div>
+        
+        <div>
+          <textarea 
+            name="message" 
+            placeholder="Message" 
+            required 
+            rows={4}
+            maxLength="5000"
+            minLength="10"
+            disabled={isSubmitting}
+            style={{ 
+              background: 'rgb(40,40,43)', 
+              color: '#fff', 
+              border: formErrors.message ? '1px solid #ff6b6b' : '1px solid #333', 
+              borderRadius: '8px', 
+              padding: '0.6rem 0.9rem', 
+              fontSize: '1rem', 
+              fontFamily: 'Segoe UI, Arial, sans-serif', 
+              resize: 'none',
+              width: '100%',
+              boxSizing: 'border-box'
+            }} 
+          />
+          {formErrors.message && (
+            <div style={{ color: '#ff6b6b', fontSize: '0.85rem', marginTop: '0.3rem' }}>{formErrors.message}</div>
+          )}
+        </div>
+        
+        <button 
+          type="submit" 
+          disabled={isSubmitting}
+          style={{ 
+            background: isSubmitting ? '#999' : '#ffd600', 
+            color: '#18191e', 
+            border: 'none', 
+            borderRadius: '8px', 
+            padding: '0.7rem 0', 
+            fontSize: '1rem', 
+            fontWeight: 600, 
+            cursor: isSubmitting ? 'not-allowed' : 'pointer', 
+            marginTop: '0.3rem', 
+            fontFamily: 'Segoe UI, Arial, sans-serif',
+            opacity: isSubmitting ? 0.6 : 1,
+            transition: 'all 0.2s'
+          }}
+        >
+          {isSubmitting ? 'Sending...' : 'Send'}
+        </button>
       </form>
     </section>
   );
@@ -727,35 +931,35 @@ const projects = [
     title: 'AI-Assistant',
     description: 'A Python-based AI assistant that leverages the power of LangChain and OpenAI to provide conversational and computational capabilities through a command-line interface. The project demonstrates prompt engineering, API integration, and modular tool extension. Ideal for exploring natural language processing, building custom chatbots, and experimenting with AI-driven automation.',
     tech: ['Python', 'LangChain', 'OpenAI API', 'LangGraph', 'python-dotenv', 'uv'],
-    code: 'https://github.com/RomanBam/AI-Assistant',
+    code: sanitizeUrl('https://github.com/RomanBam/AI-Assistant'),
     live: null
   },
   {
     title: 'AI Resume Critiquer',
     description: 'A web-based AI application that provides intelligent resume analysis and feedback using OpenAI\'s GPT models. Users can upload their resumes in PDF or TXT format and receive detailed critiques covering content clarity, skills presentation, experience descriptions, and targeted improvements for specific job roles. The application features a clean Streamlit interface with real-time analysis and structured feedback recommendations. Ideal for job seekers looking to optimize their resumes and improve their chances of landing interviews.',
     tech: ['Python', 'Streamlit', 'OpenAI API', 'PyPDF2', 'python-dotenv', 'uv'],
-    code: 'https://github.com/RomanBam/AI-Resume-Critiquer',
+    code: sanitizeUrl('https://github.com/RomanBam/AI-Resume-Critiquer'),
     live: null
   },
   {
     title: 'AI Image Classifier',
     description: 'A web-based AI application that provides intelligent image classification and analysis using TensorFlow\'s MobileNetV2 model. Users can upload images in JPG or PNG format and receive instant predictions with confidence scores across 1000+ categories from the ImageNet dataset. The application features a clean Streamlit interface with real-time analysis and structured prediction results. Ideal for developers, researchers, and anyone looking to explore AI-powered image recognition capabilities.',
     tech: ['Python', 'TensorFlow', 'Streamlit', 'OpenCV', 'MobileNetV2', 'uv'],
-    code: 'https://github.com/RomanBam/AI-Image-Classifier',
+    code: sanitizeUrl('https://github.com/RomanBam/AI-Image-Classifier'),
     live: null
   },
   {
     title: 'Cheese Fat Prediction Model',
     description: 'A data science and machine learning project that predicts the fat percentage in cheese samples using regression models. The workflow covers data cleaning, exploratory data analysis (EDA), feature engineering, model selection, and results interpretation. Ideal for applications in food quality control and nutritional analysis.',
     tech: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'Matplotlib', 'Seaborn', 'Jupyter Notebook'],
-    code: 'https://github.com/RomanBam/CheeseFatPrediction',
+    code: sanitizeUrl('https://github.com/RomanBam/CheeseFatPrediction'),
     live: null
   },
   {
     title: 'Programming Mini-Projects Collection',
     description: 'A diverse collection of small programming projects created to practice coding fundamentals and explore new concepts. Includes applications like a Random Quote Generator (PHP/CSS), Rock Paper Scissors game, Caesar Cipher implementation, Solar System calculator, and more. Each project focuses on specific programming techniques and problem-solving approaches, demonstrating versatility across multiple languages and domains.',
     tech: ['Python', 'PHP', 'CSS', 'HTML', 'JavaScript', 'Math Libraries', 'Random Algorithms'],
-    code: 'https://github.com/RomanBam/MiniProjects-Practice',
+    code: sanitizeUrl('https://github.com/RomanBam/MiniProjects-Practice'),
     live: null
   }
 ];
