@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, memo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
-import { LuCake, LuMapPin } from 'react-icons/lu';
+import { LuMapPin } from 'react-icons/lu';
 import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker, SiPhp } from 'react-icons/si';
 
 // Performance constants
@@ -446,8 +446,9 @@ function MobileProfileCard() {
             </div>
             <hr className="mobile-profile-divider" />
             <div className="mobile-profile-socials">
-              <a href="https://www.linkedin.com/in/roman-bamrah" aria-label="LinkedIn" className="mobile-profile-social-icon" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-              <a href="https://github.com/RomanBam" aria-label="GitHub" className="mobile-profile-social-icon" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+              {socialLinks.map((s, i) => (
+                <a key={i} href={s.href} aria-label={s.label} className="mobile-profile-social-icon" target="_blank" rel="noopener noreferrer">{s.icon}</a>
+              ))}
             </div>
           </div>
         </div>
@@ -481,8 +482,9 @@ function ContactSection() {
       <h2 className="contact-title custom-title" style={{ marginBottom: '1.2rem', color: '#fff', fontWeight: 700, fontFamily: 'Segoe UI, Arial, sans-serif', fontSize: '2.1rem' }}>Contact Me</h2>
       <div style={{ marginBottom: '0.3rem', color: '#fff', fontWeight: 600, fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}>Socials</div>
       <div className="contact-socials" style={{ display: 'flex', gap: '1.1rem', marginBottom: '1.1rem' }}>
-        <a href="https://www.linkedin.com/in/roman-bamrah" aria-label="LinkedIn" className="contact-social-icon" target="_blank" rel="noopener noreferrer" style={{ color: '#b0b0b0', fontSize: '2rem' }}><FaLinkedin /></a>
-        <a href="https://github.com/RomanBam" aria-label="GitHub" className="contact-social-icon" target="_blank" rel="noopener noreferrer" style={{ color: '#b0b0b0', fontSize: '2rem' }}><FaGithub /></a>
+        {socialLinks.map((s, i) => (
+          <a key={i} href={s.href} aria-label={s.label} className="contact-social-icon" target="_blank" rel="noopener noreferrer" style={{ color: '#b0b0b0', fontSize: '2rem' }}>{s.icon}</a>
+        ))}
       </div>
       <form className="contact-form" action="https://formspree.io/f/meozqonz" method="POST" autoComplete="off" style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}>
         <input type="text" name="name" placeholder="Name" required style={{ background: 'rgb(40,40,43)', color: '#fff', border: '1px solid #333', borderRadius: '8px', padding: '0.6rem 0.9rem', fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif' }} />
@@ -851,13 +853,13 @@ const PortfolioTab = memo(() => (
 
 const ContactTab = memo(() => <ContactSection />);
 
-// Mobile versions without scroll animations
+// Mobile versions
 const MobileAboutTab = memo(() => (
   <>
     <section className="about-section">
       <h1 className="about-title custom-title">About Me</h1>
       <p className="about-desc">
-        I'm Roman, a software engineer focused on building practical AI and full‑stack solutions. I enjoy combining machine learning (TensorFlow, LangChain, OpenCV) with modern web tools like React, Next.js, Flask, and Streamlit to create useful, clean experiences. Core languages & technologies I work with: Python, JavaScript/TypeScript, Java, C#, PHP, SQL, and HTML/CSS. I've built projects ranging from an AI resume critiquer and image classifier to data science workflows and automation tools. My goal: ship thoughtful, reliable software that turns complex ideas into something people actually use.
+        Software Engineer with a strong foundation in Full-Stack Development, AI/ML, and Data Analytics. Proficient in building scalable applications using Python, Java, React, HTML, CSS, PHP and more with experience in database integration, API development, and model deployment. Proficient with modern development tools and practices, including software security, automated testing, and CI/CD pipelines. Familiar with the Software Development Life Cycle in Agile environments and the Scrum framework. Passionate about designing robust systems, optimizing algorithms, and contributing to innovative, production-ready software projects.
       </p>
     </section>
     <section className="doing-section">
@@ -901,45 +903,18 @@ const MobileResumeTab = memo(() => (
     <section className="resume-section">
       <h1 className="resume-title custom-title">Resume</h1>
     </section>
-    <EducationSection />
-    <ExperienceSection />
+    <ResumeDownload />
+    <div className="resume-sections-wrapper">
+      <EducationSection />
+      <ExperienceSection />
+    </div>
     <TechStackSection />
   </>
 ));
 
-const MobilePortfolioTab = memo(() => (
-  <section className="portfolio-section">
-    <h2 className="portfolio-title custom-title">Portfolio</h2>
-    <div className="portfolio-grid">
-      {projects.map((proj, idx) => (
-        <div className="portfolio-card" key={idx}>
-          <h3>{proj.title}</h3>
-          <p>{proj.description}</p>
-          <div className="portfolio-tech-section">
-            <span className="portfolio-tech-label">Tech Stack:</span>
-            <div className="portfolio-tech-badges">
-              {proj.tech.map((t, i) => (
-                <span key={i} className="portfolio-badge">{t}</span>
-              ))}
-            </div>
-          </div>
-          <div className="portfolio-links">
-            <a href={proj.code} target="_blank" rel="noopener noreferrer" className="portfolio-link">
-              <FaGithub /> Code
-            </a>
-            {proj.live && (
-              <a href={proj.live} target="_blank" rel="noopener noreferrer" className="portfolio-link portfolio-live-link">
-                <span>Live</span>
-              </a>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-));
-
-const MobileContactTab = memo(() => <ContactSection />);
+// Portfolio and Contact are identical for both mobile and desktop
+const MobilePortfolioTab = PortfolioTab;
+const MobileContactTab = ContactTab;
 
 const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
   return (
