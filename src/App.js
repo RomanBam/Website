@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback, memo, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
-import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaDatabase, FaLink, FaCoffee, FaCloud } from 'react-icons/fa';
+import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaLink, FaCloud, FaJava, FaNodeJs, FaLock, FaCheckCircle, FaEye, FaAws, FaRecycle } from 'react-icons/fa';
 import { LuMapPin } from 'react-icons/lu';
-import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker, SiPhp } from 'react-icons/si';
+import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker, SiPhp, SiTypescript, SiScikitlearn, SiPandas, SiOpencv, SiStreamlit, SiRedux, SiTailwindcss, SiGraphql, SiWebpack, SiGithub, SiExpress, SiLangchain, SiPlotly } from 'react-icons/si';
+import { TbBrandCSharp } from 'react-icons/tb';
 
 // Performance constants
 const TWO_PI = 2 * Math.PI;
@@ -820,11 +821,11 @@ const TechStackSection = memo(() => {
       icon: <FaCode />,
       technologies: [
         { name: "Python", icon: <FaPython />, description: "Primary, AI & backend" },
-        { name: "Java", icon: <FaCoffee />, description: "Enterprise apps" },
+        { name: "Java", icon: <FaJava />, description: "Enterprise apps" },
         { name: "JavaScript", icon: <SiJavascript />, description: "Frontend & Node.js" },
-        { name: "C#", icon: <FaCode />, description: "OOP & .NET" },
+        { name: "C#", icon: <TbBrandCSharp />, description: "OOP & .NET" },
         { name: "PHP", icon: <SiPhp />, description: "Server-side scripting" },
-        { name: "TypeScript", icon: <SiJavascript />, description: "Type-safe JS" }
+        { name: "TypeScript", icon: <SiTypescript />, description: "Type-safe JS" }
       ]
     },
     {
@@ -832,15 +833,15 @@ const TechStackSection = memo(() => {
       icon: <FaRobot />,
       technologies: [
         { name: "TensorFlow", icon: <SiTensorflow />, description: "Deep learning" },
-        { name: "MobileNetV2", icon: <FaRobot />, description: "Image classification" },
-        { name: "Scikit-learn", icon: <FaRobot />, description: "ML models" },
-        { name: "Pandas", icon: <FaDatabase />, description: "Data manipulation" },
+        { name: "MobileNetV2", icon: <FaEye />, description: "Image classification" },
+        { name: "Scikit-learn", icon: <SiScikitlearn />, description: "ML models" },
+        { name: "Pandas", icon: <SiPandas />, description: "Data manipulation" },
         { name: "NumPy", icon: <SiNumpy />, description: "Numerical computing" },
-        { name: "Matplotlib", icon: <FaPencilRuler />, description: "Data visualization" },
-        { name: "OpenCV", icon: <FaCode />, description: "Computer vision" },
-        { name: "Streamlit", icon: <FaPencilRuler />, description: "ML web apps" },
+        { name: "Matplotlib", icon: <SiPlotly />, description: "Data visualization" },
+        { name: "OpenCV", icon: <SiOpencv />, description: "Computer vision" },
+        { name: "Streamlit", icon: <SiStreamlit />, description: "ML web apps" },
         { name: "ChatGPT API", icon: <SiOpenai />, description: "LLM integration" },
-        { name: "LangChain", icon: <FaLink />, description: "LLM workflows" },
+        { name: "LangChain", icon: <SiLangchain />, description: "LLM workflows" },
         { name: "Jupyter Notebooks", icon: <SiJupyter />, description: "Interactive analysis" }
       ]
     },
@@ -850,32 +851,32 @@ const TechStackSection = memo(() => {
       technologies: [
         { name: "React.js", icon: <FaReact />, description: "Component-based UI" },
         { name: "Next.js", icon: <SiNextdotjs />, description: "SSR & SSG" },
-        { name: "Redux", icon: <FaReact />, description: "State management" },
+        { name: "Redux", icon: <SiRedux />, description: "State management" },
         { name: "React Router", icon: <FaReact />, description: "Client routing" },
         { name: "React Hook Form", icon: <FaReact />, description: "Form handling" },
-        { name: "Tailwind CSS", icon: <FaCss3Alt />, description: "Utility CSS" },
+        { name: "Tailwind CSS", icon: <SiTailwindcss />, description: "Utility CSS" },
         { name: "HTML", icon: <FaHtml5 />, description: "Semantic markup" },
         { name: "CSS", icon: <FaCss3Alt />, description: "Responsive styling" },
         { name: "Flask", icon: <SiFlask />, description: "Python web framework" },
-        { name: "Node.js", icon: <FaServer />, description: "JavaScript runtime" },
-        { name: "Express.js", icon: <FaServer />, description: "Node.js framework" }
+        { name: "Node.js", icon: <FaNodeJs />, description: "JavaScript runtime" },
+        { name: "Express.js", icon: <SiExpress />, description: "Node.js framework" }
       ]
     },
     {
       title: "API Development",
       icon: <FaLink />,
       technologies: [
-        { name: "REST APIs", icon: <FaLink />, description: "RESTful services" },
-        { name: "GraphQL", icon: <FaDatabase />, description: "Query language" },
-        { name: "Authentication", icon: <FaCode />, description: "Auth & security" }
+        { name: "REST APIs", icon: <FaServer />, description: "RESTful services" },
+        { name: "GraphQL", icon: <SiGraphql />, description: "Query language" },
+        { name: "Authentication", icon: <FaLock />, description: "Auth & security" }
       ]
     },
     {
       title: "Security, Testing & CI/CD",
       icon: <FaTools />,
       technologies: [
-        { name: "Web Security", icon: <FaCode />, description: "Best practices" },
-        { name: "Automated Testing", icon: <FaCode />, description: "Test automation" },
+        { name: "Web Security", icon: <FaLock />, description: "Best practices" },
+        { name: "Automated Testing", icon: <FaCheckCircle />, description: "Test automation" },
         { name: "CI/CD Pipelines", icon: <FaTools />, description: "Continuous deployment" }
       ]
     },
@@ -883,14 +884,14 @@ const TechStackSection = memo(() => {
       title: "Tools & Platforms",
       icon: <FaCloud />,
       technologies: [
-        { name: "AWS", icon: <FaCloud />, description: "Cloud infrastructure" },
+        { name: "AWS", icon: <FaAws />, description: "Cloud infrastructure" },
         { name: "Docker", icon: <SiDocker />, description: "Containerization" },
         { name: "Vercel", icon: <SiVercel />, description: "Web hosting" },
         { name: "Git", icon: <FaGitAlt />, description: "Version control" },
-        { name: "GitHub", icon: <FaGitAlt />, description: "Code collaboration" },
+        { name: "GitHub", icon: <SiGithub />, description: "Code collaboration" },
         { name: "Figma", icon: <SiFigma />, description: "UI/UX design" },
-        { name: "Webpack", icon: <FaTools />, description: "Build tooling" },
-        { name: "Agile/Scrum", icon: <FaTools />, description: "Project methodology" }
+        { name: "Webpack", icon: <SiWebpack />, description: "Build tooling" },
+        { name: "Agile/Scrum", icon: <FaRecycle />, description: "Project methodology" }
       ]
     }
   ];
