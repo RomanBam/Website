@@ -8,13 +8,13 @@ import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, Si
 // Performance constants
 const TWO_PI = 2 * Math.PI;
 const STAR_INTERVALS = {
-  MIN: 800,
-  MAX: 2000,
-  RANGE: 1200
+  MIN: 1500,
+  MAX: 3000,
+  RANGE: 1500
 };
 const STAR_COUNTS = {
-  BURST_MIN: 2,
-  BURST_MAX: 4
+  BURST_MIN: 1,
+  BURST_MAX: 2
 };
 
 function ShootingStar() {
@@ -61,35 +61,24 @@ function ShootingStar() {
         const newStars = Array.from({ length: newStarsCount }, () => createShootingStar());
         
         const combinedStars = [...prevStars, ...newStars];
-        return combinedStars.length > 25 ? combinedStars.slice(combinedStars.length - 25) : combinedStars;
+        return combinedStars.length > 15 ? combinedStars.slice(combinedStars.length - 15) : combinedStars;
       });
     }, STAR_INTERVALS.MIN + Math.random() * STAR_INTERVALS.RANGE);
     
+    // Reduced initial bursts for faster load
     const timeouts = [];
     
     timeouts.push(setTimeout(() => {
-      const starCount = Math.floor(Math.random() * 3) + 2;
+      const starCount = Math.floor(Math.random() * 2) + 1;
       const initialStars = Array.from({ length: starCount }, () => createShootingStar());
       setStars(prev => [...prev, ...initialStars]);
-    }, 500));
+    }, 1000));
     
     timeouts.push(setTimeout(() => {
-      const starCount = Math.floor(Math.random() * 4) + 3;
+      const starCount = Math.floor(Math.random() * 2) + 1;
       const moreStars = Array.from({ length: starCount }, () => createShootingStar());
       setStars(prev => [...prev, ...moreStars]);
-    }, 1200));
-    
-    timeouts.push(setTimeout(() => {
-      const starCount = Math.floor(Math.random() * 4) + 2;
-      const finalBurst = Array.from({ length: starCount }, () => createShootingStar());
-      setStars(prev => [...prev, ...finalBurst]);
     }, 2000));
-    
-    timeouts.push(setTimeout(() => {
-      const starCount = Math.floor(Math.random() * 3) + 3;
-      const extraBurst = Array.from({ length: starCount }, () => createShootingStar());
-      setStars(prev => [...prev, ...extraBurst]);
-    }, 3000));
     
     return () => {
       clearInterval(interval);
@@ -131,9 +120,9 @@ const tabs = [
   { id: 'contact', label: 'Contact', path: '/contact' },
 ];
 
-function Constellation() {
-  
-  const bigDipper = {
+// Memoize constellation data - create once, never recreate
+const constellationData = {
+  bigDipper: {
     stars: [
       { id: 'bd1', x: 8, y: 12 },
       { id: 'bd2', x: 15, y: 15 },
@@ -151,9 +140,8 @@ function Constellation() {
       { from: 'bd5', to: 'bd6' },
       { from: 'bd6', to: 'bd7' }
     ]
-  };
-
-  const cassiopeia = {
+  },
+  cassiopeia: {
     stars: [
       { id: 'cas1', x: 75, y: 8 },
       { id: 'cas2', x: 82, y: 12 },
@@ -167,9 +155,8 @@ function Constellation() {
       { from: 'cas3', to: 'cas4' },
       { from: 'cas4', to: 'cas5' }
     ]
-  };
-
-  const orionsBelt = {
+  },
+  orionsBelt: {
     stars: [
       { id: 'or1', x: 78, y: 85 },
       { id: 'or2', x: 82, y: 88 },
@@ -183,9 +170,8 @@ function Constellation() {
       { from: 'or4', to: 'or1' },
       { from: 'or3', to: 'or5' }
     ]
-  };
-
-  const southernCross = {
+  },
+  southernCross: {
     stars: [
       { id: 'sc1', x: 27, y: 88 },
       { id: 'sc2', x: 23, y: 92 },
@@ -199,9 +185,8 @@ function Constellation() {
       { from: 'sc4', to: 'sc2' },
       { from: 'sc5', to: 'sc1' }
     ]
-  };
-
-  const gemini = {
+  },
+  gemini: {
     stars: [
       { id: 'gem1', x: 85, y: 52 },
       { id: 'gem2', x: 87, y: 54 },
@@ -229,9 +214,8 @@ function Constellation() {
       { from: 'gem8', to: 'gem11' },
       { from: 'gem11', to: 'gem12' }
     ]
-  };
-
-  const leo = {
+  },
+  leo: {
     stars: [
       { id: 'leo1', x: 5, y: 45 },
       { id: 'leo2', x: 10, y: 42 },
@@ -245,9 +229,8 @@ function Constellation() {
       { from: 'leo3', to: 'leo4' },
       { from: 'leo4', to: 'leo5' }
     ]
-  };
-
-  const cygnus = {
+  },
+  cygnus: {
     stars: [
       { id: 'cyg1', x: 57, y: 50 },
       { id: 'cyg2', x: 60, y: 54 },
@@ -261,9 +244,8 @@ function Constellation() {
       { from: 'cyg4', to: 'cyg2' },
       { from: 'cyg2', to: 'cyg5' }
     ]
-  };
-
-  const lyra = {
+  },
+  lyra: {
     stars: [
       { id: 'lyr1', x: 58, y: 25 },
       { id: 'lyr2', x: 62, y: 22 },
@@ -276,9 +258,8 @@ function Constellation() {
       { from: 'lyr3', to: 'lyr4' },
       { from: 'lyr4', to: 'lyr1' }
     ]
-  };
-
-  const draco = {
+  },
+  draco: {
     stars: [
       { id: 'dra1', x: 25, y: 5 },
       { id: 'dra2', x: 30, y: 3 },
@@ -294,9 +275,8 @@ function Constellation() {
       { from: 'dra4', to: 'dra5' },
       { from: 'dra5', to: 'dra6' }
     ]
-  };
-
-  const centaurus = {
+  },
+  centaurus: {
     stars: [
       { id: 'cen1', x: 45, y: 90 },
       { id: 'cen2', x: 50, y: 87 },
@@ -310,9 +290,8 @@ function Constellation() {
       { from: 'cen3', to: 'cen4' },
       { from: 'cen4', to: 'cen5' }
     ]
-  };
-
-  const pegasus = {
+  },
+  pegasus: {
     stars: [
       { id: 'peg1', x: 82, y: 30 },
       { id: 'peg2', x: 88, y: 32 },
@@ -325,9 +304,8 @@ function Constellation() {
       { from: 'peg3', to: 'peg4' },
       { from: 'peg4', to: 'peg1' }
     ]
-  };
-
-  const bootes = {
+  },
+  bootes: {
     stars: [
       { id: 'boo1', x: 40, y: 35 },
       { id: 'boo2', x: 36, y: 38 },
@@ -339,9 +317,8 @@ function Constellation() {
       { from: 'boo2', to: 'boo3' },
       { from: 'boo3', to: 'boo4' }
     ]
-  };
-
-  const cancer = {
+  },
+  cancer: {
     stars: [
       { id: 'cnc1', x: 12, y: 72 },
       { id: 'cnc2', x: 11.75, y: 78 },
@@ -355,10 +332,12 @@ function Constellation() {
       { from: 'cnc3', to: 'cnc4' },
       { from: 'cnc3', to: 'cnc5' }
     ]
-  };
+  }
+};
 
-  const allConstellations = [bigDipper, cassiopeia, orionsBelt, southernCross, gemini, leo, cygnus, lyra, draco, centaurus, pegasus, bootes, cancer];
+const allConstellations = Object.values(constellationData);
 
+function Constellation() {
   return (
     <div className="constellation">
       <svg width="100%" height="100%" style={{ position: 'absolute', top: 0, left: 0 }}>
@@ -571,7 +550,7 @@ function ExperienceSection() {
   );
 }
 
-function TechStackSection() {
+const TechStackSection = memo(() => {
   const techCategories = [
     {
       title: "Programming Languages",
@@ -720,7 +699,7 @@ function TechStackSection() {
       </div>
     </section>
   );
-}
+});
 
 const projects = [
   {
@@ -1096,55 +1075,69 @@ function PortfolioContent() {
 
   // Scroll listener to update active tab based on visible section
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      // Don't update tab if user just manually clicked a tab
-      if (isManualTabClick) return;
-      
-      const sections = ['about', 'resume', 'portfolio', 'contact'];
-      let scrollPosition;
-      let scrollContainer;
-      
-      // Determine scroll container and position based on mobile/desktop
-      if (isMobile) {
-        scrollContainer = document.querySelector('.main-content-card');
-        scrollPosition = scrollContainer ? scrollContainer.scrollTop + 100 : 0;
-      } else {
-        scrollContainer = window;
-        scrollPosition = window.scrollY + 200; // Offset for sticky tabs
-      }
-      
-      // Check if we're at the bottom of the page/container
-      let isAtBottom;
-      if (isMobile && scrollContainer && scrollContainer !== window) {
-        isAtBottom = scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight - 10;
-      } else {
-        isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
-      }
-      
-      // If at bottom, highlight contact tab
-      if (isAtBottom) {
-        if (activeTab !== 'contact') {
-          setActiveTab('contact');
-          const tab = tabs.find(t => t.id === 'contact');
-          if (tab) {
-            window.history.replaceState(null, '', tab.path);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Don't update tab if user just manually clicked a tab
+          if (isManualTabClick) {
+            ticking = false;
+            return;
           }
-        }
-        return;
-      }
-      
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(`section-${sections[i]}`);
-        if (section && section.offsetTop <= scrollPosition) {
-          if (activeTab !== sections[i]) {
-            setActiveTab(sections[i]);
-            const tab = tabs.find(t => t.id === sections[i]);
-            if (tab) {
-              window.history.replaceState(null, '', tab.path);
+          
+          const sections = ['about', 'resume', 'portfolio', 'contact'];
+          let scrollPosition;
+          let scrollContainer;
+          
+          // Determine scroll container and position based on mobile/desktop
+          if (isMobile) {
+            scrollContainer = document.querySelector('.main-content-card');
+            scrollPosition = scrollContainer ? scrollContainer.scrollTop + 100 : 0;
+          } else {
+            scrollContainer = window;
+            scrollPosition = window.scrollY + 200; // Offset for sticky tabs
+          }
+          
+          // Check if we're at the bottom of the page/container
+          let isAtBottom;
+          if (isMobile && scrollContainer && scrollContainer !== window) {
+            isAtBottom = scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight - 10;
+          } else {
+            isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
+          }
+          
+          // If at bottom, highlight contact tab
+          if (isAtBottom) {
+            if (activeTab !== 'contact') {
+              setActiveTab('contact');
+              const tab = tabs.find(t => t.id === 'contact');
+              if (tab) {
+                window.history.replaceState(null, '', tab.path);
+              }
+            }
+            ticking = false;
+            return;
+          }
+          
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const section = document.getElementById(`section-${sections[i]}`);
+            if (section && section.offsetTop <= scrollPosition) {
+              if (activeTab !== sections[i]) {
+                setActiveTab(sections[i]);
+                const tab = tabs.find(t => t.id === sections[i]);
+                if (tab) {
+                  window.history.replaceState(null, '', tab.path);
+                }
+              }
+              break;
             }
           }
-          break;
-        }
+          
+          ticking = false;
+        });
+        
+        ticking = true;
       }
     };
 
@@ -1185,46 +1178,45 @@ function PortfolioContent() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const generateStarLayer = useCallback((starCount, minSize, maxSize, tileWidth, tileHeight) => {
-    const stars = [];
-    for (let i = 0; i < starCount; i++) {
-      const size = Math.random() * (maxSize - minSize) + minSize;
-      const x = Math.random() * tileWidth;
-      const y = Math.random() * tileHeight;
-      const opacity = Math.random() * 0.5 + 0.5;
-      stars.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255,255,255,${opacity}), transparent)`);
-    }
-    return stars.join(', ');
-  }, []);
-
   useEffect(() => {
-    const generateRandomStarfield = () => {
-      const starfield1 = generateStarLayer(80, 1, 3, 800, 600);
-      const starfield2 = generateStarLayer(120, 0.5, 2, 600, 450);
-      const starfield3 = generateStarLayer(100, 1, 2.5, 700, 500);
-      const starfield4 = generateStarLayer(150, 0.5, 1.5, 900, 650);
-
-      document.documentElement.style.setProperty('--dynamic-starfield-1', starfield1);
-      document.documentElement.style.setProperty('--dynamic-starfield-2', starfield2);
-      document.documentElement.style.setProperty('--dynamic-starfield-3', starfield3);
-      document.documentElement.style.setProperty('--dynamic-starfield-4', starfield4);
-
-      const twinkleDuration = (Math.random() * 6 + 2).toFixed(1) + 's';
-      const slowTwinkleDuration = (Math.random() * 10 + 5).toFixed(1) + 's';
-      const randomTwinkleDuration = (Math.random() * 8 + 3).toFixed(1) + 's';
-      
-      const twinkleEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
-      const randomEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
-      
-      document.documentElement.style.setProperty('--twinkle-duration', twinkleDuration);
-      document.documentElement.style.setProperty('--slow-twinkle-duration', slowTwinkleDuration);
-      document.documentElement.style.setProperty('--random-twinkle-duration', randomTwinkleDuration);
-      document.documentElement.style.setProperty('--twinkle-easing', twinkleEasing);
-      document.documentElement.style.setProperty('--random-easing', randomEasing);
+    // Only generate starfield once on initial mount
+    const generateStarLayer = (starCount, minSize, maxSize, tileWidth, tileHeight) => {
+      const stars = [];
+      for (let i = 0; i < starCount; i++) {
+        const size = Math.random() * (maxSize - minSize) + minSize;
+        const x = Math.random() * tileWidth;
+        const y = Math.random() * tileHeight;
+        const opacity = Math.random() * 0.5 + 0.5;
+        stars.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255,255,255,${opacity}), transparent)`);
+      }
+      return stars.join(', ');
     };
+    
+    // Reduced star counts for better performance
+    const starfield1 = generateStarLayer(60, 1, 3, 800, 600);
+    const starfield2 = generateStarLayer(80, 0.5, 2, 600, 450);
+    const starfield3 = generateStarLayer(70, 1, 2.5, 700, 500);
+    const starfield4 = generateStarLayer(100, 0.5, 1.5, 900, 650);
 
-    generateRandomStarfield();
-  }, [generateStarLayer]);
+    document.documentElement.style.setProperty('--dynamic-starfield-1', starfield1);
+    document.documentElement.style.setProperty('--dynamic-starfield-2', starfield2);
+    document.documentElement.style.setProperty('--dynamic-starfield-3', starfield3);
+    document.documentElement.style.setProperty('--dynamic-starfield-4', starfield4);
+
+    const twinkleDuration = (Math.random() * 6 + 2).toFixed(1) + 's';
+    const slowTwinkleDuration = (Math.random() * 10 + 5).toFixed(1) + 's';
+    const randomTwinkleDuration = (Math.random() * 8 + 3).toFixed(1) + 's';
+    
+    const twinkleEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
+    const randomEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
+    
+    document.documentElement.style.setProperty('--twinkle-duration', twinkleDuration);
+    document.documentElement.style.setProperty('--slow-twinkle-duration', slowTwinkleDuration);
+    document.documentElement.style.setProperty('--random-twinkle-duration', randomTwinkleDuration);
+    document.documentElement.style.setProperty('--twinkle-easing', twinkleEasing);
+    document.documentElement.style.setProperty('--random-easing', randomEasing);
+    // Empty dependency array - only run once on mount
+  }, []);
 
   return isMobile ? (
     <MobileView activeTab={activeTab} setActiveTab={handleTabChange} />

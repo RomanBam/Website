@@ -7,17 +7,56 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Roman Bamrah - Software Engineer Portfolio"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
  
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
-    <title>Roman Bamrah</title>
+    <title>Roman Bamrah - Software Engineer</title>
+    
+    <!-- Preconnect to improve loading performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    
+    <!-- Loading styles -->
+    <style>
+      #root {
+        min-height: 100vh;
+        background: #111111;
+      }
+      .app-loader {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #ffd600;
+        font-family: Arial, sans-serif;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+      .loader-spinner {
+        border: 3px solid rgba(255, 214, 0, 0.3);
+        border-top: 3px solid #ffd600;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="app-loader">
+        <div class="loader-spinner"></div>
+        <div>Loading...</div>
+      </div>
+    </div>
    
   </body>
 </html>

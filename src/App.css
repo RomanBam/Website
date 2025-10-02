@@ -9,6 +9,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Reduce animation on page load */
+.dark-app {
+  animation: none;
+}
+
 /* CSS Custom Properties for consistent theming */
 :root {
   --color-white: #fff;
@@ -27,7 +32,11 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  /* Performance improvements */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
 /* Base starfield properties - shared by all pseudo-elements */
 body::before,
 body::after,
@@ -42,6 +51,9 @@ body::after,
   background-repeat: repeat;
   pointer-events: none;
   z-index: -1;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: auto;
 }
 
 body::before {
@@ -120,6 +132,10 @@ body::after {
   height: 100%;
   pointer-events: none;
   z-index: -2;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: auto;
+  contain: layout style paint;
 }
 
 .constellation-star {
@@ -131,6 +147,9 @@ body::after {
   opacity: 0;
   box-shadow: 0 0 2px rgba(255, 255, 255, 0.7);
   animation: starAppear 2s ease-out forwards, starGlimmer var(--glimmer-duration, 3s) var(--glimmer-delay, 0s) infinite ease-in-out;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .constellation-line {
@@ -187,6 +206,9 @@ body::after {
               0 0 0 1px rgba(255, 255, 255, 0.1),
               0 0 3px rgba(255, 255, 255, 0.7),
               0 0 6px rgba(255, 255, 255, 0.5);
+  /* GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
   will-change: transform, opacity;
 }
 
@@ -458,9 +480,10 @@ body::after {
   flex-direction: column;
   border: 1px solid rgba(255,255,255,0.07);
   z-index: 10;
-  /* Optimize for smooth scrolling */
+  /* Optimize for smooth scrolling and rendering */
   transform: translateZ(0);
-  will-change: scroll-position;
+  backface-visibility: hidden;
+  will-change: auto;
   contain: layout style paint;
   min-height: calc(100vh - 6rem - 45px);
   position: relative;
@@ -471,11 +494,13 @@ body::after {
   flex-direction: column;
   gap: 3rem;
   padding-bottom: 2rem;
+  /* Optimize rendering */
+  will-change: auto;
 }
 
 .content-section {
   scroll-margin-top: 2rem;
-  animation: fadeInUp 0.6s ease-out;
+  /* Removed animation for faster initial render */
 }
 
 @keyframes fadeInUp {
@@ -488,6 +513,8 @@ body::after {
     transform: translateY(0);
   }
 }
+
+/* Removed - animation disabled for performance */
 
 .main-tabs {
   display: flex;
@@ -509,12 +536,11 @@ body::after {
   transition: color 0.15s ease-out;
   outline: none;
   position: relative;
-
   touch-action: manipulation;
   user-select: none;
   transform: translateZ(0);
-  will-change: color;
- 
+  backface-visibility: hidden;
+  will-change: auto;
   text-decoration: none;
   display: inline-block;
 }
