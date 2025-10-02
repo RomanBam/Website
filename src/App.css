@@ -650,6 +650,27 @@ body::after {
   font-weight: 700;
   margin-bottom: 1.2rem;
 }
+
+/* Centered Resume Download */
+.resume-download-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.resume-download-card {
+  background: rgba(41,41,43,0.7);
+  border-radius: 14px;
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  max-width: 600px;
+  width: 100%;
+}
+
 .portfolio-grid {
   display: flex;
   flex-direction: column;

@@ -496,6 +496,28 @@ function ContactSection() {
   );
 }
 
+function ResumeDownload() {
+  return (
+    <div className="resume-download-wrapper">
+      <div className="resume-download-card">
+        <div>
+          <div style={{ color: '#fff', fontWeight: 600, fontSize: '1.18rem' }}>Paper Resume</div>
+          <div style={{ color: '#b0b0b0', fontSize: '1rem', marginTop: '0.2rem' }}>Download In a PDF Format</div>
+        </div>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: '#ffd600', fontWeight: 500, fontSize: '1.08rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem', transition: 'color 0.2s' }}
+        >
+          <FaDownload style={{ fontSize: '1.2rem' }} />
+          Download
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function EducationSection() {
   return (
     <section className="education-section" style={{ fontFamily: 'Segoe UI, Arial, sans-serif', marginBottom: '1.5rem' }}>
@@ -517,21 +539,6 @@ function EducationSection() {
           </div>
           <div style={{ color: '#e0e0e0', fontSize: '1rem' }}><b>Leadership:</b> Orientation Leader (2021-2023), led student engagement events.</div>
         </div>
-      </div>
-      <div style={{ background: 'rgba(41,41,43,0.7)', borderRadius: '14px', padding: '1.1rem 1.5rem', marginTop: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)', maxWidth: 600 }}>
-        <div>
-          <div style={{ color: '#fff', fontWeight: 600, fontSize: '1.18rem' }}>Paper Resume</div>
-          <div style={{ color: '#b0b0b0', fontSize: '1rem', marginTop: '0.2rem' }}>Download In A Pdf Format</div>
-        </div>
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: '#ffd600', fontWeight: 500, fontSize: '1.08rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem', transition: 'color 0.2s' }}
-        >
-          <FaDownload style={{ fontSize: '1.2rem' }} />
-          Download
-        </a>
       </div>
     </section>
   );
@@ -803,6 +810,7 @@ const ResumeTab = memo(() => (
     <section id="section-resume" className="resume-section">
       <h1 className="resume-title custom-title">Resume</h1>
     </section>
+    <ResumeDownload />
     <EducationSection />
     <ExperienceSection />
     <TechStackSection />
