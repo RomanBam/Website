@@ -826,11 +826,11 @@ body::after {
   .sidebar-card {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background: #18191e;
     border-radius: 18px;
     box-shadow: 0 4px 16px 0 rgba(0,0,0,0.18);
-    padding: 0.7rem 1rem 0.7rem 0.7rem;
+    padding: 0.7rem 1rem;
     height: 64px;
     min-height: 64px;
     max-height: 64px;
@@ -846,14 +846,13 @@ body::after {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 0.7rem;
-    flex: 1;
+    align-items: center;
   }
   .profile-name {
     font-size: 1.08rem;
     font-weight: 600;
     margin: 0;
-    text-align: left;
+    text-align: center;
     color: #fff;
     white-space: nowrap;
   }
@@ -865,7 +864,7 @@ body::after {
     border-radius: 8px;
     padding: 0.18rem 0.7rem;
     margin: 0.18rem 0 0 0;
-    text-align: left;
+    text-align: center;
     white-space: nowrap;
   }
   .divider, .contact-list, .sidebar-socials {
@@ -983,14 +982,16 @@ body::after {
   .mobile-profile-header {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1.4rem;
     width: 100%;
     margin-bottom: 1.2rem;
   }
   .mobile-profile-info {
-    flex: 1;
+    flex: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.2rem;
     min-width: 0;
   }
@@ -1001,6 +1002,7 @@ body::after {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
   }
   .mobile-profile-role {
     background: none !important;
@@ -1013,9 +1015,12 @@ body::after {
     margin-top: 0.1rem;
     white-space: nowrap;
     padding: 0;
+    text-align: center;
   }
   .mobile-profile-chevron {
-    margin-left: auto;
+    margin-left: 0;
+    position: absolute;
+    right: 1rem;
     background: none;
     border: none;
     outline: none;
