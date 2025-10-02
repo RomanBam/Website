@@ -794,7 +794,7 @@ function ExperienceSection() {
         <h2 className="experience-title custom-title" style={{ color: '#fff', fontWeight: 700, fontSize: '1.4rem', margin: 0 }}>Experience</h2>
       </div>
       <div className="exp-timeline" style={{ position: 'relative', marginLeft: '1.5rem', paddingLeft: '1.5rem', maxWidth: 700 }}>
-        <div className="exp-item" style={{ position: 'relative', marginBottom: 0 }}>
+        <div className="exp-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem', position: 'relative', top: '-0.05rem' }}>Sales & Technical Support Specialist <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(May 2021 – October 2024)</span></div>
           <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.2rem' }}>Super Choice Kitchen Inc, Burlington, ON</div>
@@ -1194,16 +1194,24 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
               const targetSection = document.getElementById(`section-${tab.id}`);
               
               if (scrollContainer && targetSection) {
-                // Calculate the position of the target section relative to the scroll container
-                const containerRect = scrollContainer.getBoundingClientRect();
-                const targetRect = targetSection.getBoundingClientRect();
-                const scrollOffset = targetRect.top - containerRect.top + scrollContainer.scrollTop;
-                
-                // Smooth scroll within the container
-                scrollContainer.scrollTo({
-                  top: scrollOffset,
-                  behavior: 'smooth'
-                });
+                // For About tab, always scroll to top
+                if (tab.id === 'about') {
+                  scrollContainer.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                  });
+                } else {
+                  // Calculate the position of the target section relative to the scroll container
+                  const containerRect = scrollContainer.getBoundingClientRect();
+                  const targetRect = targetSection.getBoundingClientRect();
+                  const scrollOffset = targetRect.top - containerRect.top + scrollContainer.scrollTop;
+                  
+                  // Smooth scroll within the container
+                  scrollContainer.scrollTo({
+                    top: scrollOffset,
+                    behavior: 'smooth'
+                  });
+                }
               }
             }}
           >

@@ -1032,6 +1032,22 @@ body::after {
   
   .content-section {
     scroll-margin-top: calc(var(--mobile-topbar-height) - 2rem);
+    padding-top: 1.5rem;
+  }
+  
+  /* Remove extra spacing from first section (About) */
+  .content-section:first-child {
+    padding-top: 0;
+  }
+  
+  /* Add extra spacing for section titles in mobile view */
+  .content-section .custom-title {
+    margin-top: 0.5rem;
+  }
+  
+  /* But remove extra margin from About title */
+  .content-section:first-child .custom-title {
+    margin-top: 0;
   }
   .main-tabs-bottom {
     background: rgba(30,30,31,0.7);
