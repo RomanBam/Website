@@ -1142,9 +1142,10 @@ body::after {
     gap: 1.4rem;
     width: 100%;
     margin-bottom: 1.2rem;
+    position: relative;
   }
   .mobile-profile-info {
-    flex: 0;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
