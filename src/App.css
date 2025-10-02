@@ -656,19 +656,108 @@ body::after {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .resume-download-card {
   background: rgba(41,41,43,0.7);
-  border-radius: 14px;
-  padding: 1.1rem 1.5rem;
+  border-radius: 1rem;
+  padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
   max-width: 600px;
   width: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.resume-download-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+}
+
+/* Side-by-Side Resume Sections */
+.resume-sections-wrapper {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Center divider line */
+.resume-sections-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.education-section,
+.experience-section {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Ensure consistent spacing for alignment */
+.edu-timeline,
+.exp-timeline {
+  position: relative;
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  max-width: 700px;
+}
+
+.edu-item,
+.exp-item {
+  position: relative;
+}
+
+/* Align yellow lines at the same height */
+.edu-item > span:first-child,
+.exp-item > span:first-child {
+  position: absolute;
+  left: -1.5rem;
+  top: 0.65rem;
+  width: 1.2rem;
+  height: 2px;
+  background: #ffd600;
+  border-radius: 1px;
+  z-index: 2;
+}
+
+/* Center section titles */
+.education-section > div:first-child,
+.experience-section > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+/* Responsive: Stack on smaller screens */
+@media (max-width: 1000px) {
+  .resume-sections-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .resume-sections-wrapper::before {
+    display: none;
+  }
+  
+  .education-section > div:first-child,
+  .experience-section > div:first-child {
+    justify-content: flex-start;
+  }
 }
 
 .portfolio-grid {
