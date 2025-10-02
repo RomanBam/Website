@@ -1030,7 +1030,38 @@ const WebView = memo(function WebView({ activeTab, setActiveTab }) {
   );
 });
 
-const easingFunctions = ['ease-in-out', 'ease-in', 'ease-out', 'linear', 'cubic-bezier(0.4, 0, 0.2, 1)', 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'];
+// Pre-generate static starfields once - will be the same on every page load
+const generateStaticStarLayer = (starCount, minSize, maxSize, tileWidth, tileHeight, seed) => {
+  const stars = [];
+  // Use a seeded random function for consistent star positions
+  let random = seed;
+  const seededRandom = () => {
+    random = (random * 9301 + 49297) % 233280;
+    return random / 233280;
+  };
+  
+  for (let i = 0; i < starCount; i++) {
+    const size = (seededRandom() * (maxSize - minSize) + minSize).toFixed(1);
+    const x = Math.floor(seededRandom() * tileWidth);
+    const y = Math.floor(seededRandom() * tileHeight);
+    const opacity = (seededRandom() * 0.5 + 0.5).toFixed(2);
+    stars.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255,255,255,${opacity}), transparent)`);
+  }
+  return stars.join(', ');
+};
+
+// Generate static starfields with fixed seeds for consistency
+const STATIC_STARFIELD_1 = generateStaticStarLayer(60, 1, 3, 800, 600, 12345);
+const STATIC_STARFIELD_2 = generateStaticStarLayer(80, 0.5, 2, 600, 450, 67890);
+const STATIC_STARFIELD_3 = generateStaticStarLayer(70, 1, 2.5, 700, 500, 54321);
+const STATIC_STARFIELD_4 = generateStaticStarLayer(100, 0.5, 1.5, 900, 650, 98765);
+
+// Pre-calculate static animation values
+const STATIC_TWINKLE_DURATION = '4.5s';
+const STATIC_SLOW_TWINKLE_DURATION = '8.2s';
+const STATIC_RANDOM_TWINKLE_DURATION = '6.1s';
+const STATIC_TWINKLE_EASING = 'ease-in-out';
+const STATIC_RANDOM_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
 // Component that handles routing and URL-based tab switching
 function PortfolioContent() {
@@ -1211,43 +1242,18 @@ function PortfolioContent() {
   }, []);
 
   useEffect(() => {
-    // Optimize starfield generation - only generate once on mount
-    const generateStarLayer = (starCount, minSize, maxSize, tileWidth, tileHeight) => {
-      const stars = [];
-      for (let i = 0; i < starCount; i++) {
-        const size = (Math.random() * (maxSize - minSize) + minSize).toFixed(1);
-        const x = Math.floor(Math.random() * tileWidth);
-        const y = Math.floor(Math.random() * tileHeight);
-        const opacity = (Math.random() * 0.5 + 0.5).toFixed(2);
-        stars.push(`radial-gradient(${size}px ${size}px at ${x}px ${y}px, rgba(255,255,255,${opacity}), transparent)`);
-      }
-      return stars.join(', ');
-    };
-    
-    // Reduced star counts for better performance
-    const starfield1 = generateStarLayer(60, 1, 3, 800, 600);
-    const starfield2 = generateStarLayer(80, 0.5, 2, 600, 450);
-    const starfield3 = generateStarLayer(70, 1, 2.5, 700, 500);
-    const starfield4 = generateStarLayer(100, 0.5, 1.5, 900, 650);
+    // Apply static starfields - same positions every time
+    document.documentElement.style.setProperty('--dynamic-starfield-1', STATIC_STARFIELD_1);
+    document.documentElement.style.setProperty('--dynamic-starfield-2', STATIC_STARFIELD_2);
+    document.documentElement.style.setProperty('--dynamic-starfield-3', STATIC_STARFIELD_3);
+    document.documentElement.style.setProperty('--dynamic-starfield-4', STATIC_STARFIELD_4);
 
-    document.documentElement.style.setProperty('--dynamic-starfield-1', starfield1);
-    document.documentElement.style.setProperty('--dynamic-starfield-2', starfield2);
-    document.documentElement.style.setProperty('--dynamic-starfield-3', starfield3);
-    document.documentElement.style.setProperty('--dynamic-starfield-4', starfield4);
-
-    // Pre-calculate animation values
-    const twinkleDuration = (Math.random() * 6 + 2).toFixed(1) + 's';
-    const slowTwinkleDuration = (Math.random() * 10 + 5).toFixed(1) + 's';
-    const randomTwinkleDuration = (Math.random() * 8 + 3).toFixed(1) + 's';
-    
-    const twinkleEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
-    const randomEasing = easingFunctions[Math.floor(Math.random() * easingFunctions.length)];
-    
-    document.documentElement.style.setProperty('--twinkle-duration', twinkleDuration);
-    document.documentElement.style.setProperty('--slow-twinkle-duration', slowTwinkleDuration);
-    document.documentElement.style.setProperty('--random-twinkle-duration', randomTwinkleDuration);
-    document.documentElement.style.setProperty('--twinkle-easing', twinkleEasing);
-    document.documentElement.style.setProperty('--random-easing', randomEasing);
+    // Apply static animation values
+    document.documentElement.style.setProperty('--twinkle-duration', STATIC_TWINKLE_DURATION);
+    document.documentElement.style.setProperty('--slow-twinkle-duration', STATIC_SLOW_TWINKLE_DURATION);
+    document.documentElement.style.setProperty('--random-twinkle-duration', STATIC_RANDOM_TWINKLE_DURATION);
+    document.documentElement.style.setProperty('--twinkle-easing', STATIC_TWINKLE_EASING);
+    document.documentElement.style.setProperty('--random-easing', STATIC_RANDOM_EASING);
   }, []); // Empty dependency array - only run once on mount
 
   return isMobile ? (
