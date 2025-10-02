@@ -442,7 +442,6 @@ function MobileProfileCard() {
             <hr className="mobile-profile-divider" />
             <div className="mobile-profile-contact-list">
               <div className="mobile-profile-contact-item"><span className="mobile-profile-contact-icon"><FaRegEnvelope color="#ffd600" /></span><span className="mobile-profile-contact-label">EMAIL</span><span className="mobile-profile-contact-value">romanbamrah@gmail.com</span></div>
-              <div className="mobile-profile-contact-item"><span className="mobile-profile-contact-icon"><LuCake color="#ffd600" /></span><span className="mobile-profile-contact-label">BIRTHDATE</span><span className="mobile-profile-contact-value">July 9th, 2002</span></div>
               <div className="mobile-profile-contact-item"><span className="mobile-profile-contact-icon"><LuMapPin color="#ffd600" /></span><span className="mobile-profile-contact-label">LOCATION</span><span className="mobile-profile-contact-value">Toronto, ON</span></div>
             </div>
             <hr className="mobile-profile-divider" />
@@ -465,7 +464,6 @@ function WebSidebar() {
       <hr className="divider" />
       <div className="contact-list">
         <div className="contact-item"><span className="contact-icon"><FaRegEnvelope color="#ffd600" /></span> <span>romanbamrah@gmail.com</span></div>
-        <div className="contact-item"><span className="contact-icon"><LuCake color="#ffd600" /></span> <span>July 9th, 2002</span></div>
         <div className="contact-item"><span className="contact-icon"><LuMapPin color="#ffd600" /></span> <span>Toronto, ON</span></div>
       </div>
       <div className="sidebar-socials">
