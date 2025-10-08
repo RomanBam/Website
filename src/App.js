@@ -607,7 +607,7 @@ function ContactSection() {
       <div style={{ marginBottom: '0.3rem', color: '#fff', fontWeight: 600, fontSize: '1rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}>Socials</div>
       <div className="contact-socials" style={{ display: 'flex', gap: '1.1rem', marginBottom: '1.1rem' }}>
         {socialLinks.map((s, i) => (
-          <a key={i} href={s.href} aria-label={s.label} className="contact-social-icon" target="_blank" rel="noopener noreferrer" style={{ color: '#b0b0b0', fontSize: '2rem' }}>{s.icon}</a>
+          <a key={i} href={s.href} aria-label={s.label} className="contact-social-icon" target="_blank" rel="noopener noreferrer" style={{ fontSize: '2rem' }}>{s.icon}</a>
         ))}
       </div>
       

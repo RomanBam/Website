@@ -898,6 +898,25 @@ body::after {
   font-size: 1.1rem;
 }
 
+.contact-social-icon {
+  color: #b0b0b0;
+  font-size: 2rem;
+  background: #23242a;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+}
+
+.contact-social-icon:hover {
+  background: #ffd600;
+  color: #18191e;
+}
+
 @media (max-width: 1000px) and (min-width: 601px) {
   .container {
     flex-direction: column;
@@ -1408,8 +1427,12 @@ body::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
     text-decoration: none;
+  }
+  .contact-social-icon:hover {
+    background: #ffd600;
+    color: #18191e;
   }
   .contact-form {
     display: flex;
