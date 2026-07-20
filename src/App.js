@@ -771,18 +771,6 @@ function EducationSection() {
       <div className="edu-timeline" style={{ position: 'relative', marginLeft: '1.5rem', paddingLeft: '1.5rem', maxWidth: 700 }}>
         <div className="edu-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem', position: 'relative', top: '-0.05rem' }}>MOR Engineering Analyst Intern <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(January 2026 – August 2026)</span></div>
-          <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.2rem' }}>Bank of Montreal (BMO), Toronto, Ontario</div>
-          <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}>
-            <ul style={{ margin: '0.2rem 0 0.2rem 1.2rem', color: '#e0e0e0', fontSize: '1rem' }}>
-              <li style={{ marginBottom: '0.4rem' }}>Architected an auto-population engine for the Mandatory Operational Requirements (MOR) Go-Live Framework fields, eliminating manual re-entry and saving ~520 hrs/yr across the platform.</li>
-              <li style={{ marginBottom: '0.4rem' }}>Collaborated with multiple teams across BMO to build ServiceNow to MOR app integrations to automate intake verification, replacing manual email workflows and saving ~360 hrs/yr.</li>
-              <li style={{ marginBottom: '0.4rem' }}>Developed data integration to auto-pull Technology Environment &amp; Locations from AppCAT into the MOR App, eliminating manual field entry and saving ~170 hrs/yr for users.</li>
-              <li style={{ marginBottom: '0.4rem' }}>Gathered requirements from users to design navigational features such as Back, Save &amp; Exit, and unsaved-changes warnings across MOR App screens, improving UX and introducing safeguard prompts to reduce loss of work and save ~100 hrs/yr in user workflow efficiency.</li>
-              <li>Identified and delivered an additional 7 process and platform initiatives including role-based access control, recording linking, and operational governance, bringing total impact to ~1145+ hrs/yr reclaimed, equivalent to over half a full-time employee's annual capacity.</li>
-            </ul>
-          </div>
-        </div>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem', position: 'relative', top: '-0.05rem' }}>B.Sc. (Hons), Computer Science (Data Analytics) <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(2021 - 2026)</span></div>
           <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.2rem' }}>Trent University, Peterborough, ON</div>
           <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}><b>Relevant Coursework:</b> Front-End Web Development, Back-End Web Development, Cybersecurity, Software Design & Modelling, Applied AI & Machine Learning, Data Visualization, Database Management Systems, Data Structures & Algorithms I & II, Modelling & Simulation, Systems Analysis and Design</div>
@@ -807,6 +795,20 @@ function ExperienceSection() {
         <h2 className="experience-title custom-title" style={{ color: '#fff', fontWeight: 700, fontSize: '1.4rem', margin: 0 }}>Experience</h2>
       </div>
       <div className="exp-timeline" style={{ position: 'relative', marginLeft: '1.5rem', paddingLeft: '1.5rem', maxWidth: 700 }}>
+        <div className="exp-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
+          <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
+          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem', position: 'relative', top: '-0.05rem' }}>MOR Engineering Analyst Intern <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(January 2026 – August 2026)</span></div>
+          <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.2rem' }}>Bank of Montreal (BMO), Toronto, Ontario</div>
+          <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.2rem' }}>
+            <ul style={{ margin: '0.2rem 0 0.2rem 1.2rem', color: '#e0e0e0', fontSize: '1rem' }}>
+              <li style={{ marginBottom: '0.4rem' }}>Architected an auto-population engine for the Mandatory Operational Requirements (MOR) Go-Live Framework fields, eliminating manual re-entry and saving ~520 hrs/yr across the platform.</li>
+              <li style={{ marginBottom: '0.4rem' }}>Collaborated with multiple teams across BMO to build ServiceNow to MOR app integrations to automate intake verification, replacing manual email workflows and saving ~360 hrs/yr.</li>
+              <li style={{ marginBottom: '0.4rem' }}>Developed data integration to auto-pull Technology Environment &amp; Locations from AppCAT into the MOR App, eliminating manual field entry and saving ~170 hrs/yr for users.</li>
+              <li style={{ marginBottom: '0.4rem' }}>Gathered requirements from users to design navigational features such as Back, Save &amp; Exit, and unsaved-changes warnings across MOR App screens, improving UX and introducing safeguard prompts to reduce loss of work and save ~100 hrs/yr in user workflow efficiency.</li>
+              <li>Identified and delivered an additional 7 process and platform initiatives including role-based access control, recording linking, and operational governance, bringing total impact to ~1145+ hrs/yr reclaimed, equivalent to over half a full-time employee's annual capacity.</li>
+            </ul>
+          </div>
+        </div>
         <div className="exp-item" style={{ position: 'relative', marginBottom: '1.1rem' }}>
           <span style={{ position: 'absolute', left: '-1.5rem', top: '0.65rem', width: '1.2rem', height: '2px', background: '#ffd600', borderRadius: '1px', zIndex: 2, boxSizing: 'border-box' }}></span>
           <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.1rem', position: 'relative', top: '-0.05rem' }}>Sales & Technical Support Specialist <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(May 2021 – October 2024)</span></div>
