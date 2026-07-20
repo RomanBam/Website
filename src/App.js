@@ -978,6 +978,13 @@ const TechStackSection = memo(() => {
 
 const projects = [
   {
+    title: 'MiniX',
+    description: 'A social media style app with session-based login, post creation, likes, user search, and a weather widget. It focuses on a clean, interactive user experience and was built as a full-stack project with a React front end and PHP/MySQL backend.',
+    tech: ['React', 'Vite', 'React Router', 'PHP', 'MySQL'],
+    code: sanitizeUrl('https://github.com/RomanBam/MiniX'),
+    live: null
+  },
+  {
     title: 'Cheese Fat Prediction Model',
     description: 'A data science and machine learning project that predicts the fat percentage in cheese samples using regression models. The workflow covers data cleaning, exploratory data analysis (EDA), feature engineering, model selection, and results interpretation. Ideal for applications in food quality control and nutritional analysis.',
     tech: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'Matplotlib', 'Seaborn', 'Jupyter Notebook'],
