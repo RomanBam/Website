@@ -678,7 +678,7 @@ body::after {
   color: #ffd600;
   font-size: 2.1rem;
   font-weight: 700;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.9rem;
 }
 
 /* Centered Resume Download */
@@ -686,13 +686,13 @@ body::after {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-bottom: 3rem;
+  margin-bottom: 1.8rem;
 }
 
 .resume-download-card {
   background: rgba(41,41,43,0.7);
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 1.5rem 1.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -711,11 +711,11 @@ body::after {
 .resume-sections-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.4rem;
   align-items: stretch;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   position: relative;
 }
 
@@ -728,22 +728,35 @@ body::after {
 .experience-section {
   flex: none;
   min-width: 0;
+  background: rgba(40,40,41,0.7);
+  border-radius: 1rem;
+  padding: 1.5rem 1.6rem 1.3rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  border: none;
+  outline: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.education-section:hover,
+.experience-section:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
 }
 
 /* Ensure consistent spacing for alignment */
 .edu-timeline,
 .exp-timeline {
   position: relative;
-  margin-left: 1.5rem;
-  padding-left: 1.5rem;
-  max-width: 700px;
+  margin-left: 0.9rem;
+  padding-left: 1.1rem;
+  max-width: none;
 }
 
 .exp-timeline {
   position: relative;
-  margin-left: 1.5rem;
-  padding-left: 1.5rem;
-  max-width: 700px;
+  margin-left: 0.9rem;
+  padding-left: 1.1rem;
+  max-width: none;
 }
 
 .edu-item,
@@ -755,17 +768,9 @@ body::after {
   min-width: 0;
 }
 
-/* Align yellow lines at the same height */
-.edu-item > span:first-child,
-.exp-item > span:first-child {
-  position: absolute;
-  left: -1.5rem;
-  top: 0.65rem;
-  width: 1.2rem;
-  height: 2px;
-  background: #ffd600;
-  border-radius: 1px;
-  z-index: 2;
+.edu-item,
+.exp-item {
+  margin-bottom: 0.75rem;
 }
 
 /* Center section titles */
@@ -774,7 +779,7 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.9rem;
 }
 
 /* Keep stacked layout on smaller screens too */
