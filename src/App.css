@@ -707,33 +707,26 @@ body::after {
   box-shadow: 0 8px 32px rgba(0,0,0,0.22);
 }
 
-/* Side-by-Side Resume Sections */
+/* Stacked Resume Sections */
 .resume-sections-wrapper {
   display: flex;
-  gap: 3rem;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: stretch;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
 }
 
-/* Center divider line */
+/* Hide the divider since sections now stack vertically */
 .resume-sections-wrapper::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(-50%);
-  z-index: 1;
+  display: none;
 }
 
 .education-section,
 .experience-section {
-  flex: 1;
+  flex: none;
   min-width: 0;
 }
 
@@ -746,9 +739,20 @@ body::after {
   max-width: 700px;
 }
 
+.exp-timeline {
+  position: relative;
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  max-width: 700px;
+}
+
 .edu-item,
 .exp-item {
   position: relative;
+}
+
+.exp-item {
+  min-width: 0;
 }
 
 /* Align yellow lines at the same height */
@@ -769,19 +773,14 @@ body::after {
 .experience-section > div:first-child {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 1.2rem;
 }
 
-/* Responsive: Stack on smaller screens */
+/* Keep stacked layout on smaller screens too */
 @media (max-width: 1000px) {
   .resume-sections-wrapper {
-    flex-direction: column;
     gap: 2rem;
-  }
-  
-  .resume-sections-wrapper::before {
-    display: none;
   }
   
   .education-section > div:first-child,

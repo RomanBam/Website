@@ -1069,8 +1069,8 @@ const ResumeTab = memo(() => (
     </section>
     <ResumeDownload />
     <div className="resume-sections-wrapper">
-      <ExperienceSection />
       <EducationSection />
+      <ExperienceSection />
     </div>
     <TechStackSection />
   </>
