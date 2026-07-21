@@ -799,11 +799,12 @@ function ExperienceSection() {
           <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.15rem' }}>Bank of Montreal (BMO), Toronto, Ontario</div>
           <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.15rem' }}>
             <ul style={{ margin: '0.15rem 0 0.15rem 1rem', color: '#e0e0e0', fontSize: '1rem' }}>
-              <li style={{ marginBottom: '0.25rem' }}>Architected an auto-population engine for the Mandatory Operational Requirements (MOR) Go-Live Framework fields, eliminating manual re-entry and saving ~520 hrs/yr across the platform.</li>
-              <li style={{ marginBottom: '0.25rem' }}>Collaborated with multiple teams across BMO to build ServiceNow to MOR app integrations to automate intake verification, replacing manual email workflows and saving ~360 hrs/yr.</li>
-              <li style={{ marginBottom: '0.25rem' }}>Developed data integration to auto-pull Technology Environment &amp; Locations from AppCAT into the MOR App, eliminating manual field entry and saving ~170 hrs/yr for users.</li>
-              <li style={{ marginBottom: '0.25rem' }}>Gathered requirements from users to design navigational features such as Back, Save &amp; Exit, and unsaved-changes warnings across MOR App screens, improving UX and introducing safeguard prompts to reduce loss of work and save ~100 hrs/yr in user workflow efficiency.</li>
-              <li>Identified and delivered an additional 7 process and platform initiatives including role-based access control, recording linking, and operational governance, bringing total impact to ~1145+ hrs/yr reclaimed, equivalent to over half a full-time employee's annual capacity.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Architected an automation engine for BMO's Mandatory Operational Requirements (MOR) platform that synchronized verified readiness requirements, eliminating manual entry and saving ~520 hrs/yr.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Collaborated with multiple teams across BMO to build ServiceNow to MOR app integrations to automate operational readiness verification, replacing manual email workflows and saving ~360hrs/yr.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Developed enterprise data integrations to synchronize application environment metadata from AppCAT into the MOR platform, streamlining production readiness workflows and saving ~170 hrs/yr.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Partnered with users to design navigational features such as Back, Save &amp; Exit, etc. and unsaved-changes warning across MOR App screens improving UX &amp; introducing safeguards prompts to reduce loss of work and saving ~100 hrs/yr in user workflow efficiency.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Identified and delivered an additional 7 process and platform initiatives including role-based access control, record linking, and operational governance – bringing total impact to ~1145+ hrs/yr reclaimed, equivalent to over half a full-time employee's annual capacity.</li>
+              <li>Supported BMO's final operational readiness gate for enterprise software releases, collaborating with cross-functional teams to validate production readiness for applications across AWS, Azure, and GCP.</li>
             </ul>
           </div>
         </div>
