@@ -799,12 +799,15 @@ function ExperienceSection() {
           <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.15rem' }}>Bank of Montreal (BMO), Toronto, Ontario</div>
           <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.15rem' }}>
             <ul style={{ margin: '0.15rem 0 0.15rem 1rem', color: '#e0e0e0', fontSize: '1rem' }}>
-              <li style={{ marginBottom: '0.25rem' }}>Architected an automation engine for BMO's Mandatory Operational Requirements (MOR) platform that synchronized verified readiness requirements, eliminating manual entry and saving ~520 hrs/yr.</li>
-              <li style={{ marginBottom: '0.25rem' }}>Collaborated with multiple teams across BMO to build ServiceNow to MOR app integrations to automate operational readiness verification, replacing manual email workflows and saving ~360hrs/yr.</li>
-              <li style={{ marginBottom: '0.25rem' }}>Developed enterprise data integrations to synchronize application environment metadata from AppCAT into the MOR platform, streamlining production readiness workflows and saving ~170 hrs/yr.</li>
-              <li style={{ marginBottom: '0.25rem' }}>Partnered with users to design navigational features such as Back, Save &amp; Exit, etc. and unsaved-changes warning across MOR App screens improving UX &amp; introducing safeguards prompts to reduce loss of work and saving ~100 hrs/yr in user workflow efficiency.</li>
-              <li style={{ marginBottom: '0.25rem' }}>Identified and delivered an additional 7 process and platform initiatives including role-based access control, record linking, and operational governance – bringing total impact to ~1145+ hrs/yr reclaimed, equivalent to over half a full-time employee's annual capacity.</li>
-              <li>Supported BMO's final operational readiness gate for enterprise software releases, collaborating with cross-functional teams to validate production readiness for applications across AWS, Azure, and GCP.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Worked on BMO’s Mandatory Operational Requirements (MOR) team, the final operational-readiness gate that technology projects must complete before being approved for production. The team supports approximately 2,400+ projects annually as of 2026, providing exposure to initiatives ranging from AI implementations and new applications to infrastructure, concurrency, and system upgrades.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Partnered with users, project managers, engineering teams, and operational stakeholders to understand workflow challenges and translate requirements into practical platform solutions.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Architected an automation engine that synchronized verified readiness requirements within the MOR platform, eliminating repetitive manual entry and saving approximately 520 hours annually.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Collaborated across BMO to develop ServiceNow and MOR integrations that automated operational-readiness verification, replaced manual email workflows, and saved approximately 360 hours annually.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Built enterprise data integrations that synchronized application and environment metadata from AppCAT into MOR, improving data accuracy and streamlining production-readiness reviews.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Worked directly with users to design navigation features, workflow safeguards, and unsaved-changes warnings that reduced lost work and improved the overall user experience.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Delivered additional improvements including role-based access control, record linking, and operational-governance enhancements.</li>
+              <li style={{ marginBottom: '0.25rem' }}>Created solutions that reduced operational toil for the MOR team, improved efficiency for users and project managers, and reclaimed more than 1,145 hours of annual capacity.</li>
+              <li>Supported application teams navigating production-readiness requirements across AWS, Azure, and Google Cloud environments.</li>
             </ul>
           </div>
         </div>
