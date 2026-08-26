@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, memo, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useRef, memo, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaLink, FaCloud, FaJava, FaNodeJs, FaLock, FaCheckCircle, FaEye, FaAws, FaRecycle } from 'react-icons/fa';
@@ -1353,6 +1353,18 @@ function PortfolioContent() {
 
   const [activeTab, setActiveTab] = useState(() => getActiveTabFromPath(location.pathname));
   const [isManualTabClick, setIsManualTabClick] = useState(false);
+  // Kept in sync via effect below so the scroll listener can read the latest values
+  // without needing to be re-registered on every tab change.
+  const activeTabRef = useRef(activeTab);
+  const isManualTabClickRef = useRef(isManualTabClick);
+
+  useEffect(() => {
+    activeTabRef.current = activeTab;
+  }, [activeTab]);
+
+  useEffect(() => {
+    isManualTabClickRef.current = isManualTabClick;
+  }, [isManualTabClick]);
 
   // Update active tab when URL changes
   useEffect(() => {
@@ -1420,7 +1432,7 @@ function PortfolioContent() {
           lastScrollTime = now;
           
           // Don't update tab if user just manually clicked a tab
-          if (isManualTabClick) {
+          if (isManualTabClickRef.current) {
             ticking = false;
             return;
           }
@@ -1448,7 +1460,7 @@ function PortfolioContent() {
           
           // If at bottom, highlight contact tab
           if (isAtBottom) {
-            if (activeTab !== 'contact') {
+            if (activeTabRef.current !== 'contact') {
               setActiveTab('contact');
               const tab = tabs.find(t => t.id === 'contact');
               if (tab) {
@@ -1462,7 +1474,7 @@ function PortfolioContent() {
           for (let i = sections.length - 1; i >= 0; i--) {
             const section = document.getElementById(`section-${sections[i]}`);
             if (section && section.offsetTop <= scrollPosition) {
-              if (activeTab !== sections[i]) {
+              if (activeTabRef.current !== sections[i]) {
                 setActiveTab(sections[i]);
                 const tab = tabs.find(t => t.id === sections[i]);
                 if (tab) {
@@ -1495,7 +1507,9 @@ function PortfolioContent() {
       setTimeout(handleScroll, 100);
       return () => window.removeEventListener('scroll', handleScroll);
     }
-  }, [activeTab, isMobile, isManualTabClick]);
+    // Only re-register when isMobile flips; activeTab/isManualTabClick are read via refs
+    // to avoid tearing down and re-adding the scroll listener on every scroll-driven tab change.
+  }, [isMobile]);
 
   // Memoized tab change handler that updates URL and scrolls
   const handleTabChange = useCallback((tabId) => {

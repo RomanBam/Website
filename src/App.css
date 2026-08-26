@@ -1485,3 +1485,30 @@ body::after {
     color: #18191e;
   }
 }
+
+/* Respect reduced-motion preference: stop the perpetual decorative animations
+   (72 constellation stars + starfield layers each run an infinite filter/box-shadow
+   animation) which otherwise keep repainting for as long as the tab is open. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body::before,
+  body::after,
+  .dark-app::before,
+  .dark-app::after {
+    animation: none;
+    opacity: 1;
+  }
+  .constellation-star {
+    animation: starAppear 0.01s linear forwards;
+  }
+  .constellation-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .shooting-star {
+    animation: none;
+    opacity: 0;
+  }
+}
