@@ -431,9 +431,17 @@ body::after {
   margin-bottom: 0;
   width: 100%;
 }
-.contact-item span:last-child {
+.contact-item span:last-child,
+.contact-item a:last-child {
   text-align: left;
   flex: 1;
+}
+.contact-item a {
+  color: inherit;
+  text-decoration: none;
+}
+.contact-item a:hover {
+  color: #ffd600;
 }
 .contact-icon {
   background: rgba(40,40,41,1);
@@ -1263,6 +1271,7 @@ body::after {
     font-weight: 400;
     margin-left: 1.5rem;
     margin-top: -0.2rem;
+    text-decoration: none;
   }
   .mobile-profile-socials {
     display: flex;
@@ -1371,6 +1380,7 @@ body::after {
     margin-left: 0;
     margin-top: 0;
     word-break: break-all;
+    text-decoration: none;
   }
   .mobile-profile-social-icon svg {
     color: #b0b0b0 !important;

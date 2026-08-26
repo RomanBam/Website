@@ -457,7 +457,7 @@ function MobileProfileCard() {
           <div className="mobile-profile-details-inner">
             <hr className="mobile-profile-divider" />
             <div className="mobile-profile-contact-list">
-              <div className="mobile-profile-contact-item"><span className="mobile-profile-contact-icon"><FaRegEnvelope color="#ffd600" /></span><span className="mobile-profile-contact-label">EMAIL</span><span className="mobile-profile-contact-value">romanbamrah@gmail.com</span></div>
+              <div className="mobile-profile-contact-item"><span className="mobile-profile-contact-icon"><FaRegEnvelope color="#ffd600" /></span><span className="mobile-profile-contact-label">EMAIL</span><a href="mailto:romanbamrah@gmail.com" className="mobile-profile-contact-value">romanbamrah@gmail.com</a></div>
               <div className="mobile-profile-contact-item"><span className="mobile-profile-contact-icon"><LuMapPin color="#ffd600" /></span><span className="mobile-profile-contact-label">LOCATION</span><span className="mobile-profile-contact-value">Toronto, ON</span></div>
             </div>
             <hr className="mobile-profile-divider" />
@@ -480,7 +480,7 @@ function WebSidebar() {
       <div className="profile-role">Software Engineer</div>
       <hr className="divider" />
       <div className="contact-list">
-        <div className="contact-item"><span className="contact-icon"><FaRegEnvelope color="#ffd600" /></span> <span>romanbamrah@gmail.com</span></div>
+        <div className="contact-item"><span className="contact-icon"><FaRegEnvelope color="#ffd600" /></span> <a href="mailto:romanbamrah@gmail.com">romanbamrah@gmail.com</a></div>
         <div className="contact-item"><span className="contact-icon"><LuMapPin color="#ffd600" /></span> <span>Toronto, ON</span></div>
       </div>
       <div className="sidebar-socials">
@@ -632,8 +632,8 @@ function ContactSection() {
         onSubmit={handleSubmit}
         style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontFamily: 'Segoe UI, Arial, sans-serif' }}
       >
-        {/* Honeypot field - hidden from users, catches bots */}
-        <input type="text" name="_gotcha" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+        {/* Honeypot field - off-screen (not display:none) so bots that fill visible-but-hidden inputs still get caught; aria-hidden keeps it out of screen readers */}
+        <input type="text" name="_gotcha" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }} tabIndex="-1" aria-hidden="true" autoComplete="off" />
         
         <div>
           <input 
