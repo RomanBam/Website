@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef, memo, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
-import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaLink, FaCloud, FaJava, FaNodeJs, FaLock, FaCheckCircle, FaEye, FaAws, FaRecycle } from 'react-icons/fa';
+import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaReact, FaGitAlt, FaLink, FaCloud, FaJava, FaNodeJs, FaLock, FaAws, FaDatabase, FaMicrosoft, FaBolt, FaCogs } from 'react-icons/fa';
 import { LuMapPin } from 'react-icons/lu';
-import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiFigma, SiJupyter, SiOpenai, SiNumpy, SiDocker, SiPhp, SiTypescript, SiScikitlearn, SiPandas, SiOpencv, SiStreamlit, SiRedux, SiTailwindcss, SiGraphql, SiWebpack, SiGithub, SiExpress, SiLangchain, SiPlotly } from 'react-icons/si';
+import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiOpenai, SiNumpy, SiDocker, SiPhp, SiTypescript, SiScikitlearn, SiPandas, SiOpencv, SiGraphql, SiGithub, SiExpress, SiMysql } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
 
 // Performance constants
@@ -833,144 +833,94 @@ function ExperienceSection() {
 const TechStackSection = memo(() => {
   const techCategories = [
     {
-      title: "Programming Languages",
+      title: "Languages",
       icon: <FaCode />,
       technologies: [
-        { name: "Python", icon: <FaPython />, description: "Primary, AI & backend" },
-        { name: "Java", icon: <FaJava />, description: "Enterprise apps" },
-        { name: "JavaScript", icon: <SiJavascript />, description: "Frontend & Node.js" },
-        { name: "C#", icon: <TbBrandCSharp />, description: "OOP & .NET" },
-        { name: "PHP", icon: <SiPhp />, description: "Server-side scripting" },
-        { name: "TypeScript", icon: <SiTypescript />, description: "Type-safe JS" }
+        { name: "Python", icon: <FaPython /> },
+        { name: "Java", icon: <FaJava /> },
+        { name: "TypeScript", icon: <SiTypescript /> },
+        { name: "JavaScript", icon: <SiJavascript /> },
+        { name: "C#", icon: <TbBrandCSharp /> },
+        { name: "SQL", icon: <FaDatabase /> },
+        { name: "PHP", icon: <SiPhp /> }
       ]
     },
     {
-      title: "AI/ML & Data Science",
+      title: "AI & Machine Learning",
       icon: <FaRobot />,
       technologies: [
-        { name: "TensorFlow", icon: <SiTensorflow />, description: "Deep learning" },
-        { name: "MobileNetV2", icon: <FaEye />, description: "Image classification" },
-        { name: "Scikit-learn", icon: <SiScikitlearn />, description: "ML models" },
-        { name: "Pandas", icon: <SiPandas />, description: "Data manipulation" },
-        { name: "NumPy", icon: <SiNumpy />, description: "Numerical computing" },
-        { name: "Matplotlib", icon: <SiPlotly />, description: "Data visualization" },
-        { name: "OpenCV", icon: <SiOpencv />, description: "Computer vision" },
-        { name: "Streamlit", icon: <SiStreamlit />, description: "ML web apps" },
-        { name: "ChatGPT API", icon: <SiOpenai />, description: "LLM integration" },
-        { name: "LangChain", icon: <SiLangchain />, description: "LLM workflows" },
-        { name: "Jupyter Notebooks", icon: <SiJupyter />, description: "Interactive analysis" }
+        { name: "TensorFlow", icon: <SiTensorflow /> },
+        { name: "Scikit-learn", icon: <SiScikitlearn /> },
+        { name: "OpenCV", icon: <SiOpencv /> },
+        { name: "Pandas", icon: <SiPandas /> },
+        { name: "NumPy", icon: <SiNumpy /> },
+        { name: "OpenAI API", icon: <SiOpenai /> }
       ]
     },
     {
-      title: "Web & Application Development",
-      icon: <FaServer />,
-      technologies: [
-        { name: "React.js", icon: <FaReact />, description: "Component-based UI" },
-        { name: "Next.js", icon: <SiNextdotjs />, description: "SSR & SSG" },
-        { name: "Redux", icon: <SiRedux />, description: "State management" },
-        { name: "React Router", icon: <FaReact />, description: "Client routing" },
-        { name: "React Hook Form", icon: <FaReact />, description: "Form handling" },
-        { name: "Tailwind CSS", icon: <SiTailwindcss />, description: "Utility CSS" },
-        { name: "HTML", icon: <FaHtml5 />, description: "Semantic markup" },
-        { name: "CSS", icon: <FaCss3Alt />, description: "Responsive styling" },
-        { name: "Flask", icon: <SiFlask />, description: "Python web framework" },
-        { name: "Node.js", icon: <FaNodeJs />, description: "JavaScript runtime" },
-        { name: "Express.js", icon: <SiExpress />, description: "Node.js framework" }
-      ]
-    },
-    {
-      title: "API Development",
-      icon: <FaLink />,
-      technologies: [
-        { name: "REST APIs", icon: <FaServer />, description: "RESTful services" },
-        { name: "GraphQL", icon: <SiGraphql />, description: "Query language" },
-        { name: "Authentication", icon: <FaLock />, description: "Auth & security" }
-      ]
-    },
-    {
-      title: "Security, Testing & CI/CD",
-      icon: <FaTools />,
-      technologies: [
-        { name: "Web Security", icon: <FaLock />, description: "Best practices" },
-        { name: "Automated Testing", icon: <FaCheckCircle />, description: "Test automation" },
-        { name: "CI/CD Pipelines", icon: <FaTools />, description: "Continuous deployment" }
-      ]
-    },
-    {
-      title: "Tools & Platforms",
+      title: "Cloud & DevOps",
       icon: <FaCloud />,
       technologies: [
-        { name: "AWS", icon: <FaAws />, description: "Cloud infrastructure" },
-        { name: "Docker", icon: <SiDocker />, description: "Containerization" },
-        { name: "Vercel", icon: <SiVercel />, description: "Web hosting" },
-        { name: "Git", icon: <FaGitAlt />, description: "Version control" },
-        { name: "GitHub", icon: <SiGithub />, description: "Code collaboration" },
-        { name: "Figma", icon: <SiFigma />, description: "UI/UX design" },
-        { name: "Webpack", icon: <SiWebpack />, description: "Build tooling" },
-        { name: "Agile/Scrum", icon: <FaRecycle />, description: "Project methodology" }
+        { name: "AWS", icon: <FaAws /> },
+        { name: "Docker", icon: <SiDocker /> },
+        { name: "Git", icon: <FaGitAlt /> },
+        { name: "GitHub", icon: <SiGithub /> },
+        { name: "Vercel", icon: <SiVercel /> },
+        { name: "CI/CD", icon: <FaTools /> }
+      ]
+    },
+    {
+      title: "Frameworks",
+      icon: <FaServer />,
+      technologies: [
+        { name: "React", icon: <FaReact /> },
+        { name: "Next.js", icon: <SiNextdotjs /> },
+        { name: "Node.js", icon: <FaNodeJs /> },
+        { name: "Express", icon: <SiExpress /> },
+        { name: "Flask", icon: <SiFlask /> }
+      ]
+    },
+    {
+      title: "Databases & APIs",
+      icon: <FaLink />,
+      technologies: [
+        { name: "MySQL", icon: <SiMysql /> },
+        { name: "REST APIs", icon: <FaServer /> },
+        { name: "GraphQL", icon: <SiGraphql /> },
+        { name: "Authentication", icon: <FaLock /> }
+      ]
+    },
+    {
+      title: "Enterprise Tools",
+      icon: <FaBriefcase />,
+      technologies: [
+        { name: "Power Apps", icon: <FaMicrosoft /> },
+        { name: "Power Automate", icon: <FaBolt /> },
+        { name: "ServiceNow", icon: <FaCogs /> },
+        { name: "Dataverse", icon: <FaDatabase /> }
       ]
     }
   ];
 
   return (
-    <section className="techstack-section" style={{ fontFamily: 'Segoe UI, Arial, sans-serif', marginBottom: '1.5rem', marginTop: '1.1rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1.2rem' }}>
-        <FaTools color="#ffd600" style={{ fontSize: '2.1rem', marginRight: '0.7rem' }} />
+    <section className="techstack-section">
+      <div className="techstack-header">
+        <FaTools className="techstack-header-icon" />
         <h2 className="techstack-title custom-title" style={{ color: '#fff', fontWeight: 700, fontSize: '1.4rem', margin: 0 }}>Tech Stack</h2>
       </div>
-      
-      <div style={{ 
-        display: 'flex', 
-        flexDirection: 'column',
-        gap: '0.5rem',
-        maxWidth: '100%'
-      }}>
+
+      <div className="techstack-grid">
         {techCategories.map((category, index) => (
-          <div key={index} style={{
-            background: 'rgba(40,40,41,0.7)',
-            border: 'none',
-            borderRadius: '1rem',
-            padding: '1.2rem',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.15)',
-            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-            cursor: 'pointer'
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.transform = 'translateY(-6px) scale(1.02)';
-            e.target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.22)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.transform = 'translateY(0) scale(1)';
-            e.target.style.boxShadow = '0 4px 24px rgba(0,0,0,0.15)';
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.6rem', pointerEvents: 'none' }}>
-              <span style={{ color: '#ffd600', fontSize: '1.5rem', marginRight: '0.5rem' }}>{category.icon}</span>
-              <h3 style={{ color: '#fff', fontWeight: 700, fontSize: '1.1rem', margin: 0 }}>{category.title}</h3>
+          <div key={index} className="techstack-card">
+            <div className="techstack-card-header">
+              <span className="techstack-card-icon">{category.icon}</span>
+              <h3 className="techstack-card-title">{category.title}</h3>
             </div>
-            
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
-              gap: '0.3rem', 
-              pointerEvents: 'none' 
-            }}>
+            <div className="techstack-chips">
               {category.technologies.map((tech, techIndex) => (
-                <div key={techIndex} style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '0.2rem 0',
-                  background: 'transparent',
-                  cursor: 'default',
-                  transition: 'none',
-                  pointerEvents: 'none'
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flex: 1, pointerEvents: 'none' }}>
-                    <span style={{ color: '#ffd600', fontSize: '1.1rem' }}>{tech.icon}</span>
-                    <div>
-                      <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.85rem' }}>{tech.name}</div>
-                      <div style={{ color: '#b0b0b0', fontSize: '0.75rem' }}>{tech.description}</div>
-                    </div>
-                  </div>
+                <div key={techIndex} className="tech-chip">
+                  <span className="tech-chip-icon">{tech.icon}</span>
+                  <span className="tech-chip-name">{tech.name}</span>
                 </div>
               ))}
             </div>
