@@ -446,6 +446,7 @@ function MobileProfileCard() {
         <button
           className="mobile-profile-chevron"
           aria-label="Toggle profile card"
+          aria-expanded={expanded}
           onClick={() => setExpanded(e => !e)}
         >
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffd600" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s'}}><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1072,7 +1073,7 @@ const AboutTab = memo(() => (
 
 const ResumeTab = memo(() => (
   <>
-    <section id="section-resume" className="resume-section">
+    <section className="resume-section">
       <h1 className="resume-title custom-title">Resume</h1>
     </section>
     <ResumeDownload />
@@ -1209,6 +1210,7 @@ const MobileView = memo(function MobileView({ activeTab, setActiveTab }) {
             key={tab.id}
             to={tab.path}
             className={`main-tab${activeTab === tab.id ? ' active' : ''}`}
+            aria-current={activeTab === tab.id ? 'page' : undefined}
             onClick={() => {
               setActiveTab(tab.id);
               
@@ -1260,6 +1262,7 @@ const WebView = memo(function WebView({ activeTab, setActiveTab }) {
                 key={tab.id}
                 to={tab.path}
                 className={`main-tab${activeTab === tab.id ? ' active' : ''}`}
+                aria-current={activeTab === tab.id ? 'page' : undefined}
                 onClick={() => {
                   setActiveTab(tab.id);
                   if (tab.id === 'about') {
