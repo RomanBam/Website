@@ -711,6 +711,7 @@ body::after {
 
 .about-section {
   margin-bottom: 0.7rem;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 .about-title {
   font-size: 2.1rem;
@@ -726,6 +727,7 @@ body::after {
 
 .doing-section {
   margin-top: 0.7rem;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 .doing-title {
   font-size: 1.4rem;

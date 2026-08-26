@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef, memo, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
-import { FaRegEnvelope, FaLinkedin, FaGithub, FaPencilRuler, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaReact, FaGitAlt, FaLink, FaCloud, FaJava, FaNodeJs, FaLock, FaAws, FaDatabase, FaMicrosoft, FaBolt, FaCogs } from 'react-icons/fa';
+import { FaRegEnvelope, FaLinkedin, FaGithub, FaCode, FaServer, FaRobot, FaBook, FaDownload, FaBriefcase, FaTools, FaPython, FaReact, FaGitAlt, FaLink, FaCloud, FaJava, FaNodeJs, FaLock, FaAws, FaDatabase, FaMicrosoft, FaBolt, FaCogs } from 'react-icons/fa';
 import { LuMapPin } from 'react-icons/lu';
 import { SiJavascript, SiTensorflow, SiNextdotjs, SiFlask, SiVercel, SiOpenai, SiNumpy, SiDocker, SiPhp, SiTypescript, SiScikitlearn, SiPandas, SiOpencv, SiGraphql, SiGithub, SiExpress, SiMysql } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
@@ -982,38 +982,38 @@ const AboutTab = memo(() => (
     <section className="about-section">
       <h1 className="about-title custom-title">About Me</h1>
       <p className="about-desc">
-        Software Engineer with a strong foundation in Full-Stack Development, AI/ML, and Data Analytics. Proficient in building scalable applications using Python, Java, React, HTML, CSS, PHP and more with experience in database integration, API development, and model deployment. Proficient with modern development tools and practices, including software security, automated testing, and CI/CD pipelines. Familiar with the Software Development Life Cycle in Agile environments and the Scrum framework. Passionate about designing robust systems, optimizing algorithms, and contributing to innovative, production-ready software projects.
+        I'm a Software Engineering student at Trent University with experience building enterprise automation at BMO and full-stack applications with React, PHP, and Python. I enjoy building backend systems, automating manual processes, and turning ideas into software that solves practical problems. I'm currently focused on growing as a backend and full-stack engineer while building projects that reflect production engineering principles.
       </p>
     </section>
     <section className="doing-section">
-      <h2 className="doing-title custom-title">What I'm Doing</h2>
+      <h2 className="doing-title custom-title">What I've Built</h2>
       <div className="doing-cards">
         <div className="doing-card">
-          <div className="doing-icon"><FaPencilRuler color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
+          <div className="doing-icon"><FaServer color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
           <div>
-            <h3>UI/UX Design</h3>
-            <p>Striving for modern, high-quality design built with attention to detail and a focus on user experience.</p>
+            <h3>Enterprise Experience</h3>
+            <p>Built automation solutions at BMO that reduced manual work across internal production-readiness workflows.</p>
           </div>
         </div>
         <div className="doing-card">
           <div className="doing-icon"><FaCode color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
           <div>
-            <h3>Frontend Development</h3>
-            <p>High-quality frontend development of sites at a skillful level.</p>
-          </div>
-        </div>
-        <div className="doing-card">
-          <div className="doing-icon"><FaServer color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
-          <div>
-            <h3>Backend Development</h3>
-            <p>Learning backend development of applications in JavaScript.</p>
+            <h3>Full-Stack Development</h3>
+            <p>Created MiniX, a React and PHP social platform with authentication, REST APIs, and MySQL.</p>
           </div>
         </div>
         <div className="doing-card">
           <div className="doing-icon"><FaRobot color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
           <div>
-            <h3>AI & Machine Learning</h3>
-            <p>Building intelligent AI/ML applications with a focus on practical impact and model quality.</p>
+            <h3>Machine Learning</h3>
+            <p>Built TensorFlow and scikit-learn projects including an image classifier and predictive models.</p>
+          </div>
+        </div>
+        <div className="doing-card">
+          <div className="doing-icon"><FaTools color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
+          <div>
+            <h3>Modern Development</h3>
+            <p>Working with Python, Java, React, AWS, Docker, Git, and enterprise development tools.</p>
           </div>
         </div>
       </div>
@@ -1075,38 +1075,38 @@ const MobileAboutTab = memo(() => (
     <section className="about-section">
       <h1 className="about-title custom-title">About Me</h1>
       <p className="about-desc">
-        Software Engineer with a strong foundation in Full-Stack Development, AI/ML, and Data Analytics. Proficient in building scalable applications using Python, Java, React, HTML, CSS, PHP and more with experience in database integration, API development, and model deployment. Proficient with modern development tools and practices, including software security, automated testing, and CI/CD pipelines. Familiar with the Software Development Life Cycle in Agile environments and the Scrum framework. Passionate about designing robust systems, optimizing algorithms, and contributing to innovative, production-ready software projects.
+        I'm a Software Engineering student at Trent University with experience building enterprise automation at BMO and full-stack applications with React, PHP, and Python. I enjoy building backend systems, automating manual processes, and turning ideas into software that solves practical problems. I'm currently focused on growing as a backend and full-stack engineer while building projects that reflect production engineering principles.
       </p>
     </section>
     <section className="doing-section">
-      <h2 className="doing-title custom-title">What I'm Doing</h2>
+      <h2 className="doing-title custom-title">What I've Built</h2>
       <div className="doing-cards">
         <div className="doing-card">
-          <div className="doing-icon"><FaPencilRuler color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
+          <div className="doing-icon"><FaServer color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
           <div>
-            <h3>UI/UX Design</h3>
-            <p>Striving for modern, high-quality design built with attention to detail and a focus on user experience.</p>
+            <h3>Enterprise Experience</h3>
+            <p>Built automation solutions at BMO that reduced manual work across internal production-readiness workflows.</p>
           </div>
         </div>
         <div className="doing-card">
           <div className="doing-icon"><FaCode color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
           <div>
-            <h3>Frontend Development</h3>
-            <p>High-quality frontend development of sites at a skillful level.</p>
-          </div>
-        </div>
-        <div className="doing-card">
-          <div className="doing-icon"><FaServer color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
-          <div>
-            <h3>Backend Development</h3>
-            <p>Learning backend development of applications in JavaScript.</p>
+            <h3>Full-Stack Development</h3>
+            <p>Created MiniX, a React and PHP social platform with authentication, REST APIs, and MySQL.</p>
           </div>
         </div>
         <div className="doing-card">
           <div className="doing-icon"><FaRobot color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
           <div>
-            <h3>AI & Machine Learning</h3>
-            <p>Building intelligent AI/ML applications with a focus on practical impact and model quality.</p>
+            <h3>Machine Learning</h3>
+            <p>Built TensorFlow and scikit-learn projects including an image classifier and predictive models.</p>
+          </div>
+        </div>
+        <div className="doing-card">
+          <div className="doing-icon"><FaTools color="#ffd600" style={{ fontSize: '2.2rem' }} /></div>
+          <div>
+            <h3>Modern Development</h3>
+            <p>Working with Python, Java, React, AWS, Docker, Git, and enterprise development tools.</p>
           </div>
         </div>
       </div>
