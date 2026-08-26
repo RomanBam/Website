@@ -1366,26 +1366,20 @@ function PortfolioContent() {
   // Scroll listener to update active tab based on visible section
   useEffect(() => {
     let ticking = false;
-    let lastScrollTime = 0;
-    const throttleDelay = 100; // Throttle to max once per 100ms
-    
+
     const handleScroll = () => {
-      const now = Date.now();
-      
-      // Throttle scroll events
-      if (now - lastScrollTime < throttleDelay) {
+      if (ticking) {
         return;
       }
-      
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          lastScrollTime = now;
-          
-          // Don't update tab if user just manually clicked a tab
-          if (isManualTabClickRef.current) {
-            ticking = false;
-            return;
-          }
+      ticking = true;
+
+      window.requestAnimationFrame(() => {
+        ticking = false;
+
+        // Don't update tab if user just manually clicked a tab
+        if (isManualTabClickRef.current) {
+          return;
+        }
           
           const sections = ['about', 'resume', 'portfolio', 'contact'];
           let scrollPosition;
@@ -1417,7 +1411,6 @@ function PortfolioContent() {
                 window.history.replaceState(null, '', tab.path);
               }
             }
-            ticking = false;
             return;
           }
           
@@ -1434,12 +1427,13 @@ function PortfolioContent() {
               break;
             }
           }
-          
-          ticking = false;
-        });
-        
-        ticking = true;
-      }
+      });
+    };
+
+    // Force a final check once scrolling actually settles - a safety net in case the
+    // very last scroll event lands mid-frame and gets missed (e.g. right at the bottom).
+    const forceFinalCheck = () => {
+      handleScroll();
     };
 
     // Add scroll listener to appropriate container with passive flag for better performance
@@ -1447,15 +1441,23 @@ function PortfolioContent() {
       const mobileContainer = document.querySelector('.main-content-card');
       if (mobileContainer) {
         mobileContainer.addEventListener('scroll', handleScroll, { passive: true });
+        mobileContainer.addEventListener('scrollend', forceFinalCheck, { passive: true });
         // Initial call to set correct tab on load
         setTimeout(handleScroll, 100);
-        return () => mobileContainer.removeEventListener('scroll', handleScroll);
+        return () => {
+          mobileContainer.removeEventListener('scroll', handleScroll);
+          mobileContainer.removeEventListener('scrollend', forceFinalCheck);
+        };
       }
     } else {
       window.addEventListener('scroll', handleScroll, { passive: true });
+      window.addEventListener('scrollend', forceFinalCheck, { passive: true });
       // Initial call to set correct tab on load
       setTimeout(handleScroll, 100);
-      return () => window.removeEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('scrollend', forceFinalCheck);
+      };
     }
     // Only re-register when isMobile flips; activeTab/isManualTabClick are read via refs
     // to avoid tearing down and re-adding the scroll listener on every scroll-driven tab change.
@@ -1469,11 +1471,23 @@ function PortfolioContent() {
       setIsManualTabClick(true);
       navigate(tab.path);
       setActiveTab(tabId);
-      
-      // Clear the flag immediately after navigation
-      setTimeout(() => setIsManualTabClick(false), 100);
+
+      // Clear the flag once the resulting smooth-scroll actually finishes, instead of a
+      // fixed short delay - otherwise the scroll listener re-highlights sections it
+      // passes through mid-animation before landing on the clicked one.
+      const scrollTarget = isMobile ? document.querySelector('.main-content-card') : window;
+      let cleared = false;
+      const clearManualClick = () => {
+        if (cleared) return;
+        cleared = true;
+        setIsManualTabClick(false);
+        scrollTarget?.removeEventListener('scrollend', clearManualClick);
+      };
+      scrollTarget?.addEventListener('scrollend', clearManualClick, { once: true });
+      // Safety net for browsers without 'scrollend' support (e.g. Safari < 17.4).
+      setTimeout(clearManualClick, 1200);
     }
-  }, [navigate]);
+  }, [navigate, isMobile]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 600);
