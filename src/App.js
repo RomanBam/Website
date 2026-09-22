@@ -813,7 +813,7 @@ function ExperienceSection() {
           </div>
         </div>
         <div className="exp-item" style={{ position: 'relative', marginBottom: '0.75rem' }}>
-          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.05rem', position: 'relative', top: '-0.05rem' }}>Sales & Technical Support Specialist <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(May 2021 – October 2024)</span></div>
+          <div style={{ fontWeight: 700, color: '#fff', fontSize: '1.13rem', marginBottom: '0.05rem', position: 'relative', top: '-0.05rem' }}>Sales & Technical Support Specialist <span style={{ color: '#ffd600', fontWeight: 400, fontSize: '1rem' }}>(May 2024 – October 2024)</span></div>
           <div style={{ color: '#ffd600', fontWeight: 600, fontSize: '1rem', marginBottom: '0.15rem' }}>Super Choice Kitchen Inc, Burlington, ON</div>
           <div style={{ color: '#e0e0e0', fontSize: '1rem', marginBottom: '0.15rem' }}>
             <ul style={{ margin: '0.15rem 0 0.15rem 1rem', color: '#e0e0e0', fontSize: '1rem' }}>
